@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karriere – EC GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <script>if(localStorage.getItem('ace-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+  <style>
+    :root {
+      --bg:        #000000;
+      --bg2:       #080808;
+      --surface:   #0f0f0f;
+      --surface2:  #161616;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --text:      #ffffff;
+      --text2:     #888888;
+      --text3:     #444444;
+      --accent:    #6c63ff;
+      --accent2:   #a78bfa;
+      --gradient:  linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
+      --glow:      rgba(108,99,255,0.15);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ──────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .nav-logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 15px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 32px; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+    .nav-links a { color: var(--text2); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--text); color: var(--bg);
+      padding: 8px 20px; border-radius: 999px;
+      font-size: 13.5px; font-weight: 600;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    .hero {
+      min-height: 80vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 96px 48px 64px;
+      position: relative; overflow: hidden;
+    }
+    #heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.5; }
+    .hero-glow {
+      position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.2), transparent 70%);
+    }
+    .hero-grid-lines {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-badge {
+      position: relative; z-index: 1;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 6px 16px 6px 10px;
+      font-size: 12px; font-weight: 500; color: var(--text2);
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 32px;
+    }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #22d3ee; box-shadow: 0 0 8px #22d3ee; animation: blink 2.5s ease-in-out infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero h1 {
+      position: relative; z-index: 1;
+      font-size: clamp(44px, 7vw, 96px); font-weight: 900;
+      line-height: 0.95; letter-spacing: -0.045em; margin-bottom: 24px;
+    }
+    .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub {
+      position: relative; z-index: 1;
+      font-size: clamp(15px, 1.6vw, 18px); color: var(--text2);
+      max-width: 560px; line-height: 1.8; margin-bottom: 48px;
+    }
+    .hero-actions { position: relative; z-index: 1; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient); color: #fff;
+      padding: 13px 28px; border-radius: 999px;
+      font-size: 14px; font-weight: 600;
+      text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 40px rgba(108,99,255,0.3);
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border2); padding: 13px 28px; border-radius: 999px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.35); transform: translateY(-2px); }
+
+    /* ─── SECTION COMMON ───────────────────────────────── */
+    .section { padding: 80px 48px; }
+    .section-dark { background: var(--bg2); }
+    .section-label { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .section-title { font-size: clamp(32px, 4.5vw, 58px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.8; }
+
+    /* ─── BENEFITS ─────────────────────────────────────── */
+    .benefits-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; max-width: 1100px; margin: 56px auto 0;
+    }
+    .benefit-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 28px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .benefit-card:hover { border-color: rgba(108,99,255,0.35); transform: translateY(-4px); }
+    .benefit-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: var(--gradient); margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .benefit-icon svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .benefit-card h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .benefit-card p { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+    /* ─── JOBS ─────────────────────────────────────────── */
+    .jobs-list { max-width: 860px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 16px; }
+    .job-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px 32px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .job-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-3px); }
+    .job-left { display: flex; align-items: center; gap: 20px; }
+    .job-icon {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .job-icon svg { width: 22px; height: 22px; stroke: var(--accent2); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .job-category { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+    .job-title { font-size: 19px; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 8px; }
+    .job-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+    .job-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--surface2); border: 1px solid var(--border2);
+      color: var(--text2); font-size: 12px; font-weight: 500;
+      padding: 3px 11px; border-radius: 999px;
+    }
+    .job-apply {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--gradient); color: #fff;
+      padding: 10px 22px; border-radius: 999px;
+      font-size: 13px; font-weight: 600;
+      text-decoration: none; white-space: nowrap;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 24px rgba(108,99,255,0.25);
+      flex-shrink: 0;
+    }
+    .job-apply:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    /* ─── OPEN APPLICATION ─────────────────────────────── */
+    .open-apply {
+      max-width: 860px; margin: 24px auto 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .open-apply-text h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .open-apply-text p { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+    /* ─── CULTURE ──────────────────────────────────────── */
+    .culture-wrap {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .culture-text .section-title { margin-bottom: 20px; }
+    .culture-text p { font-size: 15.5px; color: var(--text2); line-height: 1.85; margin-bottom: 18px; }
+    .culture-text p:last-child { margin-bottom: 0; }
+    .culture-text strong { color: var(--text); }
+    .culture-visual {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .culture-stat {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 28px 22px;
+      transition: border-color 0.2s;
+    }
+    .culture-stat:hover { border-color: var(--border2); }
+    .culture-stat-num {
+      font-size: 38px; font-weight: 900; letter-spacing: -0.05em; line-height: 1;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 6px;
+    }
+    .culture-stat-label { font-size: 13px; color: var(--text2); font-weight: 500; line-height: 1.4; }
+
+    /* ─── CTA ──────────────────────────────────────────── */
+    .cta-section {
+      text-align: center; padding: 80px 48px;
+      position: relative; overflow: hidden;
+    }
+    .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 400px; pointer-events: none; background: radial-gradient(ellipse at center, rgba(108,99,255,0.1), transparent 70%); }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(36px, 6vw, 76px); font-weight: 900; letter-spacing: -0.045em; line-height: 0.95; margin-bottom: 20px; }
+    .cta-section p { font-size: 17px; color: var(--text2); max-width: 440px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); background: var(--bg2);
+      padding: 48px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer p { font-size: 13px; color: var(--text3); }
+    footer a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--text); }
+
+    /* ─── REVEAL ───────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ─── LIGHT THEME ──────────────────────────────────── */
+    [data-theme="light"] {
+      --bg: #ffffff; --bg2: #f5f5f5; --surface: #eeeeee; --surface2: #e4e4e4;
+      --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.15);
+      --text: #0a0a0a; --text2: #555555; --text3: #999999;
+      --glow: rgba(108,99,255,0.06);
+    }
+    [data-theme="light"] nav { background: rgba(255,255,255,0.88) !important; border-bottom-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .nav-cta { background: #0a0a0a; color: #fff; }
+    [data-theme="light"] .nav-logo-icon path,
+    [data-theme="light"] footer .nav-logo-icon path { fill: #0a0a0a; }
+    [data-theme="light"] .nav-logo-text,
+    [data-theme="light"] .nav-links a { color: var(--text2); }
+    [data-theme="light"] .nav-links a:hover { color: var(--text); }
+    [data-theme="light"] .hero-grid-lines {
+      background-image: linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px);
+    }
+    [data-theme="light"] .btn-ghost { color: #0a0a0a; border-color: rgba(0,0,0,0.2); }
+    [data-theme="light"] .btn-ghost:hover { border-color: rgba(0,0,0,0.45); }
+    [data-theme="light"] footer p, [data-theme="light"] footer a { color: #999; }
+    [data-theme="light"] footer a:hover { color: #0a0a0a; }
+
+    /* ─── TOGGLE ───────────────────────────────────────── */
+    .theme-toggle { cursor: pointer; display: flex; align-items: center; }
+    .theme-toggle input { display: none; }
+    .toggle-track {
+      width: 50px; height: 28px; background: #1c1c1e;
+      border: 1.5px solid rgba(255,255,255,0.13); border-radius: 999px;
+      position: relative; transition: background 0.35s, border-color 0.35s;
+      display: flex; align-items: center;
+    }
+    .toggle-thumb {
+      width: 22px; height: 22px; border-radius: 50%; background: #fff;
+      position: absolute; left: 3px;
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    }
+    .theme-toggle input:checked ~ .toggle-track { background: #e5e5ea; border-color: rgba(0,0,0,0.1); }
+    .theme-toggle input:checked ~ .toggle-track .toggle-thumb { transform: translateX(21px); background: #1c1c1e; }
+    .toggle-icons { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; pointer-events: none; }
+    .t-moon { width: 11px; height: 11px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .t-sun  { width: 11px; height: 11px; stroke: rgba(0,0,0,0.45);      fill: none; stroke-width: 2; stroke-linecap: round; }
+
+    /* ─── MOBILE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 80px 24px 48px; min-height: 70vh; }
+      .section { padding: 60px 24px; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .culture-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .culture-visual { grid-template-columns: 1fr 1fr; }
+      .job-card { flex-direction: column; align-items: flex-start; }
+      .open-apply { flex-direction: column; }
+      .cta-section { padding: 64px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ NAV ════════════ -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">EC GROUP</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="leistungen.html">Leistungen</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="prozess.html">Prozess</a></li>
+    <li><a href="preise.html">Preise</a></li>
+    <li><a href="karriere.html" class="active">Karriere</a></li>
+    <li><a href="index.html#contact">Kontakt</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <label class="theme-toggle" aria-label="Theme umschalten">
+      <input type="checkbox" id="themeToggle">
+      <span class="toggle-track">
+        <span class="toggle-icons">
+          <svg class="t-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="t-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+    <a href="index.html#contact" class="nav-cta">Projekt starten</a>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-glow"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-badge"><span class="badge-dot"></span>Wir suchen Talente</div>
+  <h1>
+    Jobs bei<br>
+    <span class="gradient-text">EC GROUP.</span>
+  </h1>
+  <p class="hero-sub">
+    Werde Teil eines Teams, das digitale Marken baut – mit Leidenschaft, Anspruch
+    und echtem Ownership. Remote oder vor Ort. Gemeinsam wachsen.
+  </p>
+  <div class="hero-actions">
+    <a href="#jobs" class="btn-primary">
+      Offene Stellen ansehen
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+    <a href="ueber-uns.html" class="btn-ghost">Über das Team</a>
+  </div>
+</section>
+
+<!-- ════════════ BENEFITS ════════════ -->
+<section class="section section-dark">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Warum EC GROUP</div>
+      <h2 class="section-title">Was dich erwartet</h2>
+      <p class="section-sub" style="margin:0 auto">Keine leeren Versprechen. Das hier ist, was bei uns wirklich zählt.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Remote-First</h3>
+        <p>Arbeite von wo du willst – von zuhause, aus dem Büro oder von überall. Wir vertrauen auf Eigenverantwortung statt auf Anwesenheit.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Flache Hierarchien</h3>
+        <p>Deine Ideen zählen – egal ob du gerade anfängst oder schon erfahren bist. Wir entscheiden gemeinsam und kommunizieren auf Augenhöhe.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3>Wachstum inklusive</h3>
+        <p>Kurse, Tools, Konferenzen – wir investieren in deine Weiterentwicklung. Wer bei uns wächst, bringt das ganze Team weiter.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Moderne Ausstattung</h3>
+        <p>Top-Hardware, aktuelle Software, die richtigen Tools – alles, was du brauchst, um deine beste Arbeit zu leisten.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-4">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Flexible Arbeitszeiten</h3>
+        <p>Kein starres 9-to-5. Strukturiere deinen Tag so, wie es zu dir passt – solange die Ergebnisse stimmen.</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-5">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Faire Vergütung</h3>
+        <p>Transparente Gehälter, keine geheimen Strukturen. Leistung wird gesehen und belohnt – ohne Spielchen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CULTURE ════════════ -->
+<section class="section">
+  <div class="culture-wrap">
+    <div class="culture-text reveal">
+      <div class="section-label">Unsere Kultur</div>
+      <h2 class="section-title">Wir sind ein Team, kein Unternehmen</h2>
+      <p>
+        Bei EC GROUP arbeitest du nicht <em>für</em> jemanden – du arbeitest <strong>mit</strong> Menschen,
+        die genauso viel Leidenschaft für gutes Design und sauberen Code mitbringen wie du.
+      </p>
+      <p>
+        Wir sind direkt, ehrlich und ergebnisorientiert. Fehler passieren – und sie sind okay, solange
+        man daraus lernt. Was nicht okay ist: Stillstand. Wir bewegen uns immer vorwärts.
+      </p>
+      <p>
+        Egal ob Freelancer, Werkstudent oder Festanstellung – wenn du gut bist und reinpasst,
+        findest du bei uns deinen Platz.
+      </p>
+    </div>
+    <div class="culture-visual reveal reveal-delay-2">
+      <div class="culture-stat">
+        <div class="culture-stat-num">100%</div>
+        <div class="culture-stat-label">Remote möglich</div>
+      </div>
+      <div class="culture-stat">
+        <div class="culture-stat-num">2</div>
+        <div class="culture-stat-label">Gründer, die noch selbst coden & designen</div>
+      </div>
+      <div class="culture-stat">
+        <div class="culture-stat-num">150+</div>
+        <div class="culture-stat-label">Abgeschlossene Projekte</div>
+      </div>
+      <div class="culture-stat">
+        <div class="culture-stat-num">∞</div>
+        <div class="culture-stat-label">Raum für deine Ideen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ JOBS ════════════ -->
+<section class="section section-dark" id="jobs">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Offene Stellen</div>
+      <h2 class="section-title">Dein nächster Schritt</h2>
+      <p class="section-sub" style="margin:0 auto">Aktuell gesuchte Profile – alle Positionen sind remote und auf Freelance-Basis.</p>
+    </div>
+
+    <div class="jobs-list">
+
+      <!-- Job 1 -->
+      <div class="job-card reveal">
+        <div class="job-left">
+          <div class="job-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="job-category">Web & Digital</div>
+            <div class="job-title">Webdesigner / UI Designer</div>
+            <div class="job-meta">
+              <span class="job-tag">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Remote
+              </span>
+              <span class="job-tag">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                Freelance
+              </span>
+              <span class="job-tag">Figma · HTML/CSS</span>
+            </div>
+          </div>
+        </div>
+        <a href="mailto:info@mayca.de?subject=Bewerbung: Webdesigner" class="job-apply">
+          Bewerben
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="job-card reveal reveal-delay-1">
+        <div class="job-left">
+          <div class="job-icon">
+            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div>
+            <div class="job-category">Entwicklung</div>
+            <div class="job-title">Frontend Entwickler</div>
+            <div class="job-meta">
+              <span class="job-tag">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Remote
+              </span>
+              <span class="job-tag">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                Freelance
+              </span>
+              <span class="job-tag">React · JavaScript · CSS</span>
+            </div>
+          </div>
+        </div>
+        <a href="mailto:info@mayca.de?subject=Bewerbung: Frontend Entwickler" class="job-apply">
+          Bewerben
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="job-card reveal reveal-delay-2">
+        <div class="job-left">
+          <div class="job-icon">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <div>
+            <div class="job-category">Foto & Medien</div>
+            <div class="job-title">Content Creator / Fotograf</div>
+            <div class="job-meta">
+              <span class="job-tag">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Remote
+              </span>
+              <span class="job-tag">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                Freelance
+              </span>
+              <span class="job-tag">Fotografie · Video · Editing</span>
+            </div>
+          </div>
+        </div>
+        <a href="mailto:info@mayca.de?subject=Bewerbung: Content Creator" class="job-apply">
+          Bewerben
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Initiativbewerbung -->
+    <div class="open-apply reveal">
+      <div class="open-apply-text">
+        <h3>Keine passende Stelle dabei?</h3>
+        <p>Schick uns eine Initiativbewerbung. Wenn du gut bist und zur Agentur passt, schaffen wir Platz für dich.</p>
+      </div>
+      <a href="mailto:info@mayca.de?subject=Initiativbewerbung EC GROUP" class="btn-ghost">
+        Initiativ bewerben
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-label">Nächster Schritt</div>
+  <h2>Bereit für<br><span class="gradient-text">etwas Neues?</span></h2>
+  <p>Schreib uns – kein langer Bewerbungsprozess, kein Papierkram. Nur ein ehrliches Gespräch.</p>
+  <div class="cta-btns">
+    <a href="mailto:info@mayca.de?subject=Karriere bei EC GROUP" class="btn-primary">
+      Jetzt bewerben
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="ueber-uns.html" class="btn-ghost">Team kennenlernen</a>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">EC GROUP</span>
+  </a>
+  <p>© 2026 EC GROUP. Alle Rechte vorbehalten.</p>
+  <p><a href="#">Impressum</a> &nbsp;·&nbsp; <a href="#">Datenschutz</a></p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const navbar = document.getElementById('navbar');
+  function updateNavBg() {
+    const light = document.documentElement.getAttribute('data-theme') === 'light';
+    navbar.style.background = window.scrollY > 60
+      ? (light ? 'rgba(255,255,255,0.97)' : 'rgba(0,0,0,0.97)')
+      : (light ? 'rgba(255,255,255,0.88)' : 'rgba(0,0,0,0.75)');
+  }
+  window.addEventListener('scroll', updateNavBg, { passive: true });
+
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(t) {
+    if (t === 'light') { document.documentElement.setAttribute('data-theme','light'); themeToggle.checked = true; }
+    else { document.documentElement.removeAttribute('data-theme'); themeToggle.checked = false; }
+    updateNavBg();
+  }
+  applyTheme(localStorage.getItem('ace-theme') || 'dark');
+  themeToggle.addEventListener('change', () => {
+    const t = themeToggle.checked ? 'light' : 'dark';
+    localStorage.setItem('ace-theme', t);
+    applyTheme(t);
+  });
+
+  // Hero canvas
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  const pts = Array.from({ length: 60 }, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.2 + 0.4,
+  }));
+  (function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const light = document.documentElement.getAttribute('data-theme') === 'light';
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = light ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.4)'; ctx.fill();
+    });
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i+1; j < pts.length; j++) {
+        const dx = pts[i].x-pts[j].x, dy = pts[i].y-pts[j].y;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if (d < 110) {
+          ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle = `rgba(108,99,255,${(1-d/110)*0.18})`; ctx.lineWidth = 0.6; ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  })();
+</script>
+</body>
+</html>

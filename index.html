@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EC GROUP – Kreative Medienagentur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #000000;
+      --bg2:       #080808;
+      --surface:   #0f0f0f;
+      --surface2:  #161616;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --text:      #ffffff;
+      --text2:     #888888;
+      --text3:     #444444;
+      --accent:    #6c63ff;
+      --accent2:   #a78bfa;
+      --gradient:  linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
+      --glow:      rgba(108,99,255,0.15);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+    }
+    .nav-logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-logo-text {
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+      position: absolute; left: 50%; transform: translateX(-50%);
+    }
+    .nav-links a {
+      color: var(--text2); text-decoration: none;
+      font-size: 13.5px; font-weight: 500; letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--text); color: var(--bg);
+      padding: 8px 20px; border-radius: 999px;
+      font-size: 13.5px; font-weight: 600; letter-spacing: 0.01em;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 96px 48px 64px;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-noise {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    .hero-glow {
+      position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.18) 0%, transparent 70%);
+    }
+
+    .hero-grid-lines {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    .hero-badge {
+      position: relative; z-index: 1;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 6px 16px 6px 10px;
+      font-size: 12px; font-weight: 500; color: var(--text2);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #22d3ee;
+      box-shadow: 0 0 8px #22d3ee;
+      animation: blink 2.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .hero h1 {
+      position: relative; z-index: 1;
+      font-size: clamp(52px, 9vw, 130px);
+      font-weight: 900; line-height: 0.95;
+      letter-spacing: -0.045em;
+      margin-bottom: 28px;
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      position: relative; z-index: 1;
+      font-size: clamp(16px, 1.8vw, 19px); color: var(--text2);
+      max-width: 560px; line-height: 1.75;
+      margin-bottom: 48px; font-weight: 400;
+    }
+
+    .hero-actions {
+      position: relative; z-index: 1;
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient); color: #fff;
+      border: none; padding: 13px 28px; border-radius: 999px;
+      font-size: 14.5px; font-weight: 600; letter-spacing: 0.01em;
+      cursor: pointer; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 40px rgba(108,99,255,0.3);
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border2); padding: 13px 28px; border-radius: 999px;
+      font-size: 14.5px; font-weight: 500; letter-spacing: 0.01em;
+      cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.35); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: relative; z-index: 1;
+      margin-top: 80px; display: flex; flex-direction: column;
+      align-items: center; gap: 8px; color: var(--text3);
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--text3));
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+    @keyframes scroll-pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+    /* ─── TICKER ──────────────────────────────────────────── */
+    .ticker {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0; overflow: hidden;
+      background: var(--bg2); position: relative;
+    }
+    .ticker::before, .ticker::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 1;
+    }
+    .ticker::before { left: 0; background: linear-gradient(to right, var(--bg2), transparent); }
+    .ticker::after  { right: 0; background: linear-gradient(to left, var(--bg2), transparent); }
+
+    .ticker-track {
+      display: flex; gap: 0; white-space: nowrap;
+      animation: marquee 28s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+      display: inline-flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 0 40px; flex-shrink: 0;
+    }
+    .ticker-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s;
+    }
+    .ticker-icon svg { width: 20px; height: 20px; stroke: var(--accent2); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .ticker-label {
+      font-size: 10.5px; font-weight: 600; color: var(--text3);
+      letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+    }
+    .ticker-sep {
+      width: 1px; height: 44px; background: var(--border); flex-shrink: 0; align-self: center;
+    }
+
+    /* ─── SECTIONS COMMON ─────────────────────────────────── */
+    .section { padding: 80px 48px; }
+    .section-dark { background: var(--bg2); }
+
+    .section-label {
+      display: inline-block; font-size: 11.5px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 4.5vw, 60px); font-weight: 800;
+      letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 20px;
+    }
+    .section-sub {
+      font-size: 17px; color: var(--text2);
+      max-width: 560px; line-height: 1.75;
+    }
+    .section-header { margin-bottom: 48px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ─── SERVICES ────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--surface); padding: 32px;
+      transition: background 0.25s;
+    }
+    .service-card:hover { background: var(--surface2); }
+
+    .svc-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--gradient); margin-bottom: 28px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .svc-icon svg {
+      width: 22px; height: 22px;
+      stroke: #fff; fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .service-card h3 {
+      font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      font-size: 14.5px; color: var(--text2); line-height: 1.7;
+    }
+
+    /* ─── STATS ───────────────────────────────────────────── */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border); border-radius: 24px;
+      overflow: hidden; margin-top: 48px;
+    }
+    .stat-box {
+      padding: 32px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-box:last-child { border-right: none; }
+    .stat-num {
+      display: block; font-size: 52px; font-weight: 900;
+      letter-spacing: -0.05em; line-height: 1;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 8px;
+    }
+    .stat-lbl { font-size: 13.5px; color: var(--text2); font-weight: 500; }
+
+    /* ─── ABOUT ───────────────────────────────────────────── */
+    .about-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+
+    .about-visual {
+      aspect-ratio: 1; border-radius: 32px;
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .about-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, var(--glow), transparent 70%);
+    }
+    .about-logo-big {
+      position: relative; z-index: 1;
+      animation: spin-slow 30s linear infinite;
+    }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+    .checkmark-list { list-style: none; margin-top: 36px; }
+    .checkmark-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 15px 0; border-bottom: 1px solid var(--border);
+      font-size: 15px; color: var(--text2); line-height: 1.5;
+    }
+    .checkmark-list li:last-child { border-bottom: none; }
+    .check-icon {
+      flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+      background: var(--gradient); display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .check-icon svg { width: 10px; height: 10px; stroke: #fff; fill: none; stroke-width: 3; }
+
+    /* ─── PROCESS ─────────────────────────────────────────── */
+    .process-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      position: relative; gap: 0;
+    }
+    .process-line {
+      position: absolute; top: 24px;
+      left: calc(12.5%); right: calc(12.5%);
+      height: 1px; background: var(--border); z-index: 0;
+    }
+    .process-step { text-align: center; padding: 0 20px; }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid var(--border2); background: var(--bg2);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px; font-size: 13px; font-weight: 700;
+      position: relative; z-index: 1; transition: all 0.3s;
+    }
+    .step-num.lit { background: var(--gradient); border-color: transparent; }
+    .process-step:hover .step-num { background: var(--gradient); border-color: transparent; }
+    .process-step h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .process-step p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+    /* ─── PORTFOLIO TEASER ────────────────────────────────── */
+    .portfolio-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .portfolio-card {
+      border-radius: 20px; overflow: hidden; position: relative;
+      background: var(--surface); border: 1px solid var(--border);
+      aspect-ratio: 4/3; display: flex; align-items: flex-end;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .portfolio-card:hover { transform: translateY(-4px); border-color: var(--border2); }
+    .portfolio-card-bg {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .portfolio-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+    }
+    .portfolio-card-info {
+      position: relative; z-index: 1; padding: 24px;
+    }
+    .portfolio-card-info h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .portfolio-card-info span { font-size: 12.5px; color: var(--text2); }
+
+    .port-icon { opacity: 0.06; }
+    .port-icon svg { width: 180px; height: 180px; }
+
+    /* Colored bg accents per card */
+    .pc1 { background: linear-gradient(135deg, #0f0c29, #302b63); }
+    .pc2 { background: linear-gradient(135deg, #0a0a0a, #1a1a2e); }
+    .pc3 { background: linear-gradient(135deg, #050505, #0d0d1a); }
+    .pc4 { background: linear-gradient(135deg, #0a0a0a, #1a0a2e); }
+    .pc5 { background: linear-gradient(135deg, #050b0f, #0a1628); }
+    .pc6 { background: linear-gradient(135deg, #0f0a0a, #1a0d0d); }
+
+    /* ─── CTA BANNER ──────────────────────────────────────── */
+    .cta-banner {
+      text-align: center; position: relative; overflow: hidden;
+      padding: 88px 48px;
+    }
+    .cta-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 800px; height: 400px; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(108,99,255,0.12), transparent 70%);
+    }
+    .cta-banner > * { position: relative; z-index: 1; }
+    .cta-banner h2 {
+      font-size: clamp(44px, 7vw, 96px); font-weight: 900;
+      letter-spacing: -0.045em; line-height: 0.95; margin-bottom: 24px;
+    }
+    .cta-banner p {
+      font-size: 18px; color: var(--text2); max-width: 480px;
+      margin: 0 auto 48px; line-height: 1.7;
+    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-hint {
+      margin-top: 32px !important;
+      font-size: 13px !important; color: var(--text3) !important;
+      max-width: none !important;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); background: var(--bg2);
+      padding: 48px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 40px;
+    }
+    .footer-brand-desc {
+      font-size: 14px; color: var(--text2); line-height: 1.7;
+      margin-top: 16px; max-width: 260px;
+    }
+    .footer-socials { display: flex; gap: 10px; margin-top: 24px; }
+    .social-link {
+      width: 34px; height: 34px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text2); text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: var(--border2); color: var(--text); }
+    .social-link svg { width: 15px; height: 15px; fill: currentColor; }
+
+    .footer-col-title {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text2); margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 12px; }
+    .footer-col a {
+      color: var(--text3); text-decoration: none; font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--text); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom p { font-size: 13px; color: var(--text3); }
+    .footer-bottom a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom a:hover { color: var(--text); }
+
+    /* ─── SCROLL ANIMATIONS ───────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
+
+    /* ─── MOBILE ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .section { padding: 60px 24px; }
+      .hero { padding: 80px 24px 48px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2,1fr); }
+      .stat-box:nth-child(2) { border-right: none; }
+      .stat-box:nth-child(1),
+      .stat-box:nth-child(2) { border-bottom: 1px solid var(--border); }
+      .about-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .process-row { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .process-line { display: none; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      footer { padding: 40px 24px 24px; }
+      .cta-banner { padding: 64px 24px; }
+    }
+    @media (max-width: 540px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr; }
+      .stat-box { border-right: none !important; border-bottom: 1px solid var(--border); }
+      .stat-box:last-child { border-bottom: none; }
+    }
+
+    /* ─── HERO CANVAS ─────────────────────────────────── */
+    #heroCanvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ─── PORTFOLIO OVERLAY ───────────────────────────── */
+    .portfolio-card::after {
+      content: 'Projekt ansehen ↗';
+      position: absolute; inset: 0; z-index: 4;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+      color: #fff; text-transform: uppercase;
+      background: rgba(108,99,255,0.18);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+    .portfolio-card:hover::after { opacity: 1; }
+
+    /* ─── LIGHT THEME ─────────────────────────────────── */
+    [data-theme="light"] {
+      --bg: #ffffff; --bg2: #f5f5f5; --surface: #eeeeee; --surface2: #e4e4e4;
+      --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.15);
+      --text: #0a0a0a; --text2: #555555; --text3: #999999;
+      --glow: rgba(108,99,255,0.06);
+    }
+    [data-theme="light"] nav { background: rgba(255,255,255,0.88) !important; border-bottom-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .nav-cta { background: #0a0a0a; color: #fff; }
+    [data-theme="light"] .nav-logo-icon path,
+    [data-theme="light"] .about-logo-big path,
+    [data-theme="light"] footer .nav-logo-icon path { fill: #0a0a0a; }
+    [data-theme="light"] .nav-logo-text { color: #0a0a0a; }
+    [data-theme="light"] .nav-links a { color: #555; }
+    [data-theme="light"] .portfolio-card::after { color: #fff; }
+    [data-theme="light"] .hero-scroll { color: #aaa; }
+    [data-theme="light"] .scroll-line { background: linear-gradient(to bottom, transparent, #aaa); }
+    [data-theme="light"] .ticker-item .ticker-label { color: #aaa; }
+    [data-theme="light"] .ticker-icon { background: #e8e8e8; border-color: rgba(0,0,0,0.1); }
+    [data-theme="light"] .ticker-sep { background: rgba(0,0,0,0.1); }
+    [data-theme="light"] footer p,
+    [data-theme="light"] footer a { color: #999; }
+    [data-theme="light"] footer a:hover { color: #0a0a0a; }
+    [data-theme="light"] .hero-grid-lines {
+      background-image: linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px);
+    }
+    [data-theme="light"] .btn-ghost { color: #0a0a0a; border-color: rgba(0,0,0,0.2); }
+    [data-theme="light"] .btn-ghost:hover { border-color: rgba(0,0,0,0.45); }
+    [data-theme="light"] .ticker { background: var(--bg2); border-color: var(--border); }
+    [data-theme="light"] .ticker::before { background: linear-gradient(to right, var(--bg2), transparent); }
+    [data-theme="light"] .ticker::after  { background: linear-gradient(to left,  var(--bg2), transparent); }
+    [data-theme="light"] .social-link { background: var(--surface); border-color: var(--border); }
+
+    /* ─── TOGGLE SWITCH ────────────────────────────────── */
+    .theme-toggle { cursor: pointer; display: flex; align-items: center; }
+    .theme-toggle input { display: none; }
+    .toggle-track {
+      width: 50px; height: 28px; background: #1c1c1e;
+      border: 1.5px solid rgba(255,255,255,0.13); border-radius: 999px;
+      position: relative; transition: background 0.35s, border-color 0.35s;
+      display: flex; align-items: center;
+    }
+    .toggle-thumb {
+      width: 22px; height: 22px; border-radius: 50%; background: #fff;
+      position: absolute; left: 3px;
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    }
+    .theme-toggle input:checked ~ .toggle-track { background: #e5e5ea; border-color: rgba(0,0,0,0.1); }
+    .theme-toggle input:checked ~ .toggle-track .toggle-thumb { transform: translateX(21px); background: #1c1c1e; }
+    .toggle-icons {
+      position: absolute; inset: 0; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 6px; pointer-events: none;
+    }
+    .t-moon { width: 11px; height: 11px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .t-sun  { width: 11px; height: 11px; stroke: rgba(0,0,0,0.45);      fill: none; stroke-width: 2; stroke-linecap: round; }
+  </style>
+  <script>if(localStorage.getItem('ace-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+</head>
+<body>
+
+<!-- ════════════════════ NAVIGATION ════════════════════ -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <!-- EC GROUP — Bloom Mark (swap with logo-mark.svg to switch) -->
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">EC GROUP</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="leistungen.html">Leistungen</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="prozess.html">Prozess</a></li>
+    <li><a href="preise.html">Preise</a></li>
+    <li><a href="#work">Portfolio</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <label class="theme-toggle" aria-label="Theme umschalten">
+      <input type="checkbox" id="themeToggle">
+      <span class="toggle-track">
+        <span class="toggle-icons">
+          <svg class="t-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="t-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+    <a href="#contact" class="nav-cta">Projekt starten</a>
+  </div>
+</nav>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<section class="hero" id="home">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-noise"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Jetzt neue Projekte annehmen
+  </div>
+
+  <h1>
+    Design, das<br>
+    <span class="gradient-text">bewegt.</span>
+  </h1>
+
+  <p class="hero-sub">
+    EC GROUP ist deine Medienagentur für Webdesign, Branding und digitale Erlebnisse –
+    minimalistisch, präzise, wirkungsvoll.
+  </p>
+
+  <div class="hero-actions">
+    <a href="preise.html" class="btn-primary">
+      Preise ansehen
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#work" class="btn-ghost">Portfolio ansehen</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ════════════════════ TICKER ════════════════════ -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <!-- set 1 -->
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="ticker-label">Webdesign</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></span><span class="ticker-label">UI / UX Design</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span class="ticker-label">Landing Pages</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><span class="ticker-label">SEO & Performance</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span><span class="ticker-label">Print & Medien</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><span class="ticker-label">Content Creation</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="ticker-label">Photoshooting</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><span class="ticker-label">Video & Reels</span></span>
+    <span class="ticker-sep"></span>
+    <!-- set 2 (seamless loop) -->
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="ticker-label">Webdesign</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></span><span class="ticker-label">UI / UX Design</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span class="ticker-label">Landing Pages</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><span class="ticker-label">SEO & Performance</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span><span class="ticker-label">Print & Medien</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><span class="ticker-label">Content Creation</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="ticker-label">Photoshooting</span></span>
+    <span class="ticker-sep"></span>
+    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><span class="ticker-label">Video & Reels</span></span>
+    <span class="ticker-sep"></span>
+  </div>
+</div>
+
+<!-- ════════════════════ SERVICES ════════════════════ -->
+<section class="section section-dark" id="services">
+  <div class="section-header">
+    <div class="section-label">Leistungen</div>
+    <h2 class="section-title">Alles aus einer Hand</h2>
+    <p class="section-sub">Von der ersten Idee bis zum fertigen Produkt – wir begleiten dich durch jeden Schritt deines Projekts.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="svc-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Webdesign & Entwicklung</h3>
+      <p>Moderne, blitzschnelle Websites, die deine Marke perfekt repräsentieren und Besucher in Kunden verwandeln. Responsive by design.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="svc-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+      <h3>UI / UX Design</h3>
+      <p>Intuitive Interfaces, die Nutzer begeistern. Prototyping, Wireframing und High-Fidelity Designs für Apps und Webseiten.</p>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <div class="svc-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3>Print & Mediengestaltung</h3>
+      <p>Flyer, Visitenkarten, Broschüren, Plakate – druckfertige Dateien mit echtem Wow-Effekt für jeden Anlass.</p>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row reveal">
+    <div class="stat-box">
+      <span class="stat-num">150+</span>
+      <span class="stat-lbl">Abgeschlossene Projekte</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">98%</span>
+      <span class="stat-lbl">Kundenzufriedenheit</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">5+</span>
+      <span class="stat-lbl">Jahre Erfahrung</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">24h</span>
+      <span class="stat-lbl">Reaktionszeit garantiert</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ ABOUT ════════════════════ -->
+<section class="section" id="about">
+  <div class="about-wrap">
+    <div class="about-visual reveal">
+      <div class="about-glow"></div>
+      <div class="about-logo-big">
+        <!-- Bloom Mark large -->
+        <svg viewBox="0 0 100 100" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+          <g fill="white">
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <div class="section-label">Über EC GROUP</div>
+      <h2 class="section-title">Kreativität trifft Präzision</h2>
+      <p style="color:var(--text2);font-size:16px;line-height:1.8">
+        Wir sind EC GROUP – eine Medienagentur mit dem Anspruch, digitale Erlebnisse zu schaffen,
+        die wirklich begeistern. Kein Projekt ist wie das andere, und jede Lösung wird individuell
+        für dich entwickelt. Unser Anspruch: Qualität ohne Kompromisse.
+      </p>
+
+      <ul class="checkmark-list">
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Maßgeschneiderte Lösungen – kein Template, keine Copy-Paste-Designs
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Transparente Kommunikation & schnelle Lieferzeiten
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Persönliche Betreuung vom Briefing bis zum Launch
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Modernste Design-Trends & bewährte Technologien
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Langfristige Partnerschaften – wir wachsen mit dir
+        </li>
+      </ul>
+
+      <div style="margin-top:40px;display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#contact" class="btn-primary">Gemeinsam starten</a>
+        <a href="prozess.html" class="btn-ghost">Unser Prozess</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ PROCESS ════════════════════ -->
+<section class="section section-dark" id="process">
+  <div class="section-header center">
+    <div class="section-label">Workflow</div>
+    <h2 class="section-title">So läuft's ab</h2>
+    <p class="section-sub">Strukturiert, transparent und effizient – von der Idee zum fertigen Ergebnis.</p>
+  </div>
+
+  <div class="process-row">
+    <div class="process-line"></div>
+    <div class="process-step reveal">
+      <div class="step-num lit">01</div>
+      <h3>Briefing</h3>
+      <p>Wir hören zu, stellen die richtigen Fragen und verstehen deine Ziele, Zielgruppe und Erwartungen bis ins Detail.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <div class="step-num lit">02</div>
+      <h3>Konzept</h3>
+      <p>Wir entwickeln kreative Konzepte, Moodboards und Strategien, die perfekt auf deine Marke zugeschnitten sind.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="step-num lit">03</div>
+      <h3>Design</h3>
+      <p>Unsere Designer setzen das Konzept in lebendige, präzise visuelle Welten um – bis du 100 % begeistert bist.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="step-num lit">04</div>
+      <h3>Launch & Support</h3>
+      <p>Finales Review, Go-Live und langfristiger Support. Du bist nie allein – auch nach dem Launch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ PORTFOLIO ════════════════════ -->
+<section class="section" id="work">
+  <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px">
+    <div>
+      <div class="section-label">Portfolio</div>
+      <h2 class="section-title" style="margin-bottom:0">Ausgewählte Arbeiten</h2>
+    </div>
+    <a href="#contact" class="btn-ghost" style="flex-shrink:0">Alle ansehen</a>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-card reveal">
+      <div class="portfolio-card-bg pc1">
+        <div class="port-icon">
+          <svg viewBox="0 0 24 24" fill="white"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-card-overlay"></div>
+      <div class="portfolio-card-info">
+        <h3>Brand Relaunch – TechStart GmbH</h3>
+        <span>Branding · Webdesign</span>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal reveal-delay-1">
+      <div class="portfolio-card-bg pc2">
+        <div class="port-icon">
+          <svg viewBox="0 0 24 24" fill="white"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-card-overlay"></div>
+      <div class="portfolio-card-info">
+        <h3>Logo System – Artis Studio</h3>
+        <span>Logo Design · CI</span>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal reveal-delay-2">
+      <div class="portfolio-card-bg pc3">
+        <div class="port-icon">
+          <svg viewBox="0 0 24 24" fill="white"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-card-overlay"></div>
+      <div class="portfolio-card-info">
+        <h3>App UI – FinFlow</h3>
+        <span>UI/UX Design · Prototyping</span>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal reveal-delay-3">
+      <div class="portfolio-card-bg pc4">
+        <div class="port-icon">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-card-overlay"></div>
+      <div class="portfolio-card-info">
+        <h3>Social Media Kampagne – Luxe</h3>
+        <span>Social Media · Content</span>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal reveal-delay-4">
+      <div class="portfolio-card-bg pc5">
+        <div class="port-icon">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-card-overlay"></div>
+      <div class="portfolio-card-info">
+        <h3>Print Kollektion – Verlag Nord</h3>
+        <span>Print Design · Mediengestaltung</span>
+      </div>
+    </div>
+
+    <div class="portfolio-card reveal reveal-delay-5">
+      <div class="portfolio-card-bg pc6">
+        <div class="port-icon">
+          <svg viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20A14.5 14.5 0 0 0 12 2"/><path d="M2 12h20"/></svg>
+        </div>
+      </div>
+      <div class="portfolio-card-overlay"></div>
+      <div class="portfolio-card-info">
+        <h3>E-Commerce Launch – Modo Store</h3>
+        <span>Webdesign · Entwicklung</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ CTA ════════════════════ -->
+<section class="cta-banner section-dark" id="contact">
+  <div class="cta-glow"></div>
+  <div class="section-label">Kontakt</div>
+  <h2>
+    Bereit für dein<br>
+    <span class="gradient-text">nächstes Projekt?</span>
+  </h2>
+  <p>Lass uns gemeinsam etwas Großartiges erschaffen. Kein Projekt zu groß, kein Projekt zu klein – wir freuen uns auf dich.</p>
+  <div class="cta-btns">
+    <a href="mailto:info@ecgroup.de" class="btn-primary">
+      Nachricht schreiben
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="tel:+051186647763" class="btn-ghost">Direkt anrufen</a>
+  </div>
+  <p class="cta-hint">info@ecgroup.de &nbsp;·&nbsp; Antwort innerhalb von 24 Stunden</p>
+</section>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#home" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g fill="white">
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+            <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+          </g>
+        </svg>
+        <span class="nav-logo-text">EC GROUP</span>
+      </a>
+      <p class="footer-brand-desc">
+        Kreative Medienagentur mit Leidenschaft für außergewöhnliches Design, starke Marken und digitale Erlebnisse.
+      </p>
+      <div class="footer-socials">
+        <!-- Instagram -->
+        <a href="#" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" class="social-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <!-- Behance -->
+        <a href="#" class="social-link" aria-label="Behance">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Leistungen</div>
+      <ul>
+        <li><a href="#services">Webdesign</a></li>
+        <li><a href="#services">UI/UX Design</a></li>
+        <li><a href="#services">Print Design</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Agentur</div>
+      <ul>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="prozess.html">Unser Prozess</a></li>
+        <li><a href="preise.html">Preise</a></li>
+        <li><a href="#work">Portfolio</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Kontakt</div>
+      <ul>
+        <li><a href="mailto:info@ecgroup.de">info@ecgroup.de</a></li>
+        <li><a href="tel:+051186647763">0511 866 47763</a></li>
+        <li><a href="tel:+4915154628224">0151 546 28224</a></li>
+        <li><a href="tel:+4917660808641">0176 608 08641 (Support)</a></li>
+        <li><a href="#">Deutschland</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 EC GROUP. Alle Rechte vorbehalten.</p>
+    <p>
+      <a href="#">Impressum</a> &nbsp;·&nbsp;
+      <a href="#">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="#">AGB</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ════════════════════ SCRIPTS ════════════════════ -->
+<script>
+  // Scroll reveal
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // Nav on scroll
+  const navbar = document.getElementById('navbar');
+  function updateNavBg() {
+    const light = document.documentElement.getAttribute('data-theme') === 'light';
+    navbar.style.background = window.scrollY > 60
+      ? (light ? 'rgba(255,255,255,0.97)' : 'rgba(0,0,0,0.97)')
+      : (light ? 'rgba(255,255,255,0.88)' : 'rgba(0,0,0,0.75)');
+  }
+  window.addEventListener('scroll', updateNavBg, { passive: true });
+
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(t) {
+    if (t === 'light') { document.documentElement.setAttribute('data-theme','light'); themeToggle.checked = true; }
+    else { document.documentElement.removeAttribute('data-theme'); themeToggle.checked = false; }
+    updateNavBg();
+  }
+  applyTheme(localStorage.getItem('ace-theme') || 'dark');
+  themeToggle.addEventListener('change', () => {
+    const t = themeToggle.checked ? 'light' : 'dark';
+    localStorage.setItem('ace-theme', t);
+    applyTheme(t);
+  });
+
+  // Hero particle canvas
+  const canvas = document.getElementById('heroCanvas');
+  const ctx    = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+
+  const pts = Array.from({ length: 70 }, () => ({
+    x:  Math.random() * canvas.width,
+    y:  Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.35,
+    vy: (Math.random() - 0.5) * 0.35,
+    r:  Math.random() * 1.2 + 0.4,
+  }));
+
+  let mxC = -1000, myC = -1000;
+  canvas.closest('section').addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mxC = e.clientX - r.left; myC = e.clientY - r.top;
+  });
+
+  (function drawCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+      const dx = mxC - p.x, dy = myC - p.y;
+      if (dx*dx + dy*dy < 90000) { p.x += dx * 0.0015; p.y += dy * 0.0015; }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      ctx.fillStyle = isLight ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.45)';
+      ctx.fill();
+    });
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i+1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d  = Math.sqrt(dx*dx + dy*dy);
+        if (d < 110) {
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = `rgba(108,99,255,${(1 - d/110) * 0.18})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(drawCanvas);
+  })();
+
+  // Stats counter
+  const statData = [
+    { val: 150, suffix: '+' },
+    { val: 98,  suffix: '%' },
+    { val: 5,   suffix: '+' },
+    { val: 24,  suffix: 'h' },
+  ];
+  const statNums = document.querySelectorAll('.stat-num');
+  const statObs  = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el  = entry.target;
+      const idx = [...statNums].indexOf(el);
+      const { val, suffix } = statData[idx] || { val: 0, suffix: '' };
+      let t0 = null;
+      (function tick(ts) {
+        if (!t0) t0 = ts;
+        const p = Math.min((ts - t0) / 1800, 1);
+        const ease = 1 - Math.pow(1 - p, 4);
+        el.textContent = Math.floor(ease * val) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      })(performance.now());
+      statObs.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  statNums.forEach(el => statObs.observe(el));
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>

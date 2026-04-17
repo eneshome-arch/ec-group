@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über uns – EC GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <script>if(localStorage.getItem('ace-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+  <style>
+    :root {
+      --bg:        #000000;
+      --bg2:       #080808;
+      --surface:   #0f0f0f;
+      --surface2:  #161616;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --text:      #ffffff;
+      --text2:     #888888;
+      --text3:     #444444;
+      --accent:    #6c63ff;
+      --accent2:   #a78bfa;
+      --gradient:  linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
+      --glow:      rgba(108,99,255,0.15);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ──────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .nav-logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 15px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 36px; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+    .nav-links a { color: var(--text2); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--text); color: var(--bg);
+      padding: 8px 20px; border-radius: 999px;
+      font-size: 13.5px; font-weight: 600;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 96px 48px 64px;
+      position: relative; overflow: hidden;
+    }
+    #heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.5; }
+    .hero-glow {
+      position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.2), transparent 70%);
+    }
+    .hero-grid-lines {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-badge {
+      position: relative; z-index: 1;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 6px 16px 6px 10px;
+      font-size: 12px; font-weight: 500; color: var(--text2);
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 32px;
+    }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #22d3ee; box-shadow: 0 0 8px #22d3ee; animation: blink 2.5s ease-in-out infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero h1 {
+      position: relative; z-index: 1;
+      font-size: clamp(48px, 8vw, 110px); font-weight: 900;
+      line-height: 0.95; letter-spacing: -0.045em; margin-bottom: 24px;
+    }
+    .gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub {
+      position: relative; z-index: 1;
+      font-size: clamp(15px, 1.6vw, 18px); color: var(--text2);
+      max-width: 560px; line-height: 1.8; margin-bottom: 48px;
+    }
+    .hero-actions { position: relative; z-index: 1; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient); color: #fff;
+      padding: 13px 28px; border-radius: 999px;
+      font-size: 14px; font-weight: 600;
+      text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 40px rgba(108,99,255,0.3);
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border2); padding: 13px 28px; border-radius: 999px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.35); transform: translateY(-2px); }
+
+    /* ─── SECTION COMMON ───────────────────────────────── */
+    .section { padding: 80px 48px; }
+    .section-dark { background: var(--bg2); }
+    .section-label { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .section-title { font-size: clamp(32px, 4.5vw, 58px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.8; }
+
+    /* ─── INTRO SPLIT ──────────────────────────────────── */
+    .intro-wrap {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .intro-text p {
+      font-size: 16px; color: var(--text2); line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .intro-text p:last-child { margin-bottom: 0; }
+    .intro-text strong { color: var(--text); font-weight: 600; }
+
+    .intro-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 24px; overflow: hidden;
+    }
+    .istat {
+      background: var(--surface); padding: 32px 28px;
+      transition: background 0.2s;
+    }
+    .istat:hover { background: var(--surface2); }
+    .istat-num {
+      font-size: 44px; font-weight: 900; letter-spacing: -0.05em; line-height: 1;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 6px;
+    }
+    .istat-label { font-size: 13px; color: var(--text2); font-weight: 500; line-height: 1.4; }
+
+    /* ─── FOUNDERS ─────────────────────────────────────── */
+    .founders-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; max-width: 1100px; margin: 56px auto 0;
+    }
+    .founder-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 28px; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .founder-card:hover { border-color: rgba(108,99,255,0.35); transform: translateY(-6px); }
+
+    .founder-avatar {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--surface2);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .founder-avatar-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 80%, rgba(108,99,255,0.2), transparent 70%);
+    }
+    .founder-initials {
+      position: relative; z-index: 1;
+      font-size: 72px; font-weight: 900; letter-spacing: -0.04em;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      opacity: 0.9;
+    }
+    .founder-grid-lines {
+      position: absolute; inset: 0; pointer-events: none; opacity: 0.4;
+      background-image: linear-gradient(rgba(108,99,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(108,99,255,0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .founder-body { padding: 32px 32px 36px; }
+    .founder-role {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2);
+      color: var(--accent2); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 16px;
+    }
+    .founder-name { font-size: 28px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 4px; }
+    .founder-age { font-size: 13px; color: var(--text3); margin-bottom: 20px; font-weight: 500; }
+    .founder-bio { font-size: 14.5px; color: var(--text2); line-height: 1.75; margin-bottom: 28px; }
+
+    .founder-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .founder-tag {
+      background: var(--surface2); border: 1px solid var(--border2);
+      color: var(--text2); font-size: 12px; font-weight: 500;
+      padding: 4px 12px; border-radius: 999px;
+    }
+
+    /* ─── VALUES ───────────────────────────────────────── */
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; max-width: 1100px; margin: 56px auto 0;
+    }
+    .value-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 28px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .value-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+    .value-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--gradient); margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .value-icon svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .value-card h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .value-card p { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+    /* ─── TIMELINE ─────────────────────────────────────── */
+    .story-timeline { max-width: 720px; margin: 56px auto 0; position: relative; }
+    .story-timeline::before {
+      content: ''; position: absolute; left: 19px; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .story-item { display: flex; gap: 40px; margin-bottom: 48px; }
+    .story-item:last-child { margin-bottom: 0; }
+    .story-dot {
+      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+      background: var(--gradient); display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; position: relative; z-index: 1;
+    }
+    .story-content {}
+    .story-year { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .story-content h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .story-content p { font-size: 14.5px; color: var(--text2); line-height: 1.75; }
+
+    /* ─── MISSION BANNER ───────────────────────────────── */
+    .mission-banner {
+      max-width: 1100px; margin: 0 auto;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 28px; padding: 56px 64px;
+      position: relative; overflow: hidden;
+    }
+    .mission-glow {
+      position: absolute; top: -50%; right: -10%;
+      width: 500px; height: 500px; pointer-events: none;
+      background: radial-gradient(circle, rgba(108,99,255,0.1), transparent 70%);
+    }
+    .mission-banner h2 {
+      font-size: clamp(28px, 3.5vw, 48px); font-weight: 900;
+      letter-spacing: -0.035em; line-height: 1.15; margin-bottom: 20px;
+      position: relative; z-index: 1; max-width: 680px;
+    }
+    .mission-banner p {
+      font-size: 16px; color: var(--text2); line-height: 1.8;
+      max-width: 600px; position: relative; z-index: 1;
+    }
+
+    /* ─── CTA ──────────────────────────────────────────── */
+    .cta-section {
+      text-align: center; padding: 80px 48px;
+      position: relative; overflow: hidden;
+    }
+    .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 400px; pointer-events: none; background: radial-gradient(ellipse at center, rgba(108,99,255,0.1), transparent 70%); }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: clamp(36px, 6vw, 76px); font-weight: 900; letter-spacing: -0.045em; line-height: 0.95; margin-bottom: 20px; }
+    .cta-section p { font-size: 17px; color: var(--text2); max-width: 440px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); background: var(--bg2);
+      padding: 48px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer p { font-size: 13px; color: var(--text3); }
+    footer a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--text); }
+
+    /* ─── REVEAL ───────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── LIGHT THEME ──────────────────────────────────── */
+    [data-theme="light"] {
+      --bg: #ffffff; --bg2: #f5f5f5; --surface: #eeeeee; --surface2: #e4e4e4;
+      --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.15);
+      --text: #0a0a0a; --text2: #555555; --text3: #999999;
+      --glow: rgba(108,99,255,0.06);
+    }
+    [data-theme="light"] nav { background: rgba(255,255,255,0.88) !important; border-bottom-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .nav-cta { background: #0a0a0a; color: #fff; }
+    [data-theme="light"] .nav-logo-icon path,
+    [data-theme="light"] footer .nav-logo-icon path { fill: #0a0a0a; }
+    [data-theme="light"] .nav-logo-text,
+    [data-theme="light"] .nav-links a { color: var(--text2); }
+    [data-theme="light"] .nav-links a:hover { color: var(--text); }
+    [data-theme="light"] .hero-grid-lines {
+      background-image: linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px);
+    }
+    [data-theme="light"] .btn-ghost { color: #0a0a0a; border-color: rgba(0,0,0,0.2); }
+    [data-theme="light"] .btn-ghost:hover { border-color: rgba(0,0,0,0.45); }
+    [data-theme="light"] footer p, [data-theme="light"] footer a { color: #999; }
+    [data-theme="light"] footer a:hover { color: #0a0a0a; }
+
+    /* ─── TOGGLE ───────────────────────────────────────── */
+    .theme-toggle { cursor: pointer; display: flex; align-items: center; }
+    .theme-toggle input { display: none; }
+    .toggle-track {
+      width: 50px; height: 28px; background: #1c1c1e;
+      border: 1.5px solid rgba(255,255,255,0.13); border-radius: 999px;
+      position: relative; transition: background 0.35s, border-color 0.35s;
+      display: flex; align-items: center;
+    }
+    .toggle-thumb {
+      width: 22px; height: 22px; border-radius: 50%; background: #fff;
+      position: absolute; left: 3px;
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    }
+    .theme-toggle input:checked ~ .toggle-track { background: #e5e5ea; border-color: rgba(0,0,0,0.1); }
+    .theme-toggle input:checked ~ .toggle-track .toggle-thumb { transform: translateX(21px); background: #1c1c1e; }
+    .toggle-icons { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; pointer-events: none; }
+    .t-moon { width: 11px; height: 11px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .t-sun  { width: 11px; height: 11px; stroke: rgba(0,0,0,0.45);      fill: none; stroke-width: 2; stroke-linecap: round; }
+
+    /* ─── MOBILE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 80px 24px 48px; }
+      .section { padding: 64px 24px; }
+      .intro-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .founders-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .mission-banner { padding: 40px 28px; }
+      .cta-section { padding: 64px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ NAV ════════════ -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">EC GROUP</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="leistungen.html">Leistungen</a></li>
+    <li><a href="ueber-uns.html" class="active">Über uns</a></li>
+    <li><a href="prozess.html">Prozess</a></li>
+    <li><a href="preise.html">Preise</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="index.html#contact">Kontakt</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <label class="theme-toggle" aria-label="Theme umschalten">
+      <input type="checkbox" id="themeToggle">
+      <span class="toggle-track">
+        <span class="toggle-icons">
+          <svg class="t-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="t-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+    <a href="index.html#contact" class="nav-cta">Projekt starten</a>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-glow"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-badge"><span class="badge-dot"></span>Das Team hinter EC GROUP</div>
+  <h1>
+    Zwei Köpfe.<br>
+    <span class="gradient-text">Eine Vision.</span>
+  </h1>
+  <p class="hero-sub">
+    Wir sind keine klassische Agentur. Wir sind Gründer, Gestalter und digitale Strategen –
+    mit dem Anspruch, jedes Projekt besser zu machen als das letzte.
+  </p>
+  <div class="hero-actions">
+    <a href="#team" class="btn-primary">
+      Team kennenlernen
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+    <a href="index.html#contact" class="btn-ghost">Kontakt aufnehmen</a>
+  </div>
+</section>
+
+<!-- ════════════ INTRO / ZAHLEN ════════════ -->
+<section class="section section-dark">
+  <div class="intro-wrap">
+    <div class="intro-text reveal">
+      <div class="section-label">Wer wir sind</div>
+      <h2 class="section-title">Mehr als eine Agentur</h2>
+      <p>
+        EC GROUP ist das Ergebnis von echter Leidenschaft für Design und Technologie.
+        Gegründet von <strong>Enes Cansever</strong> und <strong>Ali Haidar</strong>, stehen
+        wir für eine neue Art zu arbeiten: direkt, transparent und mit echtem Ownership für
+        jedes Projekt.
+      </p>
+      <p>
+        Hinter jedem Projekt steht ein klares Ziel: deine Marke sichtbar zu machen und
+        Ergebnisse zu liefern, die wirklich zählen. Kein Outsourcing, kein Template –
+        jede Zeile Design und Code kommt direkt von uns.
+      </p>
+      <p>
+        Enes leitet als <strong>Geschäftsführer mehrerer Unternehmen</strong> die strategische
+        Ausrichtung der Agentur. Ali ist ausgebildeter <strong>Ingenieur mit Studium der Informationstechnik</strong>
+        und bringt fundiertes technisches Know-how aus Studium und jahrelanger Praxis in der
+        App- und Webentwicklung mit. Zusammen decken wir das gesamte Spektrum digitaler
+        Kreativarbeit ab.
+      </p>
+    </div>
+
+    <div class="intro-stats reveal reveal-delay-2">
+      <div class="istat">
+        <div class="istat-num">150+</div>
+        <div class="istat-label">Abgeschlossene Projekte</div>
+      </div>
+      <div class="istat">
+        <div class="istat-num">5+</div>
+        <div class="istat-label">Jahre Erfahrung im Digital-Bereich</div>
+      </div>
+      <div class="istat">
+        <div class="istat-num">3+</div>
+        <div class="istat-label">Aktive Unternehmen unter Leitung</div>
+      </div>
+      <div class="istat">
+        <div class="istat-num">98%</div>
+        <div class="istat-label">Weiterempfehlungsrate unserer Kunden</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ TEAM ════════════ -->
+<section class="section" id="team">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Die Gründer</div>
+      <h2 class="section-title">Das Duo dahinter</h2>
+      <p class="section-sub" style="margin:0 auto">Zwei Perspektiven, ein gemeinsames Ziel: Digitale Erlebnisse schaffen, die bleiben.</p>
+    </div>
+
+    <div class="founders-grid">
+
+      <!-- ENES -->
+      <div class="founder-card reveal">
+        <div class="founder-avatar">
+          <div class="founder-grid-lines"></div>
+          <div class="founder-avatar-bg"></div>
+          <div class="founder-initials">EC</div>
+        </div>
+        <div class="founder-body">
+          <div class="founder-role">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            CEO & Gründer
+          </div>
+          <div class="founder-name">Enes Cansever</div>
+          <div class="founder-age">24 Jahre · Geschäftsführer</div>
+          <p class="founder-bio">
+            Enes ist Serienunternehmer und Gründer. Mit 24 Jahren führt er mehrere Unternehmen
+            gleichzeitig – und bringt diese unternehmerische Energie in jedes Kundenprojekt mit.
+            Sein Fokus: strategisches Denken, klare Kommunikation und Designs, die nicht nur
+            gut aussehen, sondern performen. Bei EC GROUP setzt er die Vision um, die er selbst
+            als Unternehmer vermisst hat – eine Agentur, die wirklich mitdenkt.
+          </p>
+          <div class="founder-tags">
+            <span class="founder-tag">Strategie</span>
+            <span class="founder-tag">Webdesign</span>
+            <span class="founder-tag">Unternehmensführung</span>
+            <span class="founder-tag">Branding</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALI -->
+      <div class="founder-card reveal reveal-delay-2">
+        <div class="founder-avatar">
+          <div class="founder-grid-lines"></div>
+          <div class="founder-avatar-bg"></div>
+          <div class="founder-initials">AH</div>
+        </div>
+        <div class="founder-body">
+          <div class="founder-role">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Co-Gründer & Tech-Lead
+          </div>
+          <div class="founder-name">Ali Haidar</div>
+          <div class="founder-age">26 Jahre · Ingenieur & Entwickler</div>
+          <p class="founder-bio">
+            Ali ist der technische Kopf hinter EC GROUP. Als ausgebildeter Ingenieur mit
+            einem Studium der Informationstechnik bringt er ein tiefes Fundament aus
+            Theorie und Praxis mit. Seine Expertise in Web- und App-Entwicklung macht ihn
+            zum Architekten der digitalen Lösungen, die die Agentur liefert. Er versteht
+            Design nicht nur als Ästhetik, sondern als System – und sorgt dafür, dass
+            jede Website nicht nur schön ist, sondern technisch einwandfrei funktioniert.
+          </p>
+          <div class="founder-tags">
+            <span class="founder-tag">App-Entwicklung</span>
+            <span class="founder-tag">UI/UX</span>
+            <span class="founder-tag">Web-Technologien</span>
+            <span class="founder-tag">Performance</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ VALUES ════════════ -->
+<section class="section section-dark">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Unsere Werte</div>
+      <h2 class="section-title">Was uns antreibt</h2>
+      <p class="section-sub" style="margin:0 auto">Nicht nur was wir tun – sondern wie und warum wir es tun.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Qualität ohne Kompromisse</h3>
+        <p>Jeder Pixel, jede Zeile Code wird mit demselben Anspruch behandelt. Wir liefern keine 80%-Lösungen – nur fertige, durchdachte Produkte.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Echte Partnerschaft</h3>
+        <p>Wir sind nicht dein Dienstleister – wir sind dein Partner. Dein Erfolg ist unser Erfolg. Wir denken über den Projektabschluss hinaus.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Schnelligkeit & Verlässlichkeit</h3>
+        <p>Deadlines sind für uns keine Richtwerte, sondern Versprechen. Wir halten, was wir sagen – pünktlich und im vereinbarten Budget.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Transparenz immer</h3>
+        <p>Keine versteckten Kosten, keine Überraschungen. Wir kommunizieren offen über Fortschritte, Herausforderungen und Preise.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-4">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <h3>Leidenschaft für Details</h3>
+        <p>Was andere übersehen, ist für uns der Unterschied. Micro-Animationen, Typografie, Abstände – Details machen das Außergewöhnliche aus.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-4">
+        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Immer einen Schritt voraus</h3>
+        <p>Design und Technologie entwickeln sich täglich weiter. Wir bleiben neugierig, bilden uns weiter und bringen das Beste für dein Projekt mit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ STORY ════════════ -->
+<section class="section">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Unsere Geschichte</div>
+      <h2 class="section-title">Wie alles begann</h2>
+      <p class="section-sub" style="margin:0 auto">Von den ersten Projekten bis zur vollständigen Digitalagentur.</p>
+    </div>
+
+    <div class="story-timeline">
+      <div class="story-item reveal">
+        <div class="story-dot">✦</div>
+        <div class="story-content">
+          <div class="story-year">Der Anfang</div>
+          <h3>Erste Projekte, echte Erfahrungen</h3>
+          <p>Was als Freelance-Arbeit begann, entwickelte sich schnell zu etwas Größerem. Enes und Ali erkannten, dass der Markt eine Agentur brauchte, die Design und Technik auf Augenhöhe behandelt – und liefert, was sie verspricht.</p>
+        </div>
+      </div>
+      <div class="story-item reveal reveal-delay-1">
+        <div class="story-dot">✦</div>
+        <div class="story-content">
+          <div class="story-year">Der Aufbau</div>
+          <h3>Prozesse, Qualität, Wachstum</h3>
+          <p>Mit wachsendem Kundenstamm wurde klar: strukturiertes Arbeiten ist der Schlüssel. Prozesse wurden definiert, Standards gesetzt. Die Qualität stieg – und damit die Weiterempfehlungen.</p>
+        </div>
+      </div>
+      <div class="story-item reveal reveal-delay-2">
+        <div class="story-dot">✦</div>
+        <div class="story-content">
+          <div class="story-year">Heute</div>
+          <h3>EC GROUP – Full-Service Digitalagentur</h3>
+          <p>Heute bieten wir alles aus einer Hand: Webdesign, App-Entwicklung, Photoshooting, Print und strategische Beratung. Mit über 150 Projekten und einem klaren Anspruch – immer besser zu werden.</p>
+        </div>
+      </div>
+      <div class="story-item reveal reveal-delay-3">
+        <div class="story-dot">✦</div>
+        <div class="story-content">
+          <div class="story-year">Die Zukunft</div>
+          <h3>Weiterwachsen – mit unseren Kunden</h3>
+          <p>Unsere Vision ist es, langfristige Partnerschaften aufzubauen. Nicht nur einmalige Projekte liefern, sondern Unternehmen auf ihrem digitalen Weg dauerhaft begleiten.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ MISSION BANNER ════════════ -->
+<section class="section section-dark">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="mission-banner reveal">
+      <div class="mission-glow"></div>
+      <div class="section-label">Unsere Mission</div>
+      <h2>„Wir bauen keine Webseiten. Wir bauen digitale <span class="gradient-text">Identitäten, die überzeugen."</span></h2>
+      <p>Für uns ist Design kein Selbstzweck – es ist ein Werkzeug. Eines, das Vertrauen aufbaut, Kunden gewinnt und Marken unvergesslich macht. Das ist der Anspruch, mit dem wir jeden Morgen an die Arbeit gehen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-label">Gemeinsam starten</div>
+  <h2>Werde Teil<br><span class="gradient-text">unserer Geschichte.</span></h2>
+  <p>Erzähl uns von deinem Projekt. Wir melden uns innerhalb von 24 Stunden.</p>
+  <div class="cta-btns">
+    <a href="index.html#contact" class="btn-primary">
+      Jetzt anfragen
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="preise.html" class="btn-ghost">Preise ansehen</a>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">EC GROUP</span>
+  </a>
+  <p>© 2026 EC GROUP. Alle Rechte vorbehalten.</p>
+  <p><a href="#">Impressum</a> &nbsp;·&nbsp; <a href="#">Datenschutz</a></p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const navbar = document.getElementById('navbar');
+  function updateNavBg() {
+    const light = document.documentElement.getAttribute('data-theme') === 'light';
+    navbar.style.background = window.scrollY > 60
+      ? (light ? 'rgba(255,255,255,0.97)' : 'rgba(0,0,0,0.97)')
+      : (light ? 'rgba(255,255,255,0.88)' : 'rgba(0,0,0,0.75)');
+  }
+  window.addEventListener('scroll', updateNavBg, { passive: true });
+
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(t) {
+    if (t === 'light') { document.documentElement.setAttribute('data-theme','light'); themeToggle.checked = true; }
+    else { document.documentElement.removeAttribute('data-theme'); themeToggle.checked = false; }
+    updateNavBg();
+  }
+  applyTheme(localStorage.getItem('ace-theme') || 'dark');
+  themeToggle.addEventListener('change', () => {
+    const t = themeToggle.checked ? 'light' : 'dark';
+    localStorage.setItem('ace-theme', t);
+    applyTheme(t);
+  });
+
+  // Hero canvas
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  const pts = Array.from({ length: 60 }, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.2 + 0.4,
+  }));
+  (function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const light = document.documentElement.getAttribute('data-theme') === 'light';
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = light ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.4)'; ctx.fill();
+    });
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i+1; j < pts.length; j++) {
+        const dx = pts[i].x-pts[j].x, dy = pts[i].y-pts[j].y;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if (d < 110) {
+          ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle = `rgba(108,99,255,${(1-d/110)*0.18})`; ctx.lineWidth = 0.6; ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  })();
+</script>
+</body>
+</html>

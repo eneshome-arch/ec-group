@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leistungen – EC GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <script>if(localStorage.getItem('ace-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+  <style>
+    :root {
+      --bg:        #000000;
+      --bg2:       #080808;
+      --surface:   #0f0f0f;
+      --surface2:  #161616;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --text:      #ffffff;
+      --text2:     #888888;
+      --text3:     #444444;
+      --accent:    #6c63ff;
+      --accent2:   #a78bfa;
+      --gradient:  linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
+      --glow:      rgba(108,99,255,0.15);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+    }
+    .nav-logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 15px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 36px; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
+    .nav-links a { color: var(--text2); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--text); color: var(--bg);
+      padding: 8px 20px; border-radius: 999px;
+      font-size: 13.5px; font-weight: 600;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      min-height: 54vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 88px 48px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.18), transparent 70%);
+    }
+    .hero-grid-lines {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-badge {
+      position: relative; z-index: 1;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 999px; padding: 6px 16px 6px 10px;
+      font-size: 12px; font-weight: 500; color: var(--text2);
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 32px;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #22d3ee;
+      box-shadow: 0 0 8px #22d3ee; animation: blink 2.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero h1 {
+      position: relative; z-index: 1;
+      font-size: clamp(44px, 7vw, 96px); font-weight: 900;
+      line-height: 0.95; letter-spacing: -0.045em; margin-bottom: 24px;
+    }
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      position: relative; z-index: 1;
+      font-size: clamp(15px, 1.6vw, 18px); color: var(--text2);
+      max-width: 520px; line-height: 1.75;
+    }
+
+    /* ─── FILTER TABS ────────────────────────────────────────── */
+    .filter-bar {
+      display: flex; justify-content: center; gap: 8px;
+      flex-wrap: wrap; padding: 0 48px 64px;
+      position: sticky; top: 64px; z-index: 100;
+      background: linear-gradient(to bottom, var(--bg) 80%, transparent);
+      padding-top: 24px;
+    }
+    .filter-btn {
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text2); font-family: inherit;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+      padding: 8px 18px; border-radius: 999px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--border2); color: var(--text); }
+    .filter-btn.active {
+      background: var(--gradient); border-color: transparent;
+      color: #fff; font-weight: 600;
+    }
+
+    /* ─── SERVICE GRID ───────────────────────────────────────── */
+    .services-section { padding: 0 48px 72px; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .svc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 24px;
+      display: flex; flex-direction: column;
+      transition: border-color 0.25s, transform 0.25s, opacity 0.3s;
+      cursor: default;
+    }
+    .svc-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+    .svc-card.hidden { display: none; }
+
+    .svc-icon-wrap {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px; flex-shrink: 0;
+    }
+    .svc-icon-wrap svg {
+      width: 22px; height: 22px;
+      stroke: #fff; fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .svc-cat-tag {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .svc-card h3 {
+      font-size: 19px; font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 10px; line-height: 1.2;
+    }
+    .svc-card p {
+      font-size: 14px; color: var(--text2); line-height: 1.7;
+      flex: 1; margin-bottom: 24px;
+    }
+
+    .svc-tags {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto;
+    }
+    .svc-tag {
+      background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2);
+      color: var(--accent2); font-size: 11.5px; font-weight: 500;
+      padding: 3px 10px; border-radius: 999px;
+    }
+
+    /* ─── STATS ──────────────────────────────────────────────── */
+    .stats-section { padding: 0 48px 64px; }
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border); border-radius: 24px;
+      overflow: hidden; max-width: 1100px; margin: 0 auto;
+      background: var(--surface);
+    }
+    .stat-box {
+      padding: 32px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-box:last-child { border-right: none; }
+    .stat-num {
+      display: block; font-size: 48px; font-weight: 900;
+      letter-spacing: -0.05em; line-height: 1;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 8px;
+    }
+    .stat-lbl { font-size: 13.5px; color: var(--text2); font-weight: 500; }
+
+    /* ─── PROCESS TEASER ─────────────────────────────────────── */
+    .process-teaser {
+      padding: 72px 48px;
+      background: var(--bg2);
+    }
+    .pt-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .pt-steps { display: flex; flex-direction: column; gap: 0; }
+    .pt-step {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px 0; border-bottom: 1px solid var(--border);
+    }
+    .pt-step:last-child { border-bottom: none; }
+    .pt-num {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+    }
+    .pt-step h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.01em; }
+    .pt-step p { font-size: 13.5px; color: var(--text2); line-height: 1.6; }
+
+    .section-label {
+      display: inline-block; font-size: 11.5px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(32px, 4vw, 52px); font-weight: 800;
+      letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 16px;
+    }
+    .section-sub { font-size: 16px; color: var(--text2); max-width: 480px; line-height: 1.75; margin-bottom: 36px; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient); color: #fff;
+      padding: 13px 28px; border-radius: 999px;
+      font-size: 14px; font-weight: 600;
+      text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 40px rgba(108,99,255,0.25);
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border2); padding: 13px 28px; border-radius: 999px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.35); transform: translateY(-2px); }
+
+    /* ─── CTA ────────────────────────────────────────────────── */
+    .cta-section {
+      text-align: center; padding: 80px 48px;
+      position: relative; overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 800px; height: 400px; pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(108,99,255,0.1), transparent 70%);
+    }
+    .cta-section > * { position: relative; z-index: 1; }
+    .cta-section h2 {
+      font-size: clamp(38px, 6vw, 80px); font-weight: 900;
+      letter-spacing: -0.045em; line-height: 0.95; margin-bottom: 20px;
+    }
+    .cta-section p {
+      font-size: 17px; color: var(--text2); max-width: 460px;
+      margin: 0 auto 40px; line-height: 1.7;
+    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); background: var(--bg2);
+      padding: 48px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer p { font-size: 13px; color: var(--text3); }
+    footer a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--text); }
+
+    /* ─── REVEAL ─────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
+
+    /* ─── LIGHT THEME ────────────────────────────────────── */
+    [data-theme="light"] {
+      --bg: #ffffff; --bg2: #f5f5f5; --surface: #eeeeee; --surface2: #e4e4e4;
+      --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.15);
+      --text: #0a0a0a; --text2: #555555; --text3: #999999;
+      --glow: rgba(108,99,255,0.06);
+    }
+    [data-theme="light"] nav { background: rgba(255,255,255,0.88) !important; border-bottom-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .nav-cta { background: #0a0a0a; color: #fff; }
+    [data-theme="light"] .nav-logo-icon path,
+    [data-theme="light"] .about-logo-big path,
+    [data-theme="light"] footer .nav-logo-icon path { fill: #0a0a0a; }
+    [data-theme="light"] .nav-logo-text { color: #0a0a0a; }
+    [data-theme="light"] .nav-links a { color: #555; }
+    [data-theme="light"] .portfolio-card::after { color: #fff; }
+    [data-theme="light"] .hero-scroll { color: #aaa; }
+    [data-theme="light"] .scroll-line { background: linear-gradient(to bottom, transparent, #aaa); }
+    [data-theme="light"] .ticker-item { color: #888; }
+    [data-theme="light"] footer p,
+    [data-theme="light"] footer a { color: #999; }
+    [data-theme="light"] footer a:hover { color: #0a0a0a; }
+    [data-theme="light"] .hero-grid-lines {
+      background-image: linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px);
+    }
+    [data-theme="light"] .btn-ghost { color: #0a0a0a; border-color: rgba(0,0,0,0.2); }
+    [data-theme="light"] .btn-ghost:hover { border-color: rgba(0,0,0,0.45); }
+    [data-theme="light"] .filter-btn { background: var(--surface); border-color: var(--border); color: var(--text2); }
+    [data-theme="light"] .filter-btn:hover { color: var(--text); border-color: var(--border2); }
+    [data-theme="light"] .filter-bar { background: linear-gradient(to bottom, #fff 80%, transparent); }
+    /* ─── TOGGLE SWITCH ───────────────────────────────────── */
+    .theme-toggle { cursor: pointer; display: flex; align-items: center; }
+    .theme-toggle input { display: none; }
+    .toggle-track {
+      width: 50px; height: 28px; background: #1c1c1e;
+      border: 1.5px solid rgba(255,255,255,0.13); border-radius: 999px;
+      position: relative; transition: background 0.35s, border-color 0.35s;
+      display: flex; align-items: center;
+    }
+    .toggle-thumb {
+      width: 22px; height: 22px; border-radius: 50%; background: #fff;
+      position: absolute; left: 3px;
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    }
+    .theme-toggle input:checked ~ .toggle-track { background: #e5e5ea; border-color: rgba(0,0,0,0.1); }
+    .theme-toggle input:checked ~ .toggle-track .toggle-thumb { transform: translateX(21px); background: #1c1c1e; }
+    .toggle-icons {
+      position: absolute; inset: 0; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 6px; pointer-events: none;
+    }
+    .t-moon { width: 11px; height: 11px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .t-sun  { width: 11px; height: 11px; stroke: rgba(0,0,0,0.45);      fill: none; stroke-width: 2; stroke-linecap: round; }
+
+    /* ─── MOBILE ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 24px 60px; }
+      .filter-bar { padding: 16px 24px 40px; top: 64px; }
+      .services-section { padding: 0 24px 80px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-section { padding: 0 24px 80px; }
+      .stats-row { grid-template-columns: repeat(2,1fr); }
+      .stat-box:nth-child(2) { border-right: none; }
+      .stat-box:nth-child(1), .stat-box:nth-child(2) { border-bottom: 1px solid var(--border); }
+      .process-teaser { padding: 80px 24px; }
+      .pt-inner { grid-template-columns: 1fr; gap: 48px; }
+      .cta-section { padding: 80px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════ NAV ════════════════════ -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">EC GROUP</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="leistungen.html" class="active">Leistungen</a></li>
+    <li><a href="ueber-uns.html">Über uns</a></li>
+    <li><a href="prozess.html">Prozess</a></li>
+    <li><a href="preise.html">Preise</a></li>
+    <li><a href="karriere.html">Karriere</a></li>
+    <li><a href="index.html#contact">Kontakt</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <label class="theme-toggle" aria-label="Theme umschalten">
+      <input type="checkbox" id="themeToggle">
+      <span class="toggle-track">
+        <span class="toggle-icons">
+          <svg class="t-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="t-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+    <a href="index.html#contact" class="nav-cta">Projekt starten</a>
+  </div>
+</nav>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Alles aus einer Hand
+  </div>
+  <h1>
+    Mehr erreichen mit<br>
+    <span class="gradient-text">smarten Lösungen.</span>
+  </h1>
+  <p class="hero-sub">
+    Von der Website über professionelle Fotos bis hin zu
+    druckfertigem Material – wir liefern alles, was deine Marke braucht.
+  </p>
+</section>
+
+<!-- ════════════════════ FILTER TABS ════════════════════ -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" data-filter="all">Alle Leistungen</button>
+  <button class="filter-btn" data-filter="web">Web & Digital</button>
+  <button class="filter-btn" data-filter="design">Design</button>
+  <button class="filter-btn" data-filter="media">Foto & Medien</button>
+</div>
+
+<!-- ════════════════════ SERVICES ════════════════════ -->
+<section class="services-section">
+  <div class="services-grid" id="servicesGrid">
+
+    <!-- Webdesign & Entwicklung -->
+    <div class="svc-card reveal" data-cat="web">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <div class="svc-cat-tag">Web & Digital</div>
+      <h3>Webdesign & Entwicklung</h3>
+      <p>Moderne, blitzschnelle Websites, die deine Marke perfekt repräsentieren und Besucher in Kunden verwandeln. Responsive und auf Performance optimiert.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">HTML / CSS</span>
+        <span class="svc-tag">Responsive</span>
+        <span class="svc-tag">Performance</span>
+        <span class="svc-tag">SEO-ready</span>
+      </div>
+    </div>
+
+    <!-- UI / UX Design -->
+    <div class="svc-card reveal reveal-delay-1" data-cat="web">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+      <div class="svc-cat-tag">Web & Digital</div>
+      <h3>UI / UX Design</h3>
+      <p>Intuitive Interfaces, die Nutzer begeistern. Von Wireframes bis zum High-Fidelity Prototyp – für Apps, Dashboards und komplexe Webanwendungen.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Wireframing</span>
+        <span class="svc-tag">Prototyping</span>
+        <span class="svc-tag">Usability</span>
+      </div>
+    </div>
+
+    <!-- Landing Pages -->
+    <div class="svc-card reveal reveal-delay-2" data-cat="web">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div class="svc-cat-tag">Web & Digital</div>
+      <h3>Landing Pages</h3>
+      <p>Konversionstarke Einzelseiten für Kampagnen, Produkte oder Events. Klarer Fokus, starke Copy und ein CTA, der überzeugt.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Conversion</span>
+        <span class="svc-tag">A/B-fähig</span>
+        <span class="svc-tag">schnell live</span>
+      </div>
+    </div>
+
+    <!-- SEO & Performance -->
+    <div class="svc-card reveal reveal-delay-3" data-cat="web">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+      </div>
+      <div class="svc-cat-tag">Web & Digital</div>
+      <h3>SEO & Performance</h3>
+      <p>Mehr Sichtbarkeit in den Suchmaschinen. Wir optimieren Ladezeiten, Struktur und Inhalte deiner Website – damit Google dich liebt.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">On-Page SEO</span>
+        <span class="svc-tag">Core Web Vitals</span>
+        <span class="svc-tag">Monitoring</span>
+      </div>
+    </div>
+
+    <!-- Print & Mediengestaltung -->
+    <div class="svc-card reveal" data-cat="design">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div class="svc-cat-tag">Design</div>
+      <h3>Print & Mediengestaltung</h3>
+      <p>Druckfertige Materialien mit echtem Wow-Faktor. Flyer, Visitenkarten, Broschüren, Plakate – alles was du für deinen Auftritt brauchst.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Druckfertig</span>
+        <span class="svc-tag">CMYK</span>
+        <span class="svc-tag">alle Formate</span>
+      </div>
+    </div>
+
+    <!-- Content Creation -->
+    <div class="svc-card reveal reveal-delay-1" data-cat="design">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <div class="svc-cat-tag">Design</div>
+      <h3>Content Creation</h3>
+      <p>Texte, Grafiken und Visuals, die deine Zielgruppe ansprechen. Wir erstellen Inhalte, die informieren, begeistern und zum Handeln bewegen.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Copywriting</span>
+        <span class="svc-tag">Grafik</span>
+        <span class="svc-tag">Storytelling</span>
+      </div>
+    </div>
+
+    <!-- Photoshooting -->
+    <div class="svc-card reveal" data-cat="media">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+      <div class="svc-cat-tag">Foto & Medien</div>
+      <h3>Photoshooting</h3>
+      <p>Professionelle Fotos für deine Website, Social Media und Marketingmaterialien. Team-, Produkt- und Imagefotos, die deine Marke authentisch zeigen.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Teamfotos</span>
+        <span class="svc-tag">Produktfotos</span>
+        <span class="svc-tag">Imagefotos</span>
+        <span class="svc-tag">Retusche</span>
+      </div>
+    </div>
+
+    <!-- Video & Reels -->
+    <div class="svc-card reveal reveal-delay-1" data-cat="media">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+      </div>
+      <div class="svc-cat-tag">Foto & Medien</div>
+      <h3>Video & Reels</h3>
+      <p>Kurze, packende Video-Inhalte für Social Media, Website-Hero oder Präsentationen. Professionell gedreht, geschnitten und optimiert.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Social Media</span>
+        <span class="svc-tag">Schnitt</span>
+        <span class="svc-tag">Color Grading</span>
+      </div>
+    </div>
+
+    <!-- 360° Rundum-Paket -->
+    <div class="svc-card reveal reveal-delay-2" data-cat="all" style="border-color:rgba(108,99,255,0.3); background: var(--surface2);">
+      <div class="svc-icon-wrap" style="background: linear-gradient(135deg,#a78bfa,#6c63ff)">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="svc-cat-tag" style="color:var(--accent2)">Full Service</div>
+      <h3>360° Rundum-Paket</h3>
+      <p>Du willst alles aus einer Hand? Website, Photoshooting, Print und Content – wir übernehmen deinen kompletten digitalen Auftritt von A bis Z.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Komplett-Lösung</span>
+        <span class="svc-tag">ein Ansprechpartner</span>
+        <span class="svc-tag">individuell</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════ STATS ════════════════════ -->
+<section class="stats-section reveal">
+  <div class="stats-row">
+    <div class="stat-box">
+      <span class="stat-num" data-val="150" data-suffix="+">150+</span>
+      <span class="stat-lbl">Abgeschlossene Projekte</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num" data-val="98" data-suffix="%">98%</span>
+      <span class="stat-lbl">Kundenzufriedenheit</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num" data-val="5" data-suffix="+">5+</span>
+      <span class="stat-lbl">Jahre Erfahrung</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num" data-val="24" data-suffix="h">24h</span>
+      <span class="stat-lbl">Reaktionszeit garantiert</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ PROZESS TEASER ════════════════════ -->
+<section class="process-teaser">
+  <div class="pt-inner">
+    <div class="reveal">
+      <div class="section-label">Wie es läuft</div>
+      <h2 class="section-title">Von der Idee zum fertigen Produkt</h2>
+      <p class="section-sub">Unser strukturierter Prozess sorgt dafür, dass dein Projekt pünktlich, im Budget und genau nach deinen Vorstellungen fertig wird.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="prozess.html" class="btn-primary">
+          Prozess ansehen
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="preise.html" class="btn-ghost">Preise ansehen</a>
+      </div>
+    </div>
+    <div class="pt-steps reveal">
+      <div class="pt-step">
+        <div class="pt-num">01</div>
+        <div>
+          <h4>Briefing & Analyse</h4>
+          <p>Wir verstehen deine Ziele, Zielgruppe und Erwartungen bis ins Detail.</p>
+        </div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-num">02</div>
+        <div>
+          <h4>Konzept & Strategie</h4>
+          <p>Kreatives Konzept, Moodboard und visuelle Richtung – zur Freigabe.</p>
+        </div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-num">03</div>
+        <div>
+          <h4>Photoshooting</h4>
+          <p>Professionelles Bildmaterial, das direkt ins Design einfließt.</p>
+        </div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-num">04</div>
+        <div>
+          <h4>Design & Umsetzung</h4>
+          <p>Pixel-genaue Umsetzung mit regelmäßigem Feedback-Loop.</p>
+        </div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-num">05</div>
+        <div>
+          <h4>Launch & Support</h4>
+          <p>Go-Live und langfristige Begleitung als verlässlicher Partner.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ CTA ════════════════════ -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-label">Jetzt loslegen</div>
+  <h2>Bereit für dein<br><span class="gradient-text">Projekt?</span></h2>
+  <p>Lass uns gemeinsam herausfinden, welche Leistungen dein Vorhaben braucht. Kostenlos und unverbindlich.</p>
+  <div class="cta-btns">
+    <a href="index.html#contact" class="btn-primary">
+      Jetzt anfragen
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="preise.html" class="btn-ghost">Preise ansehen</a>
+  </div>
+</section>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer>
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">EC GROUP</span>
+  </a>
+  <p>© 2026 EC GROUP. Alle Rechte vorbehalten.</p>
+  <p>
+    <a href="#">Impressum</a> &nbsp;·&nbsp;
+    <a href="#">Datenschutz</a>
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Nav
+  const navbar = document.getElementById('navbar');
+  function updateNavBg() {
+    const light = document.documentElement.getAttribute('data-theme') === 'light';
+    navbar.style.background = window.scrollY > 60
+      ? (light ? 'rgba(255,255,255,0.97)' : 'rgba(0,0,0,0.97)')
+      : (light ? 'rgba(255,255,255,0.88)' : 'rgba(0,0,0,0.75)');
+  }
+  window.addEventListener('scroll', updateNavBg, { passive: true });
+
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(t) {
+    if (t === 'light') { document.documentElement.setAttribute('data-theme','light'); themeToggle.checked = true; }
+    else { document.documentElement.removeAttribute('data-theme'); themeToggle.checked = false; }
+    updateNavBg();
+  }
+  applyTheme(localStorage.getItem('ace-theme') || 'dark');
+  themeToggle.addEventListener('change', () => {
+    const t = themeToggle.checked ? 'light' : 'dark';
+    localStorage.setItem('ace-theme', t);
+    applyTheme(t);
+  });
+
+  // Filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.svc-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        const cat = card.dataset.cat;
+        if (filter === 'all' || cat === filter || cat === 'all') {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Stats counter
+  const statNums = document.querySelectorAll('.stat-num');
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const val = parseInt(el.dataset.val);
+      const suffix = el.dataset.suffix;
+      let t0 = null;
+      (function tick(ts) {
+        if (!t0) t0 = ts;
+        const p = Math.min((ts - t0) / 1600, 1);
+        const ease = 1 - Math.pow(1 - p, 4);
+        el.textContent = Math.floor(ease * val) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      })(performance.now());
+      statObs.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  statNums.forEach(el => statObs.observe(el));
+</script>
+</body>
+</html>

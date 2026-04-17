@@ -1,0 +1,27 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!--
+    EC GROUP — Geometric Mark
+    Concept: E and C share endpoints (50,20) and (50,80).
+    The top/bottom bars of E connect directly into the C arc —
+    forming one unified, inseparable shape.
+    E = three-bar letter form (spine left, bars pointing right)
+    C = right-side semicircle (opening faces left, into the E)
+  -->
+
+  <!-- E: spine + 3 bars. Top/bottom bars end exactly where C arc begins. -->
+  <path
+    d="M 50,20 L 20,20 L 20,80 L 50,80 M 20,50 L 42,50"
+    stroke="white"
+    stroke-width="8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- C: right-side semicircle. Starts & ends at the E bar endpoints. -->
+  <path
+    d="M 50,20 A 30,30 0 0,1 50,80"
+    stroke="white"
+    stroke-width="8"
+    stroke-linecap="round"
+  />
+</svg>
