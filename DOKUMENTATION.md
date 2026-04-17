@@ -6,9 +6,11 @@
 2. [Navigation](#navigation)
 3. [Animationen](#animationen)
 4. [Komponenten](#komponenten)
-5. [Farbpalette](#farbpalette)
-6. [Schriften](#schriften)
-7. [Kontaktdaten](#kontaktdaten)
+5. [Portfolio](#portfolio)
+6. [Farbpalette](#farbpalette)
+7. [Schriften](#schriften)
+8. [Hosting](#hosting)
+9. [Kontaktdaten](#kontaktdaten)
 
 ---
 
@@ -29,7 +31,7 @@ localStorage.setItem('ace-theme', 'light' | 'dark');
 
 ### FOUC-Prävention
 
-Jede Seite enthält direkt im `<head>` (vor den Styles) folgenden Inline-Script, damit kein Aufblitzen beim Laden entsteht:
+Jede Seite enthält direkt im `<head>` folgenden Inline-Script:
 
 ```html
 <script>
@@ -84,9 +86,6 @@ Jede Seite enthält direkt im `<head>` (vor den Styles) folgenden Inline-Script,
     <li><a href="karriere.html">Karriere</a></li>
     <li><a href="#contact">Kontakt</a></li>
   </ul>
-  <div class="nav-right">
-    <!-- Theme Toggle + CTA Button -->
-  </div>
 </nav>
 ```
 
@@ -107,33 +106,20 @@ function updateNavBg() {
 
 ### Scroll-Reveal
 
-Elemente mit der Klasse `.reveal` werden beim Einscrollen eingeblendet:
-
 ```css
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
 .reveal.in { opacity: 1; transform: none; }
-```
-
-```js
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 ```
 
 Verzögerungsklassen: `.reveal-delay-1` bis `.reveal-delay-5` (je +0.1s)
 
 ### Hero-Partikel (Canvas)
 
-Jede Seite hat einen `<canvas id="heroCanvas">` mit einem animierten Sternennetz:
-
 - **60 Punkte** mit zufälliger Startposition und Bewegungsvektor
 - **Verbindungslinien** zwischen Punkten < 110px Abstand
-- **Theme-aware:** Punkte sind weiß im Dark Mode, schwarz im Light Mode
+- **Theme-aware:** weiß im Dark Mode, schwarz im Light Mode
 
 ### Ticker / Marquee
-
-Auf der Startseite läuft ein horizontales Icon-Band mit den 8 Leistungen:
 
 ```css
 @keyframes marquee {
@@ -142,8 +128,6 @@ Auf der Startseite läuft ein horizontales Icon-Band mit den 8 Leistungen:
 }
 ```
 
-Der Track enthält jeden Eintrag **doppelt** für einen nahtlosen Loop.
-
 ---
 
 ## Komponenten
@@ -151,17 +135,13 @@ Der Track enthält jeden Eintrag **doppelt** für einen nahtlosen Loop.
 ### Buttons
 
 ```html
-<!-- Primary (Gradient) -->
 <a href="#" class="btn-primary">Text</a>
-
-<!-- Ghost (Outline) -->
 <a href="#" class="btn-ghost">Text</a>
 ```
 
 ### Karten
 
 ```html
-<!-- Service-Karte -->
 <div class="service-card reveal">
   <div class="svc-icon"><svg>…</svg></div>
   <h3>Titel</h3>
@@ -169,14 +149,22 @@ Der Track enthält jeden Eintrag **doppelt** für einen nahtlosen Loop.
 </div>
 ```
 
-### Badge
+---
 
-```html
-<div class="hero-badge">
-  <span class="badge-dot"></span>
-  Badge-Text
-</div>
-```
+## Portfolio
+
+Portfolio-Kästchen sind als `<a>`-Tags umgesetzt mit Klick-Link und automatischem Website-Vorschaubild via `thum.io` / `wordpress mshots`.
+
+| Kästchen | Projekt | URL |
+|---|---|---|
+| 1 | Kelneo | https://kelneo.de |
+| 2 | OkeyMate | https://okeymate.app |
+| 3 | EC Group | https://eneshome-arch.github.io/ec-group/ |
+
+### Neues Portfolio-Projekt hinzufügen
+
+1. CSS: neue `.pcX` Klasse mit `background-image: url('https://image.thum.io/get/width/1200/crop/800/DEINE-URL')`
+2. HTML: `<div class="portfolio-card">` durch `<a href="..." class="portfolio-card" style="text-decoration:none;display:flex;align-items:flex-end;color:inherit;">` ersetzen
 
 ---
 
@@ -184,11 +172,11 @@ Der Track enthält jeden Eintrag **doppelt** für einen nahtlosen Loop.
 
 | Name | Hex | Verwendung |
 |---|---|---|
-| Accent | `#6c63ff` | Buttons, Highlights, Labels |
+| Accent | `#6c63ff` | Buttons, Highlights |
 | Accent 2 | `#a78bfa` | Gradient-Ende, Icons |
-| Cyan | `#22d3ee` | Badge-Dot (animiert) |
-| Dark BG | `#000000` | Seitenhintergrund Dark |
-| Light BG | `#ffffff` | Seitenhintergrund Light |
+| Cyan | `#22d3ee` | Badge-Dot |
+| Dark BG | `#000000` | Hintergrund Dark |
+| Light BG | `#ffffff` | Hintergrund Light |
 
 ---
 
@@ -198,7 +186,15 @@ Der Track enthält jeden Eintrag **doppelt** für einen nahtlosen Loop.
 - **Gewichte:** 300, 400, 500, 600, 700, 800, 900
 - **Headlines:** 900 weight, `letter-spacing: -0.045em`
 - **Body:** 400–500 weight, `line-height: 1.75–1.85`
-- **Labels:** 600 weight, `letter-spacing: 0.14–0.18em`, uppercase
+
+---
+
+## Hosting
+
+- **Plattform:** GitHub Pages
+- **Repo:** [github.com/eneshome-arch/ec-group](https://github.com/eneshome-arch/ec-group)
+- **Live URL:** [eneshome-arch.github.io/ec-group](https://eneshome-arch.github.io/ec-group/)
+- **Deployment:** automatisch bei jedem `git push origin main`
 
 ---
 

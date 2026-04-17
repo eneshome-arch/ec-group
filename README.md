@@ -2,6 +2,10 @@
 
 Offizielle Website der EC GROUP, einer kreativen Medienagentur mit Fokus auf Webdesign, App-Entwicklung, Photoshooting und digitale Lösungen.
 
+## Live
+
+[eneshome-arch.github.io/ec-group](https://eneshome-arch.github.io/ec-group/)
+
 ## Projektstruktur
 
 ```
@@ -27,6 +31,14 @@ ec-group-website/
 | Über uns | `ueber-uns.html` | Team, Werte, Geschichte |
 | Karriere | `karriere.html` | Offene Stellen, Benefits |
 
+## Portfolio-Projekte
+
+| Projekt | URL |
+|---|---|
+| Kelneo | [kelneo.de](https://kelneo.de) |
+| OkeyMate | [okeymate.app](https://okeymate.app) |
+| EC Group | [eneshome-arch.github.io/ec-group](https://eneshome-arch.github.io/ec-group/) |
+
 ## Technologie
 
 - **Reines HTML/CSS/JavaScript** – kein Framework, keine Dependencies
@@ -35,6 +47,10 @@ ec-group-website/
 - **Dark / Light Mode** – iOS-Toggle, gespeichert via `localStorage`
 - **Intersection Observer** – Scroll-Reveal-Animationen
 - **Canvas API** – Partikel-Animation im Hero-Bereich
+
+## Hosting
+
+Gehostet via **GitHub Pages** – automatisches Deployment bei jedem `git push` auf `main`.
 
 ## Design
 
@@ -49,7 +65,6 @@ ec-group-website/
 - **Telefon:** 0511 866 47763
 - **Mobil:** 0151 546 28224
 - **Support:** 0176 608 08641
-- **Web:** [ec-group.de](https://ec-group.de)
 
 ---
 
