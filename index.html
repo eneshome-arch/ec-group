@@ -393,8 +393,18 @@
     .port-icon svg { width: 180px; height: 180px; }
 
     /* Colored bg accents per card */
-    .pc1 { background: linear-gradient(135deg, #0f0c29, #302b63); }
-    .pc2 { background: linear-gradient(135deg, #0a0a0a, #1a1a2e); }
+    .pc1 {
+      background: #0f0c29;
+      background-image: url('https://image.thum.io/get/width/1200/crop/800/https://kelneo.de');
+      background-size: cover;
+      background-position: center top;
+    }
+    .pc2 {
+      background: #0a0a0a;
+      background-image: url('https://image.thum.io/get/width/1200/crop/800/https://okeymate.app');
+      background-size: cover;
+      background-position: center top;
+    }
     .pc3 { background: linear-gradient(135deg, #050505, #0d0d1a); }
     .pc4 { background: linear-gradient(135deg, #0a0a0a, #1a0a2e); }
     .pc5 { background: linear-gradient(135deg, #050b0f, #0a1628); }
@@ -865,37 +875,29 @@
   <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px">
     <div>
       <div class="section-label">Portfolio</div>
-      <h2 class="section-title" style="margin-bottom:0">Ausgewählte Arbeiten</h2>
+      <h2 class="section-title" style="margin-bottom:0">Was wir erschaffen haben</h2>
     </div>
     <a href="#contact" class="btn-ghost" style="flex-shrink:0">Alle ansehen</a>
   </div>
 
   <div class="portfolio-grid">
-    <div class="portfolio-card reveal">
-      <div class="portfolio-card-bg pc1">
-        <div class="port-icon">
-          <svg viewBox="0 0 24 24" fill="white"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-      </div>
+    <a href="https://kelneo.de" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" style="text-decoration:none;display:flex;align-items:flex-end;color:inherit;">
+      <div class="portfolio-card-bg pc1"></div>
       <div class="portfolio-card-overlay"></div>
       <div class="portfolio-card-info">
-        <h3>Brand Relaunch – TechStart GmbH</h3>
-        <span>Branding · Webdesign</span>
+        <h3>Kelneo</h3>
+        <span>Webdesign · Development</span>
       </div>
-    </div>
+    </a>
 
-    <div class="portfolio-card reveal reveal-delay-1">
-      <div class="portfolio-card-bg pc2">
-        <div class="port-icon">
-          <svg viewBox="0 0 24 24" fill="white"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-      </div>
+    <a href="https://okeymate.app" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal reveal-delay-1" style="text-decoration:none;display:flex;align-items:flex-end;color:inherit;">
+      <div class="portfolio-card-bg pc2"></div>
       <div class="portfolio-card-overlay"></div>
       <div class="portfolio-card-info">
-        <h3>Logo System – Artis Studio</h3>
-        <span>Logo Design · CI</span>
+        <h3>OkeyMate</h3>
+        <span>App Design · Development</span>
       </div>
-    </div>
+    </a>
 
     <div class="portfolio-card reveal reveal-delay-2">
       <div class="portfolio-card-bg pc3">
