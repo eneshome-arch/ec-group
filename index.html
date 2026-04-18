@@ -284,6 +284,8 @@
       font-size: 14.5px; color: var(--text2); line-height: 1.7;
     }
 
+    .svc-dots { display: none; }
+
     /* ─── STATS ───────────────────────────────────────────── */
     .stats-row {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -511,7 +513,60 @@
       .nav-cta { display: none; }
       .section { padding: 60px 24px; }
       .hero { padding: 80px 24px 48px; }
-      .services-grid { grid-template-columns: 1fr; }
+      .services-grid {
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+        background: none;
+        border: none;
+        border-radius: 0;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 20px 4px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .services-grid::-webkit-scrollbar { display: none; }
+      .service-card {
+        flex: 0 0 calc(100vw - 60px);
+        scroll-snap-align: center;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        margin-right: 12px;
+        padding: 28px 24px;
+        opacity: 0;
+        transform: translateX(32px);
+        transition: opacity 0.5s ease, transform 0.5s ease, background 0.25s;
+      }
+      .service-card:last-child { margin-right: 20px; }
+      .service-card.svc-visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .service-card.svc-visible:nth-child(2) { transition-delay: 0.1s; }
+      .service-card.svc-visible:nth-child(3) { transition-delay: 0.2s; }
+      .svc-dots {
+        display: flex;
+        justify-content: center;
+        gap: 7px;
+        margin-top: 20px;
+      }
+      .svc-dot {
+        width: 6px; height: 6px; border-radius: 50%;
+        background: var(--border2);
+        transition: background 0.3s, width 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+      }
+      .svc-dot.active {
+        width: 20px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #6c63ff, #a78bfa);
+        box-shadow: 0 0 8px rgba(108,99,255,0.5);
+      }
       .stats-row { grid-template-columns: repeat(2,1fr); }
       .stat-box:nth-child(2) { border-right: none; }
       .stat-box:nth-child(1),
@@ -893,6 +948,11 @@
       <p>Flyer, Visitenkarten, Broschüren, Plakate – druckfertige Dateien mit echtem Wow-Effekt für jeden Anlass.</p>
     </div>
   </div>
+  <div class="svc-dots" id="svcDots">
+    <span class="svc-dot active" data-i="0"></span>
+    <span class="svc-dot" data-i="1"></span>
+    <span class="svc-dot" data-i="2"></span>
+  </div>
 
   <!-- Stats -->
   <div class="stats-row reveal">
@@ -1188,6 +1248,47 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // Services carousel (mobile only)
+  (function() {
+    var grid = document.querySelector('.services-grid');
+    var dots = document.querySelectorAll('.svc-dot');
+    var dotsWrap = document.getElementById('svcDots');
+    if (!grid || !dots.length) return;
+
+    // Trigger slide-in animation when section enters viewport
+    var svcObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.service-card').forEach(function(c) {
+            c.classList.add('svc-visible');
+          });
+          svcObs.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    svcObs.observe(grid);
+
+    // Dots: only show on mobile
+    function isMobile() { return window.innerWidth <= 900; }
+    function updateDots() {
+      if (!isMobile()) { dotsWrap.style.display = 'none'; return; }
+      dotsWrap.style.display = 'flex';
+      var idx = Math.round(grid.scrollLeft / grid.clientWidth);
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    }
+    grid.addEventListener('scroll', updateDots, { passive: true });
+    window.addEventListener('resize', updateDots);
+    updateDots();
+
+    // Click dot → scroll to card
+    dots.forEach(function(d) {
+      d.addEventListener('click', function() {
+        var i = parseInt(d.getAttribute('data-i'));
+        grid.scrollTo({ left: i * grid.clientWidth, behavior: 'smooth' });
+      });
+    });
+  })();
 
   // Nav on scroll
   const navbar = document.getElementById('navbar');
