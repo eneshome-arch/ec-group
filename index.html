@@ -18,10 +18,10 @@
       --text:      #ffffff;
       --text2:     #888888;
       --text3:     #444444;
-      --accent:    #6c63ff;
-      --accent2:   #a78bfa;
-      --gradient:  linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
-      --glow:      rgba(108,99,255,0.15);
+      --accent:    #7ec8a0;
+      --accent2:   #b5e8cc;
+      --gradient:  linear-gradient(135deg, #7ec8a0 0%, #b5e8cc 100%);
+      --glow:      rgba(126,200,160,0.15);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -96,7 +96,7 @@
     .hero-glow {
       position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
       width: 900px; height: 500px; pointer-events: none;
-      background: radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.18) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(126,200,160,0.18) 0%, transparent 70%);
     }
 
     .hero-grid-lines {
@@ -157,7 +157,7 @@
       font-size: 14.5px; font-weight: 600; letter-spacing: 0.01em;
       cursor: pointer; text-decoration: none;
       transition: opacity 0.2s, transform 0.2s;
-      box-shadow: 0 0 40px rgba(108,99,255,0.3);
+      box-shadow: 0 0 40px rgba(126,200,160,0.3);
     }
     .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
 
@@ -184,47 +184,41 @@
     }
     @keyframes scroll-pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
 
-    /* ─── TICKER ──────────────────────────────────────────── */
-    .ticker {
+    /* ─── SERVICE CYCLER ─────────────────────────────────── */
+    .service-cycler {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 24px 0; overflow: hidden;
-      background: var(--bg2); position: relative;
+      padding: 28px 48px;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center; gap: 24px;
     }
-    .ticker::before, .ticker::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 1;
+    .cycler-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text3); flex-shrink: 0;
     }
-    .ticker::before { left: 0; background: linear-gradient(to right, var(--bg2), transparent); }
-    .ticker::after  { right: 0; background: linear-gradient(to left, var(--bg2), transparent); }
-
-    .ticker-track {
-      display: flex; gap: 0; white-space: nowrap;
-      animation: marquee 28s linear infinite;
+    .cycler-divider {
+      width: 1px; height: 18px; background: var(--border2); flex-shrink: 0;
     }
-    .ticker-track:hover { animation-play-state: paused; }
-
-    @keyframes marquee {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .cycler-stage {
+      height: 22px; overflow: visible; position: relative; min-width: 220px;
+      perspective: 400px;
     }
-
-    .ticker-item {
-      display: inline-flex; flex-direction: column; align-items: center; gap: 8px;
-      padding: 0 40px; flex-shrink: 0;
+    .cycler-word {
+      position: absolute; left: 0; right: 0;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--text);
+      opacity: 0; transform: translateZ(-80px) scale(0.6);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
-    .ticker-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: var(--surface); border: 1px solid var(--border2);
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.2s;
+    .cycler-word.active {
+      opacity: 1; transform: translateZ(0) scale(1);
     }
-    .ticker-icon svg { width: 20px; height: 20px; stroke: var(--accent2); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .ticker-label {
-      font-size: 10.5px; font-weight: 600; color: var(--text3);
-      letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+    .cycler-word.exit {
+      opacity: 0; transform: translateZ(-80px) scale(0.6);
     }
-    .ticker-sep {
-      width: 1px; height: 44px; background: var(--border); flex-shrink: 0; align-self: center;
+    .cycler-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0; opacity: 0.7;
     }
 
     /* ─── SECTIONS COMMON ─────────────────────────────────── */
@@ -432,7 +426,7 @@
     .cta-glow {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
       width: 800px; height: 400px; pointer-events: none;
-      background: radial-gradient(ellipse at center, rgba(108,99,255,0.12), transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(126,200,160,0.12), transparent 70%);
     }
     .cta-banner > * { position: relative; z-index: 1; }
     .cta-banner h2 {
@@ -566,8 +560,8 @@
       .svc-dot.active {
         width: 20px;
         border-radius: 3px;
-        background: linear-gradient(90deg, #6c63ff, #a78bfa);
-        box-shadow: 0 0 8px rgba(108,99,255,0.5);
+        background: linear-gradient(90deg, #7ec8a0, #b5e8cc);
+        box-shadow: 0 0 8px rgba(126,200,160,0.5);
       }
       .stats-row { grid-template-columns: repeat(2,1fr); }
       .stat-box:nth-child(2) { border-right: none; }
@@ -631,7 +625,7 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
       color: #fff; text-transform: uppercase;
-      background: rgba(108,99,255,0.18);
+      background: rgba(126,200,160,0.18);
       backdrop-filter: blur(6px);
       opacity: 0;
       transition: opacity 0.35s;
@@ -640,12 +634,12 @@
 
     /* ─── LIGHT THEME ─────────────────────────────────── */
     [data-theme="light"] {
-      --bg: #ffffff; --bg2: #f5f5f5; --surface: #eeeeee; --surface2: #e4e4e4;
-      --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.15);
-      --text: #0a0a0a; --text2: #555555; --text3: #999999;
-      --glow: rgba(108,99,255,0.06);
+      --bg: #f0faf5; --bg2: #e3f5eb; --surface: #d4eddf; --surface2: #c5e6d3;
+      --border: rgba(0,80,40,0.1); --border2: rgba(0,80,40,0.18);
+      --text: #0a2118; --text2: #3a6b52; --text3: #7aab90;
+      --glow: rgba(126,200,160,0.12);
     }
-    [data-theme="light"] nav { background: rgba(255,255,255,0.88) !important; border-bottom-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] nav { background: rgba(240,250,245,0.88) !important; border-bottom-color: rgba(0,80,40,0.1); }
     [data-theme="light"] .nav-cta { background: #0a0a0a; color: #fff; }
     [data-theme="light"] .nav-logo-icon path,
     [data-theme="light"] .about-logo-big path,
@@ -655,9 +649,6 @@
     [data-theme="light"] .portfolio-card::after { color: #fff; }
     [data-theme="light"] .hero-scroll { color: #aaa; }
     [data-theme="light"] .scroll-line { background: linear-gradient(to bottom, transparent, #aaa); }
-    [data-theme="light"] .ticker-item .ticker-label { color: #aaa; }
-    [data-theme="light"] .ticker-icon { background: #e8e8e8; border-color: rgba(0,0,0,0.1); }
-    [data-theme="light"] .ticker-sep { background: rgba(0,0,0,0.1); }
     [data-theme="light"] footer p,
     [data-theme="light"] footer a { color: #999; }
     [data-theme="light"] footer a:hover { color: #0a0a0a; }
@@ -666,9 +657,7 @@
     }
     [data-theme="light"] .btn-ghost { color: #0a0a0a; border-color: rgba(0,0,0,0.2); }
     [data-theme="light"] .btn-ghost:hover { border-color: rgba(0,0,0,0.45); }
-    [data-theme="light"] .ticker { background: var(--bg2); border-color: var(--border); }
-    [data-theme="light"] .ticker::before { background: linear-gradient(to right, var(--bg2), transparent); }
-    [data-theme="light"] .ticker::after  { background: linear-gradient(to left,  var(--bg2), transparent); }
+    [data-theme="light"] .service-cycler { background: var(--bg); border-color: var(--border); }
     [data-theme="light"] .social-link { background: var(--surface); border-color: var(--border); }
 
     /* ─── TOGGLE SWITCH ────────────────────────────────── */
@@ -695,6 +684,16 @@
     .t-moon { width: 11px; height: 11px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; stroke-linecap: round; }
     .t-sun  { width: 11px; height: 11px; stroke: rgba(0,0,0,0.45);      fill: none; stroke-width: 2; stroke-linecap: round; }
   
+    /* ─── LANG TOGGLE ────────────────────────────────── */
+    .lang-toggle {
+      background: transparent; border: 1px solid var(--border2);
+      color: var(--text2); padding: 5px 13px; border-radius: 999px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em;
+      cursor: pointer; transition: color 0.2s, border-color 0.2s;
+      font-family: inherit;
+    }
+    .lang-toggle:hover { color: var(--text); border-color: var(--text3); }
+
     /* ─── MOBILE MENU ─────────────────────────────────── */
     .nav-hamburger {
       display: none;
@@ -723,13 +722,13 @@
     }
     .nav-hamburger:hover {
       border-color: transparent;
-      box-shadow: 0 0 18px rgba(108,99,255,0.45), 0 0 4px rgba(108,99,255,0.2);
+      box-shadow: 0 0 18px rgba(126,200,160,0.45), 0 0 4px rgba(126,200,160,0.2);
     }
     .nav-hamburger:hover::after { opacity: 0.12; }
     .nav-hamburger span {
       display: block;
       height: 1.5px;
-      background: linear-gradient(90deg, #6c63ff, #a78bfa);
+      background: linear-gradient(90deg, #7ec8a0, #b5e8cc);
       border-radius: 2px;
       transition: transform 0.32s cubic-bezier(.16,1,.3,1), opacity 0.25s, width 0.25s;
       transform-origin: center;
@@ -743,7 +742,7 @@
     .nav-hamburger.open span:nth-child(1) { width: 22px; transform: translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-hamburger.open span:nth-child(3) { width: 22px; transform: translateY(-6.5px) rotate(-45deg); }
-    .nav-hamburger.open { border-color: rgba(108,99,255,0.4); box-shadow: 0 0 20px rgba(108,99,255,0.3); }
+    .nav-hamburger.open { border-color: rgba(126,200,160,0.4); box-shadow: 0 0 20px rgba(126,200,160,0.3); }
     .nav-hamburger.open::after { opacity: 0.1; }
     .mobile-menu {
       position: fixed; top: 64px; left: 0; right: 0;
@@ -781,7 +780,7 @@
       justify-content: center !important;
     }
     .mobile-menu-cta::after { display: none !important; }
-    [data-theme="light"] .mobile-menu { background: rgba(255,255,255,0.97); }
+    [data-theme="light"] .mobile-menu { background: rgba(240,250,245,0.97); }
     [data-theme="light"] .mobile-menu-cta { background: #0a0a0a !important; color: #fff !important; }
     </style>
   <script>if(localStorage.getItem('ace-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
@@ -815,7 +814,6 @@
   </ul>
 
   <div class="nav-right">
-    <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <label class="theme-toggle" aria-label="Theme umschalten">
       <input type="checkbox" id="themeToggle">
       <span class="toggle-track">
@@ -826,6 +824,8 @@
         <span class="toggle-thumb"></span>
       </span>
     </label>
+    <button class="lang-toggle" id="langToggle">EN</button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <a href="#contact" class="nav-cta">Projekt starten</a>
   </div>
 </nav>
@@ -848,26 +848,26 @@
 
   <div class="hero-badge">
     <span class="badge-dot"></span>
-    Jetzt neue Projekte annehmen
+    <span data-i18n="hero-badge">Weltweit verfügbar &nbsp;·&nbsp; Jetzt Projekt starten</span>
   </div>
 
   <h1>
-    Design, das<br>
-    <span class="gradient-text">bewegt.</span>
+    <span data-i18n="hero-h1a">Design, das</span><br>
+    <span class="gradient-text" data-i18n="hero-h1b">bewegt.</span>
   </h1>
 
-  <p class="hero-sub">
+  <p class="hero-sub" data-i18n="hero-sub">
     EC GROUP ist deine Medienagentur für Webdesign, Branding und digitale Erlebnisse –
-    minimalistisch, präzise, wirkungsvoll.
+    minimalistisch, präzise, wirkungsvoll. Weltweit tätig, lokal verankert.
   </p>
 
   <div class="hero-actions">
-    <a href="preise.html" class="btn-primary">
-      Preise ansehen
+    <a href="preise.html" class="btn-primary" data-i18n-btn="hero-btn1">
+      <span data-i18n="hero-btn1">Preise ansehen</span>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <a href="prozess.html" class="btn-ghost" style="background:#fff;color:#0a0a0a;border-color:#fff;">
-      Unser Prozess
+      <span data-i18n="hero-btn2">Unser Prozess</span>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
@@ -878,52 +878,29 @@
   </div>
 </section>
 
-<!-- ════════════════════ TICKER ════════════════════ -->
-<div class="ticker">
-  <div class="ticker-track" id="tickerTrack">
-    <!-- set 1 -->
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="ticker-label">Webdesign</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></span><span class="ticker-label">UI / UX Design</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span class="ticker-label">Landing Pages</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><span class="ticker-label">SEO & Performance</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span><span class="ticker-label">Print & Medien</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><span class="ticker-label">Content Creation</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="ticker-label">Photoshooting</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><span class="ticker-label">Video & Reels</span></span>
-    <span class="ticker-sep"></span>
-    <!-- set 2 (seamless loop) -->
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="ticker-label">Webdesign</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></span><span class="ticker-label">UI / UX Design</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span class="ticker-label">Landing Pages</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><span class="ticker-label">SEO & Performance</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></span><span class="ticker-label">Print & Medien</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><span class="ticker-label">Content Creation</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="ticker-label">Photoshooting</span></span>
-    <span class="ticker-sep"></span>
-    <span class="ticker-item"><span class="ticker-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><span class="ticker-label">Video & Reels</span></span>
-    <span class="ticker-sep"></span>
+<!-- ════════════════════ SERVICE CYCLER ════════════════════ -->
+<div class="service-cycler">
+  <span class="cycler-label" data-i18n="cycler-label">Was wir machen</span>
+  <span class="cycler-divider"></span>
+  <div class="cycler-stage" id="cyclerStage">
+    <span class="cycler-word active">Webdesign</span>
+    <span class="cycler-word">UI / UX Design</span>
+    <span class="cycler-word">Landing Pages</span>
+    <span class="cycler-word">SEO & Performance</span>
+    <span class="cycler-word" data-i18n="cycler-print">Print & Medien</span>
+    <span class="cycler-word">Content Creation</span>
+    <span class="cycler-word">Photoshooting</span>
+    <span class="cycler-word">Video & Reels</span>
   </div>
+  <span class="cycler-dot"></span>
 </div>
 
 <!-- ════════════════════ SERVICES ════════════════════ -->
 <section class="section section-dark" id="services">
   <div class="section-header center">
-    <div class="section-label">Leistungen</div>
-    <h2 class="section-title">Alles aus einer Hand</h2>
-    <p class="section-sub">Von der ersten Idee bis zum fertigen Produkt – wir begleiten dich durch jeden Schritt deines Projekts.</p>
+    <div class="section-label" data-i18n="svc-label">Leistungen</div>
+    <h2 class="section-title" data-i18n="svc-title">Alles aus einer Hand</h2>
+    <p class="section-sub" data-i18n="svc-sub">Von der ersten Idee bis zum fertigen Produkt – wir begleiten dich durch jeden Schritt deines Projekts.</p>
   </div>
 
   <div class="services-grid">
@@ -931,24 +908,24 @@
       <div class="svc-icon">
         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </div>
-      <h3>Webdesign & Entwicklung</h3>
-      <p>Moderne, blitzschnelle Websites, die deine Marke perfekt repräsentieren und Besucher in Kunden verwandeln. Responsive by design.</p>
+      <h3 data-i18n="svc1-title">Webdesign & Entwicklung</h3>
+      <p data-i18n="svc1-desc">Moderne, blitzschnelle Websites, die deine Marke perfekt repräsentieren und Besucher in Kunden verwandeln. Responsive by design.</p>
     </div>
 
     <div class="service-card reveal reveal-delay-1">
       <div class="svc-icon">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       </div>
-      <h3>UI / UX Design</h3>
-      <p>Intuitive Interfaces, die Nutzer begeistern. Prototyping, Wireframing und High-Fidelity Designs für Apps und Webseiten.</p>
+      <h3 data-i18n="svc2-title">UI / UX Design</h3>
+      <p data-i18n="svc2-desc">Intuitive Interfaces, die Nutzer begeistern. Prototyping, Wireframing und High-Fidelity Designs für Apps und Webseiten.</p>
     </div>
 
     <div class="service-card reveal reveal-delay-3">
       <div class="svc-icon">
         <svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
       </div>
-      <h3>Print & Mediengestaltung</h3>
-      <p>Flyer, Visitenkarten, Broschüren, Plakate – druckfertige Dateien mit echtem Wow-Effekt für jeden Anlass.</p>
+      <h3 data-i18n="svc3-title">Print & Mediengestaltung</h3>
+      <p data-i18n="svc3-desc">Flyer, Visitenkarten, Broschüren, Plakate – druckfertige Dateien mit echtem Wow-Effekt für jeden Anlass.</p>
     </div>
   </div>
   <div class="svc-dots" id="svcDots">
@@ -961,19 +938,23 @@
   <div class="stats-row reveal">
     <div class="stat-box">
       <span class="stat-num">150+</span>
-      <span class="stat-lbl">Abgeschlossene Projekte</span>
+      <span class="stat-lbl" data-i18n="stat1">Abgeschlossene Projekte</span>
     </div>
     <div class="stat-box">
       <span class="stat-num">98%</span>
-      <span class="stat-lbl">Kundenzufriedenheit</span>
+      <span class="stat-lbl" data-i18n="stat2">Kundenzufriedenheit</span>
     </div>
     <div class="stat-box">
       <span class="stat-num">5+</span>
-      <span class="stat-lbl">Jahre Erfahrung</span>
+      <span class="stat-lbl" data-i18n="stat3">Jahre Erfahrung</span>
     </div>
     <div class="stat-box">
       <span class="stat-num">24h</span>
-      <span class="stat-lbl">Reaktionszeit garantiert</span>
+      <span class="stat-lbl" data-i18n="stat4">Reaktionszeit garantiert</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">🌍</span>
+      <span class="stat-lbl" data-i18n="stat5">International tätig</span>
     </div>
   </div>
 </section>
@@ -982,32 +963,32 @@
 <!-- ════════════════════ PROCESS ════════════════════ -->
 <section class="section section-dark" id="process">
   <div class="section-header center">
-    <div class="section-label">Workflow</div>
-    <h2 class="section-title">So läuft's ab</h2>
-    <p class="section-sub">Strukturiert, transparent und effizient – von der Idee zum fertigen Ergebnis.</p>
+    <div class="section-label" data-i18n="proc-label">Workflow</div>
+    <h2 class="section-title" data-i18n="proc-title">So läuft's ab</h2>
+    <p class="section-sub" data-i18n="proc-sub">Strukturiert, transparent und effizient – von der Idee zum fertigen Ergebnis.</p>
   </div>
 
   <div class="process-row">
     <div class="process-line"></div>
     <div class="process-step reveal">
       <div class="step-num lit">01</div>
-      <h3>Briefing</h3>
-      <p>Wir hören zu, stellen die richtigen Fragen und verstehen deine Ziele, Zielgruppe und Erwartungen bis ins Detail.</p>
+      <h3 data-i18n="step1-title">Briefing</h3>
+      <p data-i18n="step1-desc">Wir hören zu, stellen die richtigen Fragen und verstehen deine Ziele, Zielgruppe und Erwartungen bis ins Detail.</p>
     </div>
     <div class="process-step reveal reveal-delay-1">
       <div class="step-num lit">02</div>
-      <h3>Konzept</h3>
-      <p>Wir entwickeln kreative Konzepte, Moodboards und Strategien, die perfekt auf deine Marke zugeschnitten sind.</p>
+      <h3 data-i18n="step2-title">Konzept</h3>
+      <p data-i18n="step2-desc">Wir entwickeln kreative Konzepte, Moodboards und Strategien, die perfekt auf deine Marke zugeschnitten sind.</p>
     </div>
     <div class="process-step reveal reveal-delay-2">
       <div class="step-num lit">03</div>
-      <h3>Design</h3>
-      <p>Unsere Designer setzen das Konzept in lebendige, präzise visuelle Welten um – bis du 100 % begeistert bist.</p>
+      <h3 data-i18n="step3-title">Design</h3>
+      <p data-i18n="step3-desc">Unsere Designer setzen das Konzept in lebendige, präzise visuelle Welten um – bis du 100 % begeistert bist.</p>
     </div>
     <div class="process-step reveal reveal-delay-3">
       <div class="step-num lit">04</div>
-      <h3>Launch & Support</h3>
-      <p>Finales Review, Go-Live und langfristiger Support. Du bist nie allein – auch nach dem Launch.</p>
+      <h3 data-i18n="step4-title">Launch & Support</h3>
+      <p data-i18n="step4-desc">Finales Review, Go-Live und langfristiger Support. Du bist nie allein – auch nach dem Launch.</p>
     </div>
   </div>
 </section>
@@ -1015,20 +996,20 @@
 <!-- ════════════════════ CTA ════════════════════ -->
 <section class="cta-banner section-dark" id="contact">
   <div class="cta-glow"></div>
-  <div class="section-label">Kontakt</div>
+  <div class="section-label" data-i18n="cta-label">Kontakt</div>
   <h2>
-    Bereit für dein<br>
-    <span class="gradient-text">nächstes Projekt?</span>
+    <span data-i18n="cta-h1">Bereit für dein</span><br>
+    <span class="gradient-text" data-i18n="cta-h2">nächstes Projekt?</span>
   </h2>
-  <p>Lass uns gemeinsam etwas Großartiges erschaffen. Kein Projekt zu groß, kein Projekt zu klein – wir freuen uns auf dich.</p>
+  <p data-i18n="cta-desc">Lass uns gemeinsam etwas Großartiges erschaffen. Kein Projekt zu groß, kein Projekt zu klein – wir freuen uns auf dich.</p>
   <div class="cta-btns">
     <a href="mailto:info@ecgroup.de" class="btn-primary">
-      Nachricht schreiben
+      <span data-i18n="cta-btn1">Nachricht schreiben</span>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-    <a href="tel:+051186647763" class="btn-ghost">Direkt anrufen</a>
+    <a href="tel:+051186647763" class="btn-ghost" data-i18n="cta-btn2">Direkt anrufen</a>
   </div>
-  <p class="cta-hint">info@ecgroup.de &nbsp;·&nbsp; Antwort innerhalb von 24 Stunden</p>
+  <p class="cta-hint"><span data-i18n="cta-hint">Antwort innerhalb von 24 Stunden</span></p>
 </section>
 
 <!-- ════════════════════ FOOTER ════════════════════ -->
@@ -1048,7 +1029,7 @@
         </svg>
         <span class="nav-logo-text">EC GROUP</span>
       </a>
-      <p class="footer-brand-desc">
+      <p class="footer-brand-desc" data-i18n="footer-desc">
         Kreative Medienagentur mit Leidenschaft für außergewöhnliches Design, starke Marken und digitale Erlebnisse.
       </p>
       <div class="footer-socials">
@@ -1068,7 +1049,7 @@
     </div>
 
     <div class="footer-col">
-      <div class="footer-col-title">Leistungen</div>
+      <div class="footer-col-title" data-i18n="svc-label">Leistungen</div>
       <ul>
         <li><a href="#services">Webdesign</a></li>
         <li><a href="#services">UI/UX Design</a></li>
@@ -1077,7 +1058,7 @@
     </div>
 
     <div class="footer-col">
-      <div class="footer-col-title">Agentur</div>
+      <div class="footer-col-title" data-i18n="footer-agency">Agentur</div>
       <ul>
         <li><a href="ueber-uns.html">Über uns</a></li>
         <li><a href="prozess.html">Unser Prozess</a></li>
@@ -1088,7 +1069,7 @@
     </div>
 
     <div class="footer-col">
-      <div class="footer-col-title">Kontakt</div>
+      <div class="footer-col-title" data-i18n="cta-label">Kontakt</div>
       <ul>
         <li><a href="mailto:info@ecgroup.de">info@ecgroup.de</a></li>
         <li><a href="tel:+051186647763">0511 866 47763</a></li>
@@ -1100,7 +1081,7 @@
   </div>
 
   <div class="footer-bottom">
-    <p>© 2026 EC GROUP. Alle Rechte vorbehalten.</p>
+    <p data-i18n="footer-copy">© 2026 EC GROUP. Alle Rechte vorbehalten.</p>
     <p>
       <a href="#">Impressum</a> &nbsp;·&nbsp;
       <a href="#">Datenschutz</a> &nbsp;·&nbsp;
@@ -1163,10 +1144,135 @@
   function updateNavBg() {
     const light = document.documentElement.getAttribute('data-theme') === 'light';
     navbar.style.background = window.scrollY > 60
-      ? (light ? 'rgba(255,255,255,0.97)' : 'rgba(0,0,0,0.97)')
-      : (light ? 'rgba(255,255,255,0.88)' : 'rgba(0,0,0,0.75)');
+      ? (light ? 'rgba(240,250,245,0.97)' : 'rgba(0,0,0,0.97)')
+      : (light ? 'rgba(240,250,245,0.88)' : 'rgba(0,0,0,0.75)');
   }
   window.addEventListener('scroll', updateNavBg, { passive: true });
+
+  // Language toggle
+  const translations = {
+    de: {
+      'hero-badge':   'Weltweit verfügbar \u00a0·\u00a0 Jetzt Projekt starten',
+      'hero-h1a':     'Design, das',
+      'hero-h1b':     'bewegt.',
+      'hero-sub':     'EC GROUP ist deine Medienagentur für Webdesign, Branding und digitale Erlebnisse – minimalistisch, präzise, wirkungsvoll. Weltweit tätig, lokal verankert.',
+      'hero-btn1':    'Preise ansehen',
+      'hero-btn2':    'Unser Prozess',
+      'cycler-label': 'Was wir machen',
+      'cycler-print': 'Print & Medien',
+      'svc-label':    'Leistungen',
+      'svc-title':    'Alles aus einer Hand',
+      'svc-sub':      'Von der ersten Idee bis zum fertigen Produkt – wir begleiten dich durch jeden Schritt deines Projekts.',
+      'svc1-title':   'Webdesign & Entwicklung',
+      'svc1-desc':    'Moderne, blitzschnelle Websites, die deine Marke perfekt repräsentieren und Besucher in Kunden verwandeln. Responsive by design.',
+      'svc2-title':   'UI / UX Design',
+      'svc2-desc':    'Intuitive Interfaces, die Nutzer begeistern. Prototyping, Wireframing und High-Fidelity Designs für Apps und Webseiten.',
+      'svc3-title':   'Print & Mediengestaltung',
+      'svc3-desc':    'Flyer, Visitenkarten, Broschüren, Plakate – druckfertige Dateien mit echtem Wow-Effekt für jeden Anlass.',
+      'stat1':        'Abgeschlossene Projekte',
+      'stat2':        'Kundenzufriedenheit',
+      'stat3':        'Jahre Erfahrung',
+      'stat4':        'Reaktionszeit garantiert',
+      'stat5':        'International tätig',
+      'proc-label':   'Workflow',
+      'proc-title':   'So läuft\'s ab',
+      'proc-sub':     'Strukturiert, transparent und effizient – von der Idee zum fertigen Ergebnis.',
+      'step1-title':  'Briefing',
+      'step1-desc':   'Wir hören zu, stellen die richtigen Fragen und verstehen deine Ziele, Zielgruppe und Erwartungen bis ins Detail.',
+      'step2-title':  'Konzept',
+      'step2-desc':   'Wir entwickeln kreative Konzepte, Moodboards und Strategien, die perfekt auf deine Marke zugeschnitten sind.',
+      'step3-title':  'Design',
+      'step3-desc':   'Unsere Designer setzen das Konzept in lebendige, präzise visuelle Welten um – bis du 100 % begeistert bist.',
+      'step4-title':  'Launch & Support',
+      'step4-desc':   'Finales Review, Go-Live und langfristiger Support. Du bist nie allein – auch nach dem Launch.',
+      'cta-label':    'Kontakt',
+      'cta-h1':       'Bereit für dein',
+      'cta-h2':       'nächstes Projekt?',
+      'cta-desc':     'Lass uns gemeinsam etwas Großartiges erschaffen. Kein Projekt zu groß, kein Projekt zu klein – wir freuen uns auf dich.',
+      'cta-btn1':     'Nachricht schreiben',
+      'cta-btn2':     'Direkt anrufen',
+      'cta-hint':     'Antwort innerhalb von 24 Stunden',
+      'footer-desc':  'Kreative Medienagentur mit Leidenschaft für außergewöhnliches Design, starke Marken und digitale Erlebnisse.',
+      'footer-agency':'Agentur',
+      'footer-copy':  '© 2026 EC GROUP. Alle Rechte vorbehalten.',
+    },
+    en: {
+      'hero-badge':   'Available Worldwide \u00a0·\u00a0 Start Your Project',
+      'hero-h1a':     'Design that',
+      'hero-h1b':     'moves.',
+      'hero-sub':     'EC GROUP is your media agency for web design, branding and digital experiences – minimalist, precise, impactful. Operating globally, rooted locally.',
+      'hero-btn1':    'View Pricing',
+      'hero-btn2':    'Our Process',
+      'cycler-label': 'What we do',
+      'cycler-print': 'Print & Media',
+      'svc-label':    'Services',
+      'svc-title':    'Everything in One Place',
+      'svc-sub':      'From the first idea to the finished product – we guide you through every step of your project.',
+      'svc1-title':   'Web Design & Development',
+      'svc1-desc':    'Modern, lightning-fast websites that represent your brand perfectly and turn visitors into clients. Responsive by design.',
+      'svc2-title':   'UI / UX Design',
+      'svc2-desc':    'Intuitive interfaces that delight users. Prototyping, wireframing and high-fidelity designs for apps and websites.',
+      'svc3-title':   'Print & Media Design',
+      'svc3-desc':    'Flyers, business cards, brochures, posters – print-ready files with a real wow effect for every occasion.',
+      'stat1':        'Completed Projects',
+      'stat2':        'Client Satisfaction',
+      'stat3':        'Years of Experience',
+      'stat4':        'Response Time Guaranteed',
+      'stat5':        'Operating Internationally',
+      'proc-label':   'Workflow',
+      'proc-title':   'How It Works',
+      'proc-sub':     'Structured, transparent and efficient – from idea to finished result.',
+      'step1-title':  'Briefing',
+      'step1-desc':   'We listen, ask the right questions and understand your goals, target audience and expectations in detail.',
+      'step2-title':  'Concept',
+      'step2-desc':   'We develop creative concepts, moodboards and strategies perfectly tailored to your brand.',
+      'step3-title':  'Design',
+      'step3-desc':   'Our designers bring the concept to life in precise visual worlds – until you are 100% thrilled.',
+      'step4-title':  'Launch & Support',
+      'step4-desc':   'Final review, go-live and long-term support. You are never alone – even after the launch.',
+      'cta-label':    'Contact',
+      'cta-h1':       'Ready for your',
+      'cta-h2':       'next project?',
+      'cta-desc':     'Let\'s create something great together. No project too big, no project too small – we look forward to hearing from you.',
+      'cta-btn1':     'Send a Message',
+      'cta-btn2':     'Call Directly',
+      'cta-hint':     'Response within 24 hours',
+      'footer-desc':  'Creative media agency with a passion for exceptional design, strong brands and digital experiences.',
+      'footer-agency':'Agency',
+      'footer-copy':  '© 2026 EC GROUP. All rights reserved.',
+    }
+  };
+
+  let currentLang = localStorage.getItem('ace-lang') || 'de';
+  const langToggleBtn = document.getElementById('langToggle');
+
+  function applyLang(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+    });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'de';
+    langToggleBtn.textContent = lang === 'de' ? 'EN' : 'DE';
+    localStorage.setItem('ace-lang', lang);
+  }
+
+  langToggleBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'de' ? 'en' : 'de';
+    applyLang(currentLang);
+  });
+
+  if (currentLang === 'en') applyLang('en');
+
+  // Service cycler
+  const cyclerWords = document.querySelectorAll('.cycler-word');
+  let cyclerIndex = 0;
+  setInterval(() => {
+    cyclerWords[cyclerIndex].classList.remove('active');
+    cyclerWords[cyclerIndex].classList.add('exit');
+    setTimeout(() => cyclerWords[(cyclerIndex + 8 - 1) % 8].classList.remove('exit'), 500);
+    cyclerIndex = (cyclerIndex + 1) % cyclerWords.length;
+    cyclerWords[cyclerIndex].classList.add('active');
+  }, 2400);
 
   // Theme toggle
   const themeToggle = document.getElementById('themeToggle');
@@ -1231,7 +1337,7 @@
           ctx.beginPath();
           ctx.moveTo(pts[i].x, pts[i].y);
           ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.strokeStyle = `rgba(108,99,255,${(1 - d/110) * 0.18})`;
+          ctx.strokeStyle = `rgba(126,200,160,${(1 - d/110) * 0.18})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
         }

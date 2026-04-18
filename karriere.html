@@ -19,10 +19,10 @@
       --text:      #ffffff;
       --text2:     #888888;
       --text3:     #444444;
-      --accent:    #6c63ff;
-      --accent2:   #a78bfa;
-      --gradient:  linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
-      --glow:      rgba(108,99,255,0.15);
+      --accent:    #7ec8a0;
+      --accent2:   #b5e8cc;
+      --gradient:  linear-gradient(135deg, #7ec8a0 0%, #b5e8cc 100%);
+      --glow:      rgba(126,200,160,0.15);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -72,7 +72,7 @@
     .hero-glow {
       position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
       width: 900px; height: 500px; pointer-events: none;
-      background: radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.2), transparent 70%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(126,200,160,0.2), transparent 70%);
     }
     .hero-grid-lines {
       position: absolute; inset: 0; pointer-events: none;
@@ -108,7 +108,7 @@
       padding: 13px 28px; border-radius: 999px;
       font-size: 14px; font-weight: 600;
       text-decoration: none; transition: opacity 0.2s, transform 0.2s;
-      box-shadow: 0 0 40px rgba(108,99,255,0.3);
+      box-shadow: 0 0 40px rgba(126,200,160,0.3);
     }
     .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
     .btn-ghost {
@@ -137,7 +137,7 @@
       border-radius: 20px; padding: 32px 28px;
       transition: border-color 0.25s, transform 0.25s;
     }
-    .benefit-card:hover { border-color: rgba(108,99,255,0.35); transform: translateY(-4px); }
+    .benefit-card:hover { border-color: rgba(126,200,160,0.35); transform: translateY(-4px); }
     .benefit-icon {
       width: 48px; height: 48px; border-radius: 14px;
       background: var(--gradient); margin-bottom: 20px;
@@ -155,11 +155,11 @@
       display: flex; align-items: center; justify-content: space-between; gap: 24px;
       transition: border-color 0.25s, transform 0.25s;
     }
-    .job-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-3px); }
+    .job-card:hover { border-color: rgba(126,200,160,0.4); transform: translateY(-3px); }
     .job-left { display: flex; align-items: center; gap: 20px; }
     .job-icon {
       width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
-      background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2);
+      background: rgba(126,200,160,0.1); border: 1px solid rgba(126,200,160,0.2);
       display: flex; align-items: center; justify-content: center;
     }
     .job-icon svg { width: 22px; height: 22px; stroke: var(--accent2); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -179,7 +179,7 @@
       font-size: 13px; font-weight: 600;
       text-decoration: none; white-space: nowrap;
       transition: opacity 0.2s, transform 0.2s;
-      box-shadow: 0 0 24px rgba(108,99,255,0.25);
+      box-shadow: 0 0 24px rgba(126,200,160,0.25);
       flex-shrink: 0;
     }
     .job-apply:hover { opacity: 0.85; transform: translateY(-2px); }
@@ -225,7 +225,7 @@
       text-align: center; padding: 80px 48px;
       position: relative; overflow: hidden;
     }
-    .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 400px; pointer-events: none; background: radial-gradient(ellipse at center, rgba(108,99,255,0.1), transparent 70%); }
+    .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 400px; pointer-events: none; background: radial-gradient(ellipse at center, rgba(126,200,160,0.1), transparent 70%); }
     .cta-section > * { position: relative; z-index: 1; }
     .cta-section h2 { font-size: clamp(36px, 6vw, 76px); font-weight: 900; letter-spacing: -0.045em; line-height: 0.95; margin-bottom: 20px; }
     .cta-section p { font-size: 17px; color: var(--text2); max-width: 440px; margin: 0 auto 36px; line-height: 1.7; }
@@ -252,12 +252,12 @@
 
     /* ─── LIGHT THEME ──────────────────────────────────── */
     [data-theme="light"] {
-      --bg: #ffffff; --bg2: #f5f5f5; --surface: #eeeeee; --surface2: #e4e4e4;
-      --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.15);
-      --text: #0a0a0a; --text2: #555555; --text3: #999999;
-      --glow: rgba(108,99,255,0.06);
+      --bg: #f0faf5; --bg2: #e3f5eb; --surface: #d4eddf; --surface2: #c5e6d3;
+      --border: rgba(0,80,40,0.1); --border2: rgba(0,80,40,0.18);
+      --text: #0a2118; --text2: #3a6b52; --text3: #7aab90;
+      --glow: rgba(126,200,160,0.12);
     }
-    [data-theme="light"] nav { background: rgba(255,255,255,0.88) !important; border-bottom-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] nav { background: rgba(240,250,245,0.88) !important; border-bottom-color: rgba(0,80,40,0.1); }
     [data-theme="light"] .nav-cta { background: #0a0a0a; color: #fff; }
     [data-theme="light"] .nav-logo-icon path,
     [data-theme="light"] footer .nav-logo-icon path { fill: #0a0a0a; }
@@ -310,6 +310,16 @@
       footer { padding: 40px 24px; flex-direction: column; text-align: center; }
     }
   
+    /* ─── LANG TOGGLE ────────────────────────────────── */
+    .lang-toggle {
+      background: transparent; border: 1px solid var(--border2);
+      color: var(--text2); padding: 5px 13px; border-radius: 999px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em;
+      cursor: pointer; transition: color 0.2s, border-color 0.2s;
+      font-family: inherit;
+    }
+    .lang-toggle:hover { color: var(--text); border-color: var(--text3); }
+
     /* ─── MOBILE MENU ─────────────────────────────────── */
     .nav-hamburger {
       display: none;
@@ -338,13 +348,13 @@
     }
     .nav-hamburger:hover {
       border-color: transparent;
-      box-shadow: 0 0 18px rgba(108,99,255,0.45), 0 0 4px rgba(108,99,255,0.2);
+      box-shadow: 0 0 18px rgba(126,200,160,0.45), 0 0 4px rgba(126,200,160,0.2);
     }
     .nav-hamburger:hover::after { opacity: 0.12; }
     .nav-hamburger span {
       display: block;
       height: 1.5px;
-      background: linear-gradient(90deg, #6c63ff, #a78bfa);
+      background: linear-gradient(90deg, #7ec8a0, #b5e8cc);
       border-radius: 2px;
       transition: transform 0.32s cubic-bezier(.16,1,.3,1), opacity 0.25s, width 0.25s;
       transform-origin: center;
@@ -358,7 +368,7 @@
     .nav-hamburger.open span:nth-child(1) { width: 22px; transform: translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-hamburger.open span:nth-child(3) { width: 22px; transform: translateY(-6.5px) rotate(-45deg); }
-    .nav-hamburger.open { border-color: rgba(108,99,255,0.4); box-shadow: 0 0 20px rgba(108,99,255,0.3); }
+    .nav-hamburger.open { border-color: rgba(126,200,160,0.4); box-shadow: 0 0 20px rgba(126,200,160,0.3); }
     .nav-hamburger.open::after { opacity: 0.1; }
     .mobile-menu {
       position: fixed; top: 64px; left: 0; right: 0;
@@ -396,7 +406,7 @@
       justify-content: center !important;
     }
     .mobile-menu-cta::after { display: none !important; }
-    [data-theme="light"] .mobile-menu { background: rgba(255,255,255,0.97); }
+    [data-theme="light"] .mobile-menu { background: rgba(240,250,245,0.97); }
     [data-theme="light"] .mobile-menu-cta { background: #0a0a0a !important; color: #fff !important; }
     
     @media (max-width: 540px) {
@@ -435,15 +445,14 @@
     <span class="nav-logo-text">EC GROUP</span>
   </a>
   <ul class="nav-links">
-    <li><a href="leistungen.html">Leistungen</a></li>
-    <li><a href="ueber-uns.html">Über uns</a></li>
-    <li><a href="prozess.html">Prozess</a></li>
-    <li><a href="preise.html">Preise</a></li>
-    <li><a href="karriere.html" class="active">Karriere</a></li>
-    <li><a href="index.html#contact">Kontakt</a></li>
+    <li><a href="leistungen.html" data-i18n="nav-services">Leistungen</a></li>
+    <li><a href="ueber-uns.html" data-i18n="nav-about">Über uns</a></li>
+    <li><a href="prozess.html" data-i18n="nav-process">Prozess</a></li>
+    <li><a href="preise.html" data-i18n="nav-pricing">Preise</a></li>
+    <li><a href="karriere.html" class="active" data-i18n="nav-careers">Karriere</a></li>
+    <li><a href="index.html#contact" data-i18n="nav-contact">Kontakt</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px">
-    <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <label class="theme-toggle" aria-label="Theme umschalten">
       <input type="checkbox" id="themeToggle">
       <span class="toggle-track">
@@ -454,17 +463,19 @@
         <span class="toggle-thumb"></span>
       </span>
     </label>
-    <a href="index.html#contact" class="nav-cta">Projekt starten</a>
+    <button class="lang-toggle" id="langToggle">EN</button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <a href="index.html#contact" class="nav-cta" data-i18n="nav-cta">Projekt starten</a>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="leistungen.html">Leistungen</a>
-  <a href="ueber-uns.html">Über uns</a>
-  <a href="prozess.html">Prozess</a>
-  <a href="preise.html">Preise</a>
-  <a href="karriere.html">Karriere</a>
-  <a href="index.html#contact">Kontakt</a>
-  <a href="index.html#contact" class="mobile-menu-cta">Projekt starten</a>
+  <a href="leistungen.html" data-i18n="nav-services">Leistungen</a>
+  <a href="ueber-uns.html" data-i18n="nav-about">Über uns</a>
+  <a href="prozess.html" data-i18n="nav-process">Prozess</a>
+  <a href="preise.html" data-i18n="nav-pricing">Preise</a>
+  <a href="karriere.html" data-i18n="nav-careers">Karriere</a>
+  <a href="index.html#contact" data-i18n="nav-contact">Kontakt</a>
+  <a href="index.html#contact" class="mobile-menu-cta" data-i18n="nav-cta">Projekt starten</a>
 </div>
 
 <!-- ════════════ HERO ════════════ -->
@@ -472,21 +483,21 @@
   <canvas id="heroCanvas"></canvas>
   <div class="hero-glow"></div>
   <div class="hero-grid-lines"></div>
-  <div class="hero-badge"><span class="badge-dot"></span>Wir suchen Talente</div>
+  <div class="hero-badge"><span class="badge-dot"></span><span data-i18n="hero-badge">Wir suchen Talente</span></div>
   <h1>
-    Jobs bei<br>
-    <span class="gradient-text">EC GROUP.</span>
+    <span data-i18n="hero-h1-line1">Jobs bei</span><br>
+    <span class="gradient-text" data-i18n="hero-h1-line2">EC GROUP.</span>
   </h1>
-  <p class="hero-sub">
+  <p class="hero-sub" data-i18n="hero-sub">
     Werde Teil eines Teams, das digitale Marken baut – mit Leidenschaft, Anspruch
     und echtem Ownership. Remote oder vor Ort. Gemeinsam wachsen.
   </p>
   <div class="hero-actions">
     <a href="#jobs" class="btn-primary">
-      Offene Stellen ansehen
+      <span data-i18n="hero-btn-primary">Offene Stellen ansehen</span>
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </a>
-    <a href="ueber-uns.html" class="btn-ghost">Über das Team</a>
+    <a href="ueber-uns.html" class="btn-ghost" data-i18n="hero-btn-ghost">Über das Team</a>
   </div>
 </section>
 
@@ -494,9 +505,9 @@
 <section class="section section-dark">
   <div style="max-width:1100px;margin:0 auto">
     <div class="reveal" style="text-align:center">
-      <div class="section-label">Warum EC GROUP</div>
-      <h2 class="section-title">Was dich erwartet</h2>
-      <p class="section-sub" style="margin:0 auto">Keine leeren Versprechen. Das hier ist, was bei uns wirklich zählt.</p>
+      <div class="section-label" data-i18n="benefits-label">Warum EC GROUP</div>
+      <h2 class="section-title" data-i18n="benefits-title">Was dich erwartet</h2>
+      <p class="section-sub" style="margin:0 auto" data-i18n="benefits-sub">Keine leeren Versprechen. Das hier ist, was bei uns wirklich zählt.</p>
     </div>
 
     <div class="benefits-grid">
@@ -504,43 +515,43 @@
         <div class="benefit-icon">
           <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h3>Remote-First</h3>
-        <p>Arbeite von wo du willst – von zuhause, aus dem Büro oder von überall. Wir vertrauen auf Eigenverantwortung statt auf Anwesenheit.</p>
+        <h3 data-i18n="benefit1-title">Remote-First</h3>
+        <p data-i18n="benefit1-desc">Arbeite von wo du willst – von zuhause, aus dem Büro oder von überall. Wir vertrauen auf Eigenverantwortung statt auf Anwesenheit.</p>
       </div>
       <div class="benefit-card reveal reveal-delay-1">
         <div class="benefit-icon">
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3>Flache Hierarchien</h3>
-        <p>Deine Ideen zählen – egal ob du gerade anfängst oder schon erfahren bist. Wir entscheiden gemeinsam und kommunizieren auf Augenhöhe.</p>
+        <h3 data-i18n="benefit2-title">Flache Hierarchien</h3>
+        <p data-i18n="benefit2-desc">Deine Ideen zählen – egal ob du gerade anfängst oder schon erfahren bist. Wir entscheiden gemeinsam und kommunizieren auf Augenhöhe.</p>
       </div>
       <div class="benefit-card reveal reveal-delay-2">
         <div class="benefit-icon">
           <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
         </div>
-        <h3>Wachstum inklusive</h3>
-        <p>Kurse, Tools, Konferenzen – wir investieren in deine Weiterentwicklung. Wer bei uns wächst, bringt das ganze Team weiter.</p>
+        <h3 data-i18n="benefit3-title">Wachstum inklusive</h3>
+        <p data-i18n="benefit3-desc">Kurse, Tools, Konferenzen – wir investieren in deine Weiterentwicklung. Wer bei uns wächst, bringt das ganze Team weiter.</p>
       </div>
       <div class="benefit-card reveal reveal-delay-3">
         <div class="benefit-icon">
           <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </div>
-        <h3>Moderne Ausstattung</h3>
-        <p>Top-Hardware, aktuelle Software, die richtigen Tools – alles, was du brauchst, um deine beste Arbeit zu leisten.</p>
+        <h3 data-i18n="benefit4-title">Moderne Ausstattung</h3>
+        <p data-i18n="benefit4-desc">Top-Hardware, aktuelle Software, die richtigen Tools – alles, was du brauchst, um deine beste Arbeit zu leisten.</p>
       </div>
       <div class="benefit-card reveal reveal-delay-4">
         <div class="benefit-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-        <h3>Flexible Arbeitszeiten</h3>
-        <p>Kein starres 9-to-5. Strukturiere deinen Tag so, wie es zu dir passt – solange die Ergebnisse stimmen.</p>
+        <h3 data-i18n="benefit5-title">Flexible Arbeitszeiten</h3>
+        <p data-i18n="benefit5-desc">Kein starres 9-to-5. Strukturiere deinen Tag so, wie es zu dir passt – solange die Ergebnisse stimmen.</p>
       </div>
       <div class="benefit-card reveal reveal-delay-5">
         <div class="benefit-icon">
           <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <h3>Faire Vergütung</h3>
-        <p>Transparente Gehälter, keine geheimen Strukturen. Leistung wird gesehen und belohnt – ohne Spielchen.</p>
+        <h3 data-i18n="benefit6-title">Faire Vergütung</h3>
+        <p data-i18n="benefit6-desc">Transparente Gehälter, keine geheimen Strukturen. Leistung wird gesehen und belohnt – ohne Spielchen.</p>
       </div>
     </div>
   </div>
@@ -550,17 +561,17 @@
 <section class="section">
   <div class="culture-wrap">
     <div class="culture-text reveal">
-      <div class="section-label">Unsere Kultur</div>
-      <h2 class="section-title">Wir sind ein Team, kein Unternehmen</h2>
-      <p>
-        Bei EC GROUP arbeitest du nicht <em>für</em> jemanden – du arbeitest <strong>mit</strong> Menschen,
+      <div class="section-label" data-i18n="culture-label">Unsere Kultur</div>
+      <h2 class="section-title" data-i18n="culture-title">Wir sind ein Team, kein Unternehmen</h2>
+      <p data-i18n="culture-p1">
+        Bei EC GROUP arbeitest du nicht für jemanden – du arbeitest mit Menschen,
         die genauso viel Leidenschaft für gutes Design und sauberen Code mitbringen wie du.
       </p>
-      <p>
+      <p data-i18n="culture-p2">
         Wir sind direkt, ehrlich und ergebnisorientiert. Fehler passieren – und sie sind okay, solange
         man daraus lernt. Was nicht okay ist: Stillstand. Wir bewegen uns immer vorwärts.
       </p>
-      <p>
+      <p data-i18n="culture-p3">
         Egal ob Freelancer, Werkstudent oder Festanstellung – wenn du gut bist und reinpasst,
         findest du bei uns deinen Platz.
       </p>
@@ -568,19 +579,19 @@
     <div class="culture-visual reveal reveal-delay-2">
       <div class="culture-stat">
         <div class="culture-stat-num">100%</div>
-        <div class="culture-stat-label">Remote möglich</div>
+        <div class="culture-stat-label" data-i18n="cstat1-label">Remote möglich</div>
       </div>
       <div class="culture-stat">
         <div class="culture-stat-num">2</div>
-        <div class="culture-stat-label">Gründer, die noch selbst coden & designen</div>
+        <div class="culture-stat-label" data-i18n="cstat2-label">Gründer, die noch selbst coden & designen</div>
       </div>
       <div class="culture-stat">
         <div class="culture-stat-num">150+</div>
-        <div class="culture-stat-label">Abgeschlossene Projekte</div>
+        <div class="culture-stat-label" data-i18n="cstat3-label">Abgeschlossene Projekte</div>
       </div>
       <div class="culture-stat">
         <div class="culture-stat-num">∞</div>
-        <div class="culture-stat-label">Raum für deine Ideen</div>
+        <div class="culture-stat-label" data-i18n="cstat4-label">Raum für deine Ideen</div>
       </div>
     </div>
   </div>
@@ -590,9 +601,9 @@
 <section class="section section-dark" id="jobs">
   <div style="max-width:1100px;margin:0 auto">
     <div class="reveal" style="text-align:center">
-      <div class="section-label">Offene Stellen</div>
-      <h2 class="section-title">Dein nächster Schritt</h2>
-      <p class="section-sub" style="margin:0 auto">Aktuell gesuchte Profile – alle Positionen sind remote und auf Freelance-Basis.</p>
+      <div class="section-label" data-i18n="jobs-label">Offene Stellen</div>
+      <h2 class="section-title" data-i18n="jobs-title">Dein nächster Schritt</h2>
+      <p class="section-sub" style="margin:0 auto" data-i18n="jobs-sub">Aktuell gesuchte Profile – alle Positionen sind remote und auf Freelance-Basis.</p>
     </div>
 
     <div class="jobs-list">
@@ -604,8 +615,8 @@
             <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           </div>
           <div>
-            <div class="job-category">Web & Digital</div>
-            <div class="job-title">Webdesigner / UI Designer</div>
+            <div class="job-category" data-i18n="job1-category">Web & Digital</div>
+            <div class="job-title" data-i18n="job1-title">Webdesigner / UI Designer</div>
             <div class="job-meta">
               <span class="job-tag">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
@@ -620,7 +631,7 @@
           </div>
         </div>
         <a href="mailto:info@mayca.de?subject=Bewerbung: Webdesigner" class="job-apply">
-          Bewerben
+          <span data-i18n="job-apply-btn">Bewerben</span>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -632,8 +643,8 @@
             <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           </div>
           <div>
-            <div class="job-category">Entwicklung</div>
-            <div class="job-title">Frontend Entwickler</div>
+            <div class="job-category" data-i18n="job2-category">Entwicklung</div>
+            <div class="job-title" data-i18n="job2-title">Frontend Entwickler</div>
             <div class="job-meta">
               <span class="job-tag">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
@@ -648,7 +659,7 @@
           </div>
         </div>
         <a href="mailto:info@mayca.de?subject=Bewerbung: Frontend Entwickler" class="job-apply">
-          Bewerben
+          <span data-i18n="job-apply-btn">Bewerben</span>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -660,8 +671,8 @@
             <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
           </div>
           <div>
-            <div class="job-category">Foto & Medien</div>
-            <div class="job-title">Content Creator / Fotograf</div>
+            <div class="job-category" data-i18n="job3-category">Foto & Medien</div>
+            <div class="job-title" data-i18n="job3-title">Content Creator / Fotograf</div>
             <div class="job-meta">
               <span class="job-tag">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
@@ -671,12 +682,12 @@
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
                 Freelance
               </span>
-              <span class="job-tag">Fotografie · Video · Editing</span>
+              <span class="job-tag" data-i18n="job3-skills">Fotografie · Video · Editing</span>
             </div>
           </div>
         </div>
         <a href="mailto:info@mayca.de?subject=Bewerbung: Content Creator" class="job-apply">
-          Bewerben
+          <span data-i18n="job-apply-btn">Bewerben</span>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -686,11 +697,11 @@
     <!-- Initiativbewerbung -->
     <div class="open-apply reveal">
       <div class="open-apply-text">
-        <h3>Keine passende Stelle dabei?</h3>
-        <p>Schick uns eine Initiativbewerbung. Wenn du gut bist und zur Agentur passt, schaffen wir Platz für dich.</p>
+        <h3 data-i18n="open-apply-title">Keine passende Stelle dabei?</h3>
+        <p data-i18n="open-apply-desc">Schick uns eine Initiativbewerbung. Wenn du gut bist und zur Agentur passt, schaffen wir Platz für dich.</p>
       </div>
       <a href="mailto:info@mayca.de?subject=Initiativbewerbung EC GROUP" class="btn-ghost">
-        Initiativ bewerben
+        <span data-i18n="open-apply-btn">Initiativ bewerben</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -701,15 +712,15 @@
 <!-- ════════════ CTA ════════════ -->
 <section class="cta-section">
   <div class="cta-glow"></div>
-  <div class="section-label">Nächster Schritt</div>
-  <h2>Bereit für<br><span class="gradient-text">etwas Neues?</span></h2>
-  <p>Schreib uns – kein langer Bewerbungsprozess, kein Papierkram. Nur ein ehrliches Gespräch.</p>
+  <div class="section-label" data-i18n="cta-label">Nächster Schritt</div>
+  <h2><span data-i18n="cta-title-line1">Bereit für</span><br><span class="gradient-text" data-i18n="cta-title-line2">etwas Neues?</span></h2>
+  <p data-i18n="cta-desc">Schreib uns – kein langer Bewerbungsprozess, kein Papierkram. Nur ein ehrliches Gespräch.</p>
   <div class="cta-btns">
     <a href="mailto:info@mayca.de?subject=Karriere bei EC GROUP" class="btn-primary">
-      Jetzt bewerben
+      <span data-i18n="cta-btn-primary">Jetzt bewerben</span>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-    <a href="ueber-uns.html" class="btn-ghost">Team kennenlernen</a>
+    <a href="ueber-uns.html" class="btn-ghost" data-i18n="cta-btn-ghost">Team kennenlernen</a>
   </div>
 </section>
 
@@ -728,7 +739,7 @@
     </svg>
     <span class="nav-logo-text">EC GROUP</span>
   </a>
-  <p>© 2026 EC GROUP. Alle Rechte vorbehalten.</p>
+  <p data-i18n="footer-copy">© 2026 EC GROUP. Alle Rechte vorbehalten.</p>
   <p><a href="#">Impressum</a> &nbsp;·&nbsp; <a href="#">Datenschutz</a></p>
 </footer>
 
@@ -787,7 +798,7 @@
         const d = Math.sqrt(dx*dx+dy*dy);
         if (d < 110) {
           ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y);
-          ctx.strokeStyle = `rgba(108,99,255,${(1-d/110)*0.18})`; ctx.lineWidth = 0.6; ctx.stroke();
+          ctx.strokeStyle = `rgba(126,200,160,${(1-d/110)*0.18})`; ctx.lineWidth = 0.6; ctx.stroke();
         }
       }
     }
@@ -817,6 +828,145 @@
       });
     });
   })();
+  // Language toggle
+  const translations = {
+    de: {
+      'nav-services': 'Leistungen',
+      'nav-about': 'Über uns',
+      'nav-process': 'Prozess',
+      'nav-pricing': 'Preise',
+      'nav-careers': 'Karriere',
+      'nav-contact': 'Kontakt',
+      'nav-cta': 'Projekt starten',
+      'hero-badge': 'Wir suchen Talente',
+      'hero-h1-line1': 'Jobs bei',
+      'hero-h1-line2': 'EC GROUP.',
+      'hero-sub': 'Werde Teil eines Teams, das digitale Marken baut – mit Leidenschaft, Anspruch und echtem Ownership. Remote oder vor Ort. Gemeinsam wachsen.',
+      'hero-btn-primary': 'Offene Stellen ansehen',
+      'hero-btn-ghost': 'Über das Team',
+      'benefits-label': 'Warum EC GROUP',
+      'benefits-title': 'Was dich erwartet',
+      'benefits-sub': 'Keine leeren Versprechen. Das hier ist, was bei uns wirklich zählt.',
+      'benefit1-title': 'Remote-First',
+      'benefit1-desc': 'Arbeite von wo du willst – von zuhause, aus dem Büro oder von überall. Wir vertrauen auf Eigenverantwortung statt auf Anwesenheit.',
+      'benefit2-title': 'Flache Hierarchien',
+      'benefit2-desc': 'Deine Ideen zählen – egal ob du gerade anfängst oder schon erfahren bist. Wir entscheiden gemeinsam und kommunizieren auf Augenhöhe.',
+      'benefit3-title': 'Wachstum inklusive',
+      'benefit3-desc': 'Kurse, Tools, Konferenzen – wir investieren in deine Weiterentwicklung. Wer bei uns wächst, bringt das ganze Team weiter.',
+      'benefit4-title': 'Moderne Ausstattung',
+      'benefit4-desc': 'Top-Hardware, aktuelle Software, die richtigen Tools – alles, was du brauchst, um deine beste Arbeit zu leisten.',
+      'benefit5-title': 'Flexible Arbeitszeiten',
+      'benefit5-desc': 'Kein starres 9-to-5. Strukturiere deinen Tag so, wie es zu dir passt – solange die Ergebnisse stimmen.',
+      'benefit6-title': 'Faire Vergütung',
+      'benefit6-desc': 'Transparente Gehälter, keine geheimen Strukturen. Leistung wird gesehen und belohnt – ohne Spielchen.',
+      'culture-label': 'Unsere Kultur',
+      'culture-title': 'Wir sind ein Team, kein Unternehmen',
+      'culture-p1': 'Bei EC GROUP arbeitest du nicht für jemanden – du arbeitest mit Menschen, die genauso viel Leidenschaft für gutes Design und sauberen Code mitbringen wie du.',
+      'culture-p2': 'Wir sind direkt, ehrlich und ergebnisorientiert. Fehler passieren – und sie sind okay, solange man daraus lernt. Was nicht okay ist: Stillstand. Wir bewegen uns immer vorwärts.',
+      'culture-p3': 'Egal ob Freelancer, Werkstudent oder Festanstellung – wenn du gut bist und reinpasst, findest du bei uns deinen Platz.',
+      'cstat1-label': 'Remote möglich',
+      'cstat2-label': 'Gründer, die noch selbst coden & designen',
+      'cstat3-label': 'Abgeschlossene Projekte',
+      'cstat4-label': 'Raum für deine Ideen',
+      'jobs-label': 'Offene Stellen',
+      'jobs-title': 'Dein nächster Schritt',
+      'jobs-sub': 'Aktuell gesuchte Profile – alle Positionen sind remote und auf Freelance-Basis.',
+      'job1-category': 'Web & Digital',
+      'job1-title': 'Webdesigner / UI Designer',
+      'job2-category': 'Entwicklung',
+      'job2-title': 'Frontend Entwickler',
+      'job3-category': 'Foto & Medien',
+      'job3-title': 'Content Creator / Fotograf',
+      'job3-skills': 'Fotografie · Video · Editing',
+      'job-apply-btn': 'Bewerben',
+      'open-apply-title': 'Keine passende Stelle dabei?',
+      'open-apply-desc': 'Schick uns eine Initiativbewerbung. Wenn du gut bist und zur Agentur passt, schaffen wir Platz für dich.',
+      'open-apply-btn': 'Initiativ bewerben',
+      'cta-label': 'Nächster Schritt',
+      'cta-title-line1': 'Bereit für',
+      'cta-title-line2': 'etwas Neues?',
+      'cta-desc': 'Schreib uns – kein langer Bewerbungsprozess, kein Papierkram. Nur ein ehrliches Gespräch.',
+      'cta-btn-primary': 'Jetzt bewerben',
+      'cta-btn-ghost': 'Team kennenlernen',
+      'footer-copy': '© 2026 EC GROUP. Alle Rechte vorbehalten.',
+    },
+    en: {
+      'nav-services': 'Services',
+      'nav-about': 'About',
+      'nav-process': 'Process',
+      'nav-pricing': 'Pricing',
+      'nav-careers': 'Careers',
+      'nav-contact': 'Contact',
+      'nav-cta': 'Start Project',
+      'hero-badge': 'We Are Hiring',
+      'hero-h1-line1': 'Jobs at',
+      'hero-h1-line2': 'EC GROUP.',
+      'hero-sub': 'Join a team that builds digital brands – with passion, ambition and true ownership. Remote or on-site. Growing together.',
+      'hero-btn-primary': 'View Open Positions',
+      'hero-btn-ghost': 'About the Team',
+      'benefits-label': 'Why EC GROUP',
+      'benefits-title': 'What Awaits You',
+      'benefits-sub': 'No empty promises. This is what truly matters to us.',
+      'benefit1-title': 'Remote-First',
+      'benefit1-desc': 'Work from wherever you want – from home, the office or anywhere. We trust in ownership rather than attendance.',
+      'benefit2-title': 'Flat Hierarchies',
+      'benefit2-desc': "Your ideas count – whether you're just starting out or already experienced. We decide together and communicate at eye level.",
+      'benefit3-title': 'Growth Included',
+      'benefit3-desc': 'Courses, tools, conferences – we invest in your development. Those who grow with us move the whole team forward.',
+      'benefit4-title': 'Modern Equipment',
+      'benefit4-desc': 'Top hardware, up-to-date software, the right tools – everything you need to do your best work.',
+      'benefit5-title': 'Flexible Hours',
+      'benefit5-desc': 'No rigid 9-to-5. Structure your day the way that suits you – as long as the results are there.',
+      'benefit6-title': 'Fair Compensation',
+      'benefit6-desc': 'Transparent salaries, no hidden structures. Performance is seen and rewarded – no games.',
+      'culture-label': 'Our Culture',
+      'culture-title': 'We are a team, not a company',
+      'culture-p1': "At EC GROUP you don't work for someone – you work with people who bring the same passion for good design and clean code as you do.",
+      'culture-p2': "We are direct, honest and results-driven. Mistakes happen – and they're fine, as long as you learn from them. What isn't fine: standing still. We always move forward.",
+      'culture-p3': "Whether freelancer, working student or full-time employee – if you're good and you fit in, you'll find your place with us.",
+      'cstat1-label': 'Remote possible',
+      'cstat2-label': 'Founders who still code & design themselves',
+      'cstat3-label': 'Completed projects',
+      'cstat4-label': 'Room for your ideas',
+      'jobs-label': 'Open Positions',
+      'jobs-title': 'Your Next Step',
+      'jobs-sub': 'Currently sought profiles – all positions are remote and freelance-based.',
+      'job1-category': 'Web & Digital',
+      'job1-title': 'Web Designer / UI Designer',
+      'job2-category': 'Development',
+      'job2-title': 'Frontend Developer',
+      'job3-category': 'Photo & Media',
+      'job3-title': 'Content Creator / Photographer',
+      'job3-skills': 'Photography · Video · Editing',
+      'job-apply-btn': 'Apply',
+      'open-apply-title': 'No matching position?',
+      'open-apply-desc': "Send us a speculative application. If you're good and fit the agency, we'll make room for you.",
+      'open-apply-btn': 'Apply speculatively',
+      'cta-label': 'Next Step',
+      'cta-title-line1': 'Ready for',
+      'cta-title-line2': 'something new?',
+      'cta-desc': 'Write to us – no lengthy application process, no paperwork. Just an honest conversation.',
+      'cta-btn-primary': 'Apply now',
+      'cta-btn-ghost': 'Meet the team',
+      'footer-copy': '© 2026 EC GROUP. All rights reserved.',
+    }
+  };
+  let currentLang = localStorage.getItem('ace-lang') || 'de';
+  const langToggleBtn = document.getElementById('langToggle');
+  function applyLang(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+    });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'de';
+    langToggleBtn.textContent = lang === 'de' ? 'EN' : 'DE';
+    localStorage.setItem('ace-lang', lang);
+  }
+  langToggleBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'de' ? 'en' : 'de';
+    applyLang(currentLang);
+  });
+  if (currentLang === 'en') applyLang('en');
 </script>
 </body>
 </html>
