@@ -24,21 +24,20 @@ ec-group-website/
 
 | Seite | Datei | Beschreibung |
 |---|---|---|
-| Startseite | `index.html` | Hero, Leistungen, Portfolio, Kontakt |
+| Startseite | `index.html` | Hero, Leistungen, Stats, Über uns, Prozess, Kontakt |
 | Leistungen | `leistungen.html` | Alle Services mit Filteransicht |
 | Preise | `preise.html` | Pakete, Pflegepläne, FAQ |
 | Prozess | `prozess.html` | Workflow-Erklärung mit Animation |
 | Über uns | `ueber-uns.html` | Team, Werte, Geschichte |
 | Karriere | `karriere.html` | Offene Stellen, Benefits |
 
-## Portfolio-Projekte
+## Mobile
 
-| Projekt | URL |
-|---|---|
-| Kelneo | [kelneo.de](https://kelneo.de) |
-| OkeyMate | [okeymate.app](https://okeymate.app) |
-| EC Group | [eneshome-arch.github.io/ec-group](https://eneshome-arch.github.io/ec-group/) |
-| Mayca Gebäudeservice | [eneshome-arch.github.io/mayca-webseite](https://eneshome-arch.github.io/mayca-webseite/) |
+- **Hamburger-Menü** (≤900px): KI-styled Button (Gradient-Linien, Glow) mit Slide-Down-Panel
+- **Services-Karussell**: Horizontal swipebar mit Dot-Indikatoren + Slide-in-Animation
+- **Stats-Row**: 4 Werte in einer Zeile (kompakte Schrift)
+- **Breakpoints**: 900px (Tablet), 540px (Phone)
+- Portfolio-Section auf Homepage entfernt — eigene Seite vorhanden
 
 ## Technologie
 

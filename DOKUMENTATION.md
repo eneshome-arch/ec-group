@@ -6,7 +6,7 @@
 2. [Navigation](#navigation)
 3. [Animationen](#animationen)
 4. [Komponenten](#komponenten)
-5. [Portfolio](#portfolio)
+5. [Mobile](#mobile)
 6. [Farbpalette](#farbpalette)
 7. [Schriften](#schriften)
 8. [Hosting](#hosting)
@@ -151,21 +151,41 @@ Verzögerungsklassen: `.reveal-delay-1` bis `.reveal-delay-5` (je +0.1s)
 
 ---
 
-## Portfolio
+## Mobile
 
-Portfolio-Kästchen sind als `<a>`-Tags umgesetzt mit Klick-Link und automatischem Website-Vorschaubild via `thum.io` / `wordpress mshots`.
+### Hamburger-Menü (≤900px)
 
-| Kästchen | Projekt | URL |
-|---|---|---|
-| 1 | Kelneo | https://kelneo.de |
-| 2 | OkeyMate | https://okeymate.app |
-| 3 | EC Group | https://eneshome-arch.github.io/ec-group/ |
-| 4 | Mayca Gebäudeservice | https://eneshome-arch.github.io/mayca-webseite/ |
+Der "Projekt starten" Button wird auf Mobile ausgeblendet und durch einen KI-styled Hamburger ersetzt.
 
-### Neues Portfolio-Projekt hinzufügen
+```css
+/* KI-Ästhetik: Gradient-Linien mit unterschiedlichen Breiten */
+.nav-hamburger span:nth-child(1) { width: 14px; }
+.nav-hamburger span:nth-child(2) { width: 22px; }  /* Haupt-Linie */
+.nav-hamburger span:nth-child(3) { width: 18px; }
+/* Hover: alle Linien auf 22px, lila Glow */
+/* Open: morph zu X, Rand leuchtet auf */
+```
 
-1. CSS: neue `.pcX` Klasse mit `background-image: url('https://image.thum.io/get/width/1200/crop/800/DEINE-URL')`
-2. HTML: `<div class="portfolio-card">` durch `<a href="..." class="portfolio-card" style="text-decoration:none;display:flex;align-items:flex-end;color:inherit;">` ersetzen
+Das Mobile-Menü (`#mobileMenu`) enthält alle Nav-Links + "Projekt starten" CTA als letzten Eintrag.
+
+### Services-Karussell (Mobile)
+
+Auf ≤900px wird `.services-grid` zu einem horizontalen Swipe-Karussell:
+- `scroll-snap-type: x mandatory` — rastet auf jeder Karte ein
+- Dot-Indikatoren (`#svcDots`) synchronisieren sich per Scroll-Event
+- Karten animieren beim ersten Einblenden von rechts rein (`.svc-visible`)
+
+### Breakpoints
+
+| Breakpoint | Änderungen |
+|---|---|
+| `≤900px` | Nav-Links ausgeblendet, Hamburger sichtbar, CTA versteckt |
+| `≤540px` | Section-Padding reduziert, Stats 4-spaltig, Buttons full-width |
+
+### Homepage
+
+- Portfolio-Section entfernt (eigene Seite `leistungen.html` / Portfolio-Seite vorhanden)
+- Hero-Buttons: "Preise ansehen" (Gradient) + "Unser Prozess" (Weiß)
 
 ---
 
