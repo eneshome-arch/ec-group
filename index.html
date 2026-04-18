@@ -523,12 +523,38 @@
       footer { padding: 40px 24px 24px; }
       .cta-banner { padding: 64px 24px; }
     }
-    @media (max-width: 540px) {
+@media (max-width: 540px) {
+      body { overflow-x: hidden; }
       .portfolio-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
       .stats-row { grid-template-columns: 1fr; }
       .stat-box { border-right: none !important; border-bottom: 1px solid var(--border); }
       .stat-box:last-child { border-bottom: none; }
+      /* ── NEW MOBILE FIXES ── */
+      nav { padding: 0 16px; }
+      .section { padding: 48px 20px; }
+      .hero { padding: 80px 20px 40px; }
+      .section-title { font-size: clamp(24px, 7vw, 34px); }
+      .section-sub { font-size: 15px; }
+      .stat-num { font-size: 38px; }
+      .stat-box { padding: 20px 12px; }
+      .stat-lbl { font-size: 12px; }
+      .process-row { grid-template-columns: 1fr; gap: 28px; }
+      .process-step { padding: 0 8px; }
+      .service-card { padding: 22px 18px; }
+      .cta-banner { padding: 48px 20px; }
+      .cta-banner h2 { font-size: clamp(32px, 9vw, 48px); }
+      .cta-banner p { font-size: 15px; margin-bottom: 32px; }
+      .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
+      .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; padding: 14px 20px; justify-content: center; }
+      .hero-actions { flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-ghost { width: 100%; max-width: 300px; justify-content: center; text-align: center; }
+      footer { padding: 32px 20px 20px; }
+      .footer-top { gap: 28px; }
+      .ticker-item { padding: 0 20px; }
+      .ticker::before, .ticker::after { width: 40px; }
+      .portfolio-card { aspect-ratio: 3/2; }
     }
 
     /* ─── HERO CANVAS ─────────────────────────────────── */
@@ -609,7 +635,70 @@
     }
     .t-moon { width: 11px; height: 11px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; stroke-linecap: round; }
     .t-sun  { width: 11px; height: 11px; stroke: rgba(0,0,0,0.45);      fill: none; stroke-width: 2; stroke-linecap: round; }
-  </style>
+  
+    /* ─── MOBILE MENU ─────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px 4px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .nav-hamburger:hover { background: var(--surface); }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: rgba(8,8,8,0.97);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      z-index: 998;
+      display: none; flex-direction: column;
+      animation: mobileMenuIn 0.22s ease both;
+    }
+    .mobile-menu.open { display: flex; }
+    @keyframes mobileMenuIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .mobile-menu a {
+      padding: 15px 28px;
+      font-size: 15px; font-weight: 500; letter-spacing: 0.01em;
+      color: var(--text2); text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s, background 0.15s;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .mobile-menu a::after { content: '→'; font-size: 13px; opacity: 0.4; transition: opacity 0.15s, transform 0.15s; }
+    .mobile-menu a:hover { color: var(--text); background: var(--surface); }
+    .mobile-menu a:hover::after { opacity: 1; transform: translateX(3px); }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu-cta {
+      margin: 16px 24px 20px !important;
+      padding: 13px 20px !important;
+      background: var(--text) !important; color: var(--bg) !important;
+      border-radius: 999px !important; text-align: center !important;
+      font-weight: 600 !important; border-bottom: none !important;
+      justify-content: center !important;
+    }
+    .mobile-menu-cta::after { display: none !important; }
+    [data-theme="light"] .mobile-menu { background: rgba(255,255,255,0.97); }
+    [data-theme="light"] .mobile-menu-cta { background: #0a0a0a !important; color: #fff !important; }
+    </style>
   <script>if(localStorage.getItem('ace-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
 </head>
 <body>
@@ -642,6 +731,7 @@
   </ul>
 
   <div class="nav-right">
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <label class="theme-toggle" aria-label="Theme umschalten">
       <input type="checkbox" id="themeToggle">
       <span class="toggle-track">
@@ -655,6 +745,16 @@
     <a href="#contact" class="nav-cta">Projekt starten</a>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="leistungen.html">Leistungen</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="prozess.html">Prozess</a>
+  <a href="preise.html">Preise</a>
+  <a href="#work">Portfolio</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="#contact">Kontakt</a>
+  <a href="#contact" class="mobile-menu-cta">Projekt starten</a>
+</div>
 
 <!-- ════════════════════ HERO ════════════════════ -->
 <section class="hero" id="home">
@@ -1177,6 +1277,30 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // Mobile hamburger menu
+  (function() {
+    var hamburger = document.getElementById("navHamburger");
+    var mobileMenu = document.getElementById("mobileMenu");
+    if (!hamburger || !mobileMenu) return;
+    hamburger.addEventListener("click", function(e) {
+      e.stopPropagation();
+      hamburger.classList.toggle("open");
+      mobileMenu.classList.toggle("open");
+    });
+    document.addEventListener("click", function(e) {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
+      }
+    });
+    mobileMenu.querySelectorAll("a").forEach(function(a) {
+      a.addEventListener("click", function() {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
+      });
+    });
+  })();
 </script>
 </body>
 </html>

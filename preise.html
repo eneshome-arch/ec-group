@@ -422,7 +422,87 @@
       .pricing-grid, .maint-grid { grid-template-columns: 1fr; }
       footer { padding: 40px 24px; flex-direction: column; text-align: center; }
     }
-  </style>
+  
+    /* ─── MOBILE MENU ─────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px 4px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .nav-hamburger:hover { background: var(--surface); }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: rgba(8,8,8,0.97);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      z-index: 998;
+      display: none; flex-direction: column;
+      animation: mobileMenuIn 0.22s ease both;
+    }
+    .mobile-menu.open { display: flex; }
+    @keyframes mobileMenuIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .mobile-menu a {
+      padding: 15px 28px;
+      font-size: 15px; font-weight: 500; letter-spacing: 0.01em;
+      color: var(--text2); text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s, background 0.15s;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .mobile-menu a::after { content: '→'; font-size: 13px; opacity: 0.4; transition: opacity 0.15s, transform 0.15s; }
+    .mobile-menu a:hover { color: var(--text); background: var(--surface); }
+    .mobile-menu a:hover::after { opacity: 1; transform: translateX(3px); }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu-cta {
+      margin: 16px 24px 20px !important;
+      padding: 13px 20px !important;
+      background: var(--text) !important; color: var(--bg) !important;
+      border-radius: 999px !important; text-align: center !important;
+      font-weight: 600 !important; border-bottom: none !important;
+      justify-content: center !important;
+    }
+    .mobile-menu-cta::after { display: none !important; }
+    [data-theme="light"] .mobile-menu { background: rgba(255,255,255,0.97); }
+    [data-theme="light"] .mobile-menu-cta { background: #0a0a0a !important; color: #fff !important; }
+    
+    @media (max-width: 540px) {
+      body { overflow-x: hidden; }
+      nav { padding: 0 16px; }
+      .hero, .section, .pricing-section, .cta-section { padding-left: 20px; padding-right: 20px; padding-top: 48px; }
+      .section-title { font-size: clamp(24px, 7vw, 34px); }
+      .section-sub { font-size: 15px; }
+      .price-number { font-size: 40px; }
+      .pricing-card { padding: 28px 20px; }
+      .pricing-card.featured { padding: 32px 20px; }
+      .maint-card { padding: 24px 16px; }
+      .maint-title { font-size: 16px; }
+      .faq-q { padding: 18px 0; font-size: 14px; }
+      .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
+      .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; padding: 14px 20px; justify-content: center; }
+      footer { padding: 32px 20px 20px; flex-direction: column; text-align: center; }
+    }
+    </style>
 </head>
 <body>
 
@@ -450,6 +530,7 @@
     <li><a href="index.html#contact">Kontakt</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px">
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <label class="theme-toggle" aria-label="Theme umschalten">
       <input type="checkbox" id="themeToggle">
       <span class="toggle-track">
@@ -463,6 +544,15 @@
     <a href="index.html#contact" class="nav-cta">Projekt starten</a>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="leistungen.html">Leistungen</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="prozess.html">Prozess</a>
+  <a href="preise.html">Preise</a>
+  <a href="karriere.html">Karriere</a>
+  <a href="index.html#contact">Kontakt</a>
+  <a href="index.html#contact" class="mobile-menu-cta">Projekt starten</a>
+</div>
 
 <!-- ════════════════════ HERO ════════════════════ -->
 <section class="hero">
@@ -816,6 +906,30 @@
       if (!isOpen) item.classList.add('open');
     });
   });
+
+  // Mobile hamburger menu
+  (function() {
+    var hamburger = document.getElementById("navHamburger");
+    var mobileMenu = document.getElementById("mobileMenu");
+    if (!hamburger || !mobileMenu) return;
+    hamburger.addEventListener("click", function(e) {
+      e.stopPropagation();
+      hamburger.classList.toggle("open");
+      mobileMenu.classList.toggle("open");
+    });
+    document.addEventListener("click", function(e) {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
+      }
+    });
+    mobileMenu.querySelectorAll("a").forEach(function(a) {
+      a.addEventListener("click", function() {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
+      });
+    });
+  })();
 </script>
 </body>
 </html>
