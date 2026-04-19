@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kostenlos Anfragen – EC GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <script>if(localStorage.getItem('ace-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+  <style>
+    :root {
+      --bg:        #000000;
+      --bg2:       #080808;
+      --surface:   #0f0f0f;
+      --surface2:  #161616;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --text:      #ffffff;
+      --text2:     #888888;
+      --text3:     #444444;
+      --accent:    #7ec8a0;
+      --accent2:   #b5e8cc;
+      --gradient:  linear-gradient(135deg, #7ec8a0 0%, #b5e8cc 100%);
+      --glow:      rgba(126,200,160,0.15);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      overflow-x: hidden; -webkit-font-smoothing: antialiased; min-height: 100vh;
+    }
+
+    /* ─── LIGHT THEME ─────────────────────────────────────────── */
+    [data-theme="light"] {
+      --bg: #f0faf5; --bg2: #e3f5eb; --surface: #ffffff; --surface2: #edf7f2;
+      --border: rgba(0,80,40,0.1); --border2: rgba(0,80,40,0.18);
+      --text: #0a2118; --text2: #3a6b52; --text3: #7aab90;
+    }
+    [data-theme="light"] nav { background: rgba(240,250,245,0.95) !important; }
+    [data-theme="light"] .nav-logo-icon path { fill: #0a0a0a; }
+    [data-theme="light"] .nav-logo-text { color: #0a0a0a; }
+    [data-theme="light"] .progress-bar-bg { background: rgba(0,80,40,0.12); }
+    [data-theme="light"] .form-input { background: #fff; color: #0a2118; border-color: rgba(0,80,40,0.18); }
+    [data-theme="light"] .form-input::placeholder { color: #aaa; }
+
+    /* ─── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .nav-logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 15px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 7px;
+      color: var(--text2); text-decoration: none; font-size: 13.5px; font-weight: 500;
+      border: 1px solid var(--border2); padding: 7px 16px; border-radius: 999px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ─── PAGE ────────────────────────────────────────────────── */
+    .page {
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      padding: 96px 24px 100px; position: relative;
+    }
+    .page-glow {
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(126,200,160,0.09) 0%, transparent 70%);
+    }
+
+    /* ─── PROGRESS ────────────────────────────────────────────── */
+    .progress-wrap { width: 100%; max-width: 720px; margin-bottom: 44px; position: relative; z-index: 1; }
+    .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .progress-step-label { font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .progress-fraction { font-size: 12px; color: var(--text3); font-weight: 500; }
+    .progress-bar-bg { height: 3px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--gradient); border-radius: 999px; transition: width 0.5s cubic-bezier(.16,1,.3,1); }
+
+    /* ─── STEPS ───────────────────────────────────────────────── */
+    .steps-container { width: 100%; max-width: 720px; position: relative; z-index: 1; }
+    .step { display: none; animation: stepIn 0.38s cubic-bezier(.16,1,.3,1) both; }
+    .step.active { display: block; }
+    @keyframes stepIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+
+    .step-heading { font-size: clamp(24px, 3.8vw, 36px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 8px; }
+    .step-sub { font-size: 15px; color: var(--text2); line-height: 1.65; margin-bottom: 28px; }
+
+    /* ─── CHOICE GRID ─────────────────────────────────────────── */
+    .choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 32px; }
+    .choices.cols3 { grid-template-columns: repeat(3, 1fr); }
+    .choices.cols1 { grid-template-columns: 1fr; }
+
+    .choice-card {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 18px 18px;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.18s;
+      user-select: none; position: relative; overflow: hidden;
+    }
+    .choice-card:hover { border-color: var(--border2); background: var(--surface2); transform: translateY(-2px); }
+    .choice-card.selected { border-color: var(--accent); background: rgba(126,200,160,0.05); }
+
+    .choice-check {
+      position: absolute; top: 13px; right: 13px;
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 1.5px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .choice-card.selected .choice-check { background: var(--gradient); border-color: transparent; }
+    .choice-check svg { width: 9px; height: 9px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.2s; }
+    .choice-card.selected .choice-check svg { opacity: 1; }
+
+    .choice-icon { font-size: 24px; margin-bottom: 8px; display: block; }
+    .choice-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; letter-spacing: -0.01em; padding-right: 22px; }
+    .choice-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+    /* ─── COLOR CARDS ─────────────────────────────────────────── */
+    .color-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 32px; }
+    .color-card {
+      border-radius: 14px; overflow: hidden; cursor: pointer;
+      border: 2px solid transparent; transition: border-color 0.2s, transform 0.18s;
+      position: relative;
+    }
+    .color-card:hover { transform: translateY(-3px); }
+    .color-card.selected { border-color: var(--accent); }
+    .color-swatch { height: 80px; }
+    .color-info { background: var(--surface); padding: 10px 12px; border-top: 1px solid var(--border); }
+    .color-name { font-size: 13px; font-weight: 600; }
+    .color-hint { font-size: 11px; color: var(--text2); margin-top: 2px; }
+    .color-check-abs {
+      position: absolute; top: 8px; right: 8px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(0,0,0,0.45); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .color-card.selected .color-check-abs { opacity: 1; background: var(--accent); }
+    .color-check-abs svg { width: 10px; height: 10px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ─── PAGE STRUCTURE CARDS ────────────────────────────────── */
+    .page-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .page-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 999px; padding: 8px 16px;
+      font-size: 13.5px; font-weight: 500; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      user-select: none;
+    }
+    .page-chip:hover { border-color: var(--border2); }
+    .page-chip.selected { border-color: var(--accent); background: rgba(126,200,160,0.07); color: var(--accent); }
+    .page-chip-icon { font-size: 15px; }
+
+    /* ─── FORM ────────────────────────────────────────────────── */
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 12.5px; font-weight: 600; color: var(--text2); margin-bottom: 7px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .form-input {
+      width: 100%; background: var(--surface); border: 1.5px solid var(--border);
+      color: var(--text); border-radius: 12px; padding: 13px 16px;
+      font-size: 15px; font-family: inherit; outline: none;
+      transition: border-color 0.2s; resize: vertical;
+    }
+    .form-input:focus { border-color: var(--accent); }
+    .form-input::placeholder { color: var(--text3); }
+    textarea.form-input { min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* ─── BUTTONS ─────────────────────────────────────────────── */
+    .step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; gap: 10px; }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: transparent; color: var(--text2);
+      border: 1.5px solid var(--border2); padding: 11px 22px;
+      border-radius: 999px; font-size: 13.5px; font-weight: 500;
+      cursor: pointer; font-family: inherit; transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-back:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+    .btn-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-next {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient); color: #fff;
+      border: none; padding: 12px 30px; border-radius: 999px;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+      cursor: pointer; font-family: inherit;
+      box-shadow: 0 0 28px rgba(126,200,160,0.22);
+      transition: opacity 0.2s, transform 0.2s; margin-left: auto;
+    }
+    .btn-next:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-next:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+    .btn-next svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ─── MULTI HINT ──────────────────────────────────────────── */
+    .multi-hint { font-size: 12px; color: var(--text3); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+    .multi-hint span { background: var(--surface); border: 1px solid var(--border2); border-radius: 6px; padding: 2px 8px; font-size: 11px; }
+
+    /* ─── SUCCESS ─────────────────────────────────────────────── */
+    .success-screen { display: none; text-align: center; animation: stepIn 0.5s cubic-bezier(.16,1,.3,1) both; padding: 40px 0; }
+    .success-screen.visible { display: block; }
+    .success-icon { width: 70px; height: 70px; border-radius: 50%; background: var(--gradient); margin: 0 auto 26px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 48px rgba(126,200,160,0.4); }
+    .success-icon svg { width: 30px; height: 30px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .success-screen h2 { font-size: 34px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .success-screen p { font-size: 16px; color: var(--text2); max-width: 400px; margin: 0 auto 36px; line-height: 1.7; }
+    .success-back { display: inline-flex; align-items: center; gap: 8px; background: var(--gradient); color: #fff; text-decoration: none; padding: 13px 32px; border-radius: 999px; font-size: 14.5px; font-weight: 600; box-shadow: 0 0 28px rgba(126,200,160,0.25); transition: opacity 0.2s; }
+    .success-back:hover { opacity: 0.85; }
+
+    /* ─── TABLET ─────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .page { padding: 88px 20px 80px; }
+      .choices.cols3 { grid-template-columns: repeat(2, 1fr); }
+      .color-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ─── MOBILE ──────────────────────────────────────────────── */
+    @media (max-width: 540px) {
+      /* Nav */
+      nav { padding: 0 16px; height: 56px; }
+      .nav-logo-text { display: none; }
+      .nav-back { font-size: 12px; padding: 6px 13px; }
+
+      /* Page */
+      .page { padding: 72px 14px 72px; }
+
+      /* Progress */
+      .progress-wrap { margin-bottom: 28px; }
+      .progress-step-label { font-size: 10.5px; letter-spacing: 0.08em; }
+      .progress-fraction { font-size: 11px; }
+
+      /* Step text */
+      .step-heading { font-size: 22px; letter-spacing: -0.025em; margin-bottom: 6px; }
+      .step-sub { font-size: 14px; margin-bottom: 20px; }
+      .multi-hint { margin-bottom: 12px; }
+
+      /* Choice cards – single column */
+      .choices,
+      .choices.cols3 { grid-template-columns: 1fr; gap: 8px; margin-bottom: 24px; }
+      .choices.cols1 { grid-template-columns: 1fr; }
+
+      /* Bigger touch targets */
+      .choice-card { padding: 16px 14px; border-radius: 12px; }
+      .choice-card:hover { transform: none; } /* no hover lift on touch */
+      .choice-icon { font-size: 22px; margin-bottom: 6px; }
+      .choice-title { font-size: 15px; }
+      .choice-desc { font-size: 13px; }
+
+      /* Color grid */
+      .color-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 24px; }
+      .color-card:hover { transform: none; }
+      .color-swatch { height: 64px; }
+      .color-name { font-size: 12px; }
+      .color-hint { display: none; }
+      .color-info { padding: 8px 10px; }
+
+      /* Page chips */
+      .page-chips { gap: 7px; margin-bottom: 24px; }
+      .page-chip { padding: 9px 14px; font-size: 13px; min-height: 40px; }
+
+      /* Form */
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      /* Prevent iOS auto-zoom on input focus (font-size must be ≥16px) */
+      .form-input { font-size: 16px; padding: 14px 14px; border-radius: 10px; }
+      textarea.form-input { min-height: 90px; }
+      .form-label { font-size: 11.5px; }
+      .form-group { margin-bottom: 14px; }
+
+      /* Nav buttons – stack vertically, full width */
+      .step-nav {
+        flex-direction: column-reverse;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .btn-next, .btn-back {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+        padding: 15px 20px;
+        font-size: 15px;
+        min-height: 50px;
+      }
+
+      /* Step 8 section labels */
+      [data-step="8"] > div[style] { font-size: 12px !important; }
+
+      /* Success screen */
+      .success-screen h2 { font-size: 26px; }
+      .success-screen p { font-size: 15px; }
+      .success-back { width: 100%; justify-content: center; padding: 15px 20px; font-size: 15px; }
+    }
+
+    /* ─── EXTRA SMALL (iPhone SE, 375px) ─────────────────────── */
+    @media (max-width: 390px) {
+      .color-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .color-swatch { height: 52px; }
+      .page { padding: 68px 10px 64px; }
+      .step-heading { font-size: 20px; }
+    }
+
+    /* ─── TOUCH: disable hover transforms globally ────────────── */
+    @media (hover: none) {
+      .choice-card:hover { transform: none; background: var(--surface); border-color: var(--border); }
+      .color-card:hover { transform: none; }
+      .btn-next:hover { transform: none; opacity: 1; }
+      .btn-back:hover { color: var(--text2); border-color: var(--border2); }
+      .page-chip:hover { border-color: var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">EC GROUP</span>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Zurück
+  </a>
+</nav>
+
+<div class="page">
+  <div class="page-glow"></div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-meta">
+      <span class="progress-step-label" id="progressLabel">Schritt 1 von 9</span>
+      <span class="progress-fraction" id="progressFraction">11%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill" style="width:11%"></div>
+    </div>
+  </div>
+
+  <div class="steps-container" id="stepsContainer">
+
+    <!-- ══ STEP 1: Projekttyp ═══════════════════════════════════ -->
+    <div class="step active" data-step="1">
+      <div class="step-heading">Was für ein Projekt planst du?</div>
+      <p class="step-sub">Wähle die Art des Projekts, damit wir den richtigen Ansatz finden.</p>
+      <div class="choices" id="choices-1">
+        <div class="choice-card" data-value="Unternehmenswebsite">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🏢</span>
+          <div class="choice-title">Unternehmenswebsite</div>
+          <div class="choice-desc">Professioneller Online-Auftritt für dein Unternehmen</div>
+        </div>
+        <div class="choice-card" data-value="Landing Page">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🎯</span>
+          <div class="choice-title">Landing Page</div>
+          <div class="choice-desc">Eine Seite mit klarem Fokus & hoher Conversion</div>
+        </div>
+        <div class="choice-card" data-value="Online-Shop">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🛒</span>
+          <div class="choice-title">Online-Shop</div>
+          <div class="choice-desc">E-Commerce mit Produkten & integrierter Zahlung</div>
+        </div>
+        <div class="choice-card" data-value="Portfolio">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🎨</span>
+          <div class="choice-title">Portfolio</div>
+          <div class="choice-desc">Deine Arbeiten stilvoll in Szene setzen</div>
+        </div>
+        <div class="choice-card" data-value="Blog / Magazin">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">✍️</span>
+          <div class="choice-title">Blog / Magazin</div>
+          <div class="choice-desc">Regelmäßig Inhalte publizieren & eine Community aufbauen</div>
+        </div>
+        <div class="choice-card" data-value="App / Plattform">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">📱</span>
+          <div class="choice-title">App / Plattform</div>
+          <div class="choice-desc">Web-App, SaaS oder individuelles Digitalprojekt</div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-next" id="next-1" disabled onclick="nextStep()">Weiter <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 2: Branche ═══════════════════════════════════════ -->
+    <div class="step" data-step="2">
+      <div class="step-heading">In welcher Branche bist du tätig?</div>
+      <p class="step-sub">Das hilft uns, Sprache, Stil und Inhalte auf dein Umfeld abzustimmen.</p>
+      <div class="choices cols3" id="choices-2">
+        <div class="choice-card" data-value="Handwerk & Bau">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🔨</span>
+          <div class="choice-title">Handwerk & Bau</div>
+        </div>
+        <div class="choice-card" data-value="Gastronomie & Food">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🍽️</span>
+          <div class="choice-title">Gastronomie & Food</div>
+        </div>
+        <div class="choice-card" data-value="Mode & Beauty">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">💅</span>
+          <div class="choice-title">Mode & Beauty</div>
+        </div>
+        <div class="choice-card" data-value="Fitness & Sport">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🏋️</span>
+          <div class="choice-title">Fitness & Sport</div>
+        </div>
+        <div class="choice-card" data-value="Medizin & Gesundheit">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🏥</span>
+          <div class="choice-title">Medizin & Gesundheit</div>
+        </div>
+        <div class="choice-card" data-value="IT & Technologie">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">💻</span>
+          <div class="choice-title">IT & Technologie</div>
+        </div>
+        <div class="choice-card" data-value="Beratung & Finanzen">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">📊</span>
+          <div class="choice-title">Beratung & Finanzen</div>
+        </div>
+        <div class="choice-card" data-value="Kreativwirtschaft">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🎭</span>
+          <div class="choice-title">Kreativwirtschaft</div>
+        </div>
+        <div class="choice-card" data-value="Sonstige Branche">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🌐</span>
+          <div class="choice-title">Andere Branche</div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Zurück</button>
+        <button class="btn-next" id="next-2" disabled onclick="nextStep()">Weiter <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 3: Zielgruppe ════════════════════════════════════ -->
+    <div class="step" data-step="3">
+      <div class="step-heading">Wen willst du mit der Website erreichen?</div>
+      <p class="step-sub">Deine Zielgruppe bestimmt den Ton, den Stil und die Inhalte.</p>
+      <div class="choices" id="choices-3">
+        <div class="choice-card" data-value="Privatkunden (B2C)">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">👤</span>
+          <div class="choice-title">Privatkunden (B2C)</div>
+          <div class="choice-desc">Endverbraucher, junge Zielgruppen, breite Masse</div>
+        </div>
+        <div class="choice-card" data-value="Geschäftskunden (B2B)">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🤝</span>
+          <div class="choice-title">Geschäftskunden (B2B)</div>
+          <div class="choice-desc">Unternehmen, Entscheider, Fachpublikum</div>
+        </div>
+        <div class="choice-card" data-value="Lokale Kunden">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">📍</span>
+          <div class="choice-title">Lokale Kunden</div>
+          <div class="choice-desc">Kunden aus deiner Stadt oder Region</div>
+        </div>
+        <div class="choice-card" data-value="Internationale Kunden">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🌍</span>
+          <div class="choice-title">Internationale Kunden</div>
+          <div class="choice-desc">Mehrsprachige Zielgruppe weltweit</div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Zurück</button>
+        <button class="btn-next" id="next-3" disabled onclick="nextStep()">Weiter <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 4: Design-Stil ═══════════════════════════════════ -->
+    <div class="step" data-step="4">
+      <div class="step-heading">Welchen Design-Stil stellst du dir vor?</div>
+      <p class="step-sub">Der Stil prägt den ersten Eindruck und die Wirkung deiner Marke.</p>
+      <div class="choices" id="choices-4">
+        <div class="choice-card" data-value="Minimalistisch & Clean">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">◻️</span>
+          <div class="choice-title">Minimalistisch & Clean</div>
+          <div class="choice-desc">Viel Weißraum, klare Linien, reduzierte Ästhetik</div>
+        </div>
+        <div class="choice-card" data-value="Modern & Bold">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">⚡</span>
+          <div class="choice-title">Modern & Bold</div>
+          <div class="choice-desc">Starke Typografie, ausdrucksstarke Kontraste</div>
+        </div>
+        <div class="choice-card" data-value="Elegant & Luxuriös">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">💎</span>
+          <div class="choice-title">Elegant & Luxuriös</div>
+          <div class="choice-desc">Hochwertig, subtile Details, Premium-Feeling</div>
+        </div>
+        <div class="choice-card" data-value="Verspielt & Kreativ">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🌈</span>
+          <div class="choice-title">Verspielt & Kreativ</div>
+          <div class="choice-desc">Farbenfroh, Illustrationen, lebhaft</div>
+        </div>
+        <div class="choice-card" data-value="Technisch & Futuristisch">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🚀</span>
+          <div class="choice-title">Technisch & Futuristisch</div>
+          <div class="choice-desc">Dark Mode, Animationen, digitale Energie</div>
+        </div>
+        <div class="choice-card" data-value="Klassisch & Seriös">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🏛️</span>
+          <div class="choice-title">Klassisch & Seriös</div>
+          <div class="choice-desc">Zeitlos, vertrauenswürdig, traditionell</div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Zurück</button>
+        <button class="btn-next" id="next-4" disabled onclick="nextStep()">Weiter <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 5: Farbwelt ══════════════════════════════════════ -->
+    <div class="step" data-step="5">
+      <div class="step-heading">Welche Farbwelt passt zu dir?</div>
+      <p class="step-sub">Farben wecken Emotionen und prägen wie deine Marke wahrgenommen wird. Mehrfachauswahl möglich.</p>
+      <div class="multi-hint"><span>Mehrfachauswahl</span> möglich</div>
+      <div class="color-grid" id="choices-5">
+
+        <div class="color-card" data-value="Schwarz & Weiß">
+          <div class="color-check-abs"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="color-swatch" style="background: linear-gradient(135deg,#000 0%,#fff 100%);"></div>
+          <div class="color-info">
+            <div class="color-name">Schwarz & Weiß</div>
+            <div class="color-hint">Minimalistisch, zeitlos</div>
+          </div>
+        </div>
+
+        <div class="color-card" data-value="Grün & Natur">
+          <div class="color-check-abs"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="color-swatch" style="background: linear-gradient(135deg,#1a4731 0%,#7ec8a0 50%,#c8f0da 100%);"></div>
+          <div class="color-info">
+            <div class="color-name">Grün & Natur</div>
+            <div class="color-hint">Nachhaltig, frisch, vertrauensvoll</div>
+          </div>
+        </div>
+
+        <div class="color-card" data-value="Blau & Corporate">
+          <div class="color-check-abs"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="color-swatch" style="background: linear-gradient(135deg,#0a1628 0%,#1e4d8c 50%,#4fa3e0 100%);"></div>
+          <div class="color-info">
+            <div class="color-name">Blau & Corporate</div>
+            <div class="color-hint">Professionell, seriös, stabil</div>
+          </div>
+        </div>
+
+        <div class="color-card" data-value="Rot & Energie">
+          <div class="color-check-abs"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="color-swatch" style="background: linear-gradient(135deg,#1a0000 0%,#c0392b 50%,#ff6b6b 100%);"></div>
+          <div class="color-info">
+            <div class="color-name">Rot & Energie</div>
+            <div class="color-hint">Leidenschaft, Kraft, Aufmerksamkeit</div>
+          </div>
+        </div>
+
+        <div class="color-card" data-value="Lila & Kreativität">
+          <div class="color-check-abs"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="color-swatch" style="background: linear-gradient(135deg,#1a0a2e 0%,#7b2d8b 50%,#c77dff 100%);"></div>
+          <div class="color-info">
+            <div class="color-name">Lila & Kreativität</div>
+            <div class="color-hint">Innovativ, geheimnisvoll, kreativ</div>
+          </div>
+        </div>
+
+        <div class="color-card" data-value="Orange & Wärme">
+          <div class="color-check-abs"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="color-swatch" style="background: linear-gradient(135deg,#1a0800 0%,#e05c00 50%,#ffa040 100%);"></div>
+          <div class="color-info">
+            <div class="color-name">Orange & Wärme</div>
+            <div class="color-hint">Freundlich, einladend, dynamisch</div>
+          </div>
+        </div>
+
+        <div class="color-card" data-value="Gold & Luxus">
+          <div class="color-check-abs"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="color-swatch" style="background: linear-gradient(135deg,#0d0900 0%,#8b6914 50%,#f0c040 100%);"></div>
+          <div class="color-info">
+            <div class="color-name">Gold & Luxus</div>
+            <div class="color-hint">Exklusiv, hochwertig, edel</div>
+          </div>
+        </div>
+
+        <div class="color-card" data-value="Eigene Markenfarben">
+          <div class="color-check-abs"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="color-swatch" style="background: conic-gradient(#ff6b6b,#ffa040,#f0c040,#7ec8a0,#4fa3e0,#c77dff,#ff6b6b);"></div>
+          <div class="color-info">
+            <div class="color-name">Eigene Farben</div>
+            <div class="color-hint">Ich habe bereits ein CI / Branding</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Zurück</button>
+        <button class="btn-next" id="next-5" disabled onclick="nextStep()">Weiter <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 6: Seitenstruktur ════════════════════════════════ -->
+    <div class="step" data-step="6">
+      <div class="step-heading">Welche Seiten soll deine Website haben?</div>
+      <p class="step-sub">Wähle alle Seiten, die du dir vorstellst. Mehrfachauswahl möglich.</p>
+      <div class="multi-hint"><span>Mehrfachauswahl</span> möglich</div>
+      <div class="page-chips" id="choices-6">
+        <div class="page-chip" data-value="Startseite"><span class="page-chip-icon">🏠</span> Startseite</div>
+        <div class="page-chip" data-value="Über uns"><span class="page-chip-icon">👥</span> Über uns</div>
+        <div class="page-chip" data-value="Leistungen"><span class="page-chip-icon">⚙️</span> Leistungen</div>
+        <div class="page-chip" data-value="Preise"><span class="page-chip-icon">💶</span> Preise</div>
+        <div class="page-chip" data-value="Portfolio / Referenzen"><span class="page-chip-icon">🖼️</span> Portfolio</div>
+        <div class="page-chip" data-value="Blog / News"><span class="page-chip-icon">📰</span> Blog / News</div>
+        <div class="page-chip" data-value="Team-Seite"><span class="page-chip-icon">🧑‍🤝‍🧑</span> Team</div>
+        <div class="page-chip" data-value="Kontaktseite"><span class="page-chip-icon">📬</span> Kontakt</div>
+        <div class="page-chip" data-value="FAQ"><span class="page-chip-icon">❓</span> FAQ</div>
+        <div class="page-chip" data-value="Shop"><span class="page-chip-icon">🛒</span> Shop</div>
+        <div class="page-chip" data-value="Karriere / Jobs"><span class="page-chip-icon">💼</span> Karriere</div>
+        <div class="page-chip" data-value="Datenschutz & Impressum"><span class="page-chip-icon">📄</span> Rechtliches</div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Zurück</button>
+        <button class="btn-next" id="next-6" disabled onclick="nextStep()">Weiter <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 7: Funktionen ════════════════════════════════════ -->
+    <div class="step" data-step="7">
+      <div class="step-heading">Welche Funktionen brauchst du?</div>
+      <p class="step-sub">Wähle alle technischen Features, die deine Website haben soll.</p>
+      <div class="multi-hint"><span>Mehrfachauswahl</span> möglich</div>
+      <div class="choices cols3" id="choices-7">
+        <div class="choice-card" data-value="Kontaktformular">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">📬</span>
+          <div class="choice-title">Kontaktformular</div>
+        </div>
+        <div class="choice-card" data-value="Online-Buchung / Terminbuchung">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">📅</span>
+          <div class="choice-title">Terminbuchung</div>
+        </div>
+        <div class="choice-card" data-value="Bildergalerie / Fotostrecke">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🖼️</span>
+          <div class="choice-title">Bildergalerie</div>
+        </div>
+        <div class="choice-card" data-value="Video-Integration">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🎬</span>
+          <div class="choice-title">Video-Integration</div>
+        </div>
+        <div class="choice-card" data-value="Shop / Online-Zahlung">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">💳</span>
+          <div class="choice-title">Shop & Zahlung</div>
+        </div>
+        <div class="choice-card" data-value="Mehrsprachigkeit">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🌍</span>
+          <div class="choice-title">Mehrsprachig</div>
+        </div>
+        <div class="choice-card" data-value="Newsletter-Anmeldung">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">📧</span>
+          <div class="choice-title">Newsletter</div>
+        </div>
+        <div class="choice-card" data-value="Login / Mitgliederbereich">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🔐</span>
+          <div class="choice-title">Login-Bereich</div>
+        </div>
+        <div class="choice-card" data-value="Live-Chat / WhatsApp-Button">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">💬</span>
+          <div class="choice-title">Live-Chat</div>
+        </div>
+        <div class="choice-card" data-value="Google Maps / Standort">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">📍</span>
+          <div class="choice-title">Google Maps</div>
+        </div>
+        <div class="choice-card" data-value="SEO-Optimierung">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">🔍</span>
+          <div class="choice-title">SEO</div>
+        </div>
+        <div class="choice-card" data-value="Social Media Integration">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <span class="choice-icon">📲</span>
+          <div class="choice-title">Social Media</div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Zurück</button>
+        <button class="btn-next" id="next-7" disabled onclick="nextStep()">Weiter <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 8: Budget & Zeitplan ════════════════════════════ -->
+    <div class="step" data-step="8">
+      <div class="step-heading">Budget & Zeitplan</div>
+      <p class="step-sub">Damit wir das passende Angebot schnüren können.</p>
+
+      <div style="margin-bottom:10px;font-size:13px;font-weight:600;color:var(--text2);letter-spacing:0.06em;text-transform:uppercase;">Budget</div>
+      <div class="choices cols1" id="choices-8a" style="margin-bottom:28px;">
+        <div class="choice-card" data-group="budget" data-value="Unter 500 €">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="choice-title">Unter 500 €</div>
+          <div class="choice-desc">Einstiegsprojekt, einfache Anforderungen</div>
+        </div>
+        <div class="choice-card" data-group="budget" data-value="500 – 1.500 €">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="choice-title">500 – 1.500 €</div>
+          <div class="choice-desc">Professionelle Website mit solidem Umfang</div>
+        </div>
+        <div class="choice-card" data-group="budget" data-value="1.500 – 5.000 €">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="choice-title">1.500 – 5.000 €</div>
+          <div class="choice-desc">Umfangreiches Projekt mit komplexen Funktionen</div>
+        </div>
+        <div class="choice-card" data-group="budget" data-value="Über 5.000 €">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="choice-title">Über 5.000 €</div>
+          <div class="choice-desc">Enterprise-Lösung, maßgeschneiderte Entwicklung</div>
+        </div>
+        <div class="choice-card" data-group="budget" data-value="Noch nicht festgelegt">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="choice-title">Noch nicht festgelegt</div>
+          <div class="choice-desc">Ich möchte erst ein unverbindliches Angebot</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:10px;font-size:13px;font-weight:600;color:var(--text2);letter-spacing:0.06em;text-transform:uppercase;">Zeitplan</div>
+      <div class="choices cols1" id="choices-8b">
+        <div class="choice-card" data-group="zeitplan" data-value="So schnell wie möglich (1–2 Wochen)">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="choice-title">So schnell wie möglich</div>
+          <div class="choice-desc">Fertigstellung innerhalb von 1–2 Wochen</div>
+        </div>
+        <div class="choice-card" data-group="zeitplan" data-value="Innerhalb eines Monats">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="choice-title">Innerhalb eines Monats</div>
+          <div class="choice-desc">2–4 Wochen Vorlaufzeit</div>
+        </div>
+        <div class="choice-card" data-group="zeitplan" data-value="In 1–3 Monaten">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="choice-title">In 1–3 Monaten</div>
+          <div class="choice-desc">Genügend Zeit für ein ausgereiftes Ergebnis</div>
+        </div>
+        <div class="choice-card" data-group="zeitplan" data-value="Kein fester Termin">
+          <div class="choice-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+          <div class="choice-title">Kein fester Termin</div>
+          <div class="choice-desc">Qualität geht vor Geschwindigkeit</div>
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Zurück</button>
+        <button class="btn-next" id="next-8" disabled onclick="nextStep()">Weiter <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ══ STEP 9: Kontaktdaten ══════════════════════════════════ -->
+    <div class="step" data-step="9">
+      <div class="step-heading">Fast geschafft – wie erreichen wir dich?</div>
+      <p class="step-sub">Wir melden uns innerhalb von 24 Stunden kostenlos & unverbindlich bei dir.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Vorname *</label>
+          <input class="form-input" type="text" id="inp-vorname" placeholder="Max" oninput="checkContactForm()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nachname *</label>
+          <input class="form-input" type="text" id="inp-nachname" placeholder="Mustermann" oninput="checkContactForm()">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">E-Mail-Adresse *</label>
+        <input class="form-input" type="email" id="inp-email" placeholder="max@beispiel.de" oninput="checkContactForm()">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Telefon (optional)</label>
+          <input class="form-input" type="tel" id="inp-tel" placeholder="+49 151 000 000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Firmenname (optional)</label>
+          <input class="form-input" type="text" id="inp-firma" placeholder="Muster GmbH">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Gibt es eine Referenz-Website die dir gefällt? (optional)</label>
+        <input class="form-input" type="url" id="inp-referenz" placeholder="https://beispiel.de">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Weitere Anmerkungen (optional)</label>
+        <textarea class="form-input" id="inp-nachricht" placeholder="Besondere Wünsche, bestehende Markenfarben / Logos, wichtige Infos …"></textarea>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Zurück</button>
+        <button class="btn-next" id="next-9" disabled onclick="submitForm()">
+          Anfrage absenden
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /steps-container -->
+
+  <!-- ══ SUCCESS ════════════════════════════════════════════════ -->
+  <div class="success-screen" id="successScreen" style="max-width:720px;width:100%;position:relative;z-index:1;">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Anfrage eingegangen!</h2>
+    <p>Danke – wir melden uns innerhalb von <strong>24 Stunden</strong> persönlich bei dir. Kostenlos und unverbindlich.</p>
+    <a href="index.html" class="success-back">Zurück zur Startseite</a>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  const TOTAL = 9;
+  let current = 1;
+  const answers = {};
+
+  const stepLabels = [
+    'Projekttyp','Branche','Zielgruppe','Design-Stil',
+    'Farbwelt','Seitenstruktur','Funktionen','Budget & Zeitplan','Kontaktdaten'
+  ];
+
+  function updateProgress() {
+    const pct = Math.round((current / TOTAL) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent =
+      'Schritt ' + current + ' von ' + TOTAL + ' – ' + stepLabels[current - 1];
+    document.getElementById('progressFraction').textContent = pct + '%';
+  }
+
+  function showStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-step="' + n + '"]').classList.add('active');
+    current = n;
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function nextStep() { if (current < TOTAL) showStep(current + 1); }
+  function prevStep() { if (current > 1) showStep(current - 1); }
+
+  // ── Single-select (steps 1,2,3,4) ──
+  [1,2,3,4].forEach(function(n) {
+    document.querySelectorAll('#choices-' + n + ' .choice-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        this.closest('.choices').querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+        answers['step' + n] = this.getAttribute('data-value');
+        document.getElementById('next-' + n).disabled = false;
+      });
+    });
+  });
+
+  // ── Multi-select color cards (step 5) ──
+  document.querySelectorAll('#choices-5 .color-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      const sel = [...document.querySelectorAll('#choices-5 .color-card.selected')]
+        .map(c => c.getAttribute('data-value'));
+      answers.step5 = sel;
+      document.getElementById('next-5').disabled = sel.length === 0;
+    });
+  });
+
+  // ── Multi-select page chips (step 6) ──
+  document.querySelectorAll('#choices-6 .page-chip').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      const sel = [...document.querySelectorAll('#choices-6 .page-chip.selected')]
+        .map(c => c.getAttribute('data-value'));
+      answers.step6 = sel;
+      document.getElementById('next-6').disabled = sel.length === 0;
+    });
+  });
+
+  // ── Multi-select funktionen (step 7) ──
+  document.querySelectorAll('#choices-7 .choice-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      const sel = [...document.querySelectorAll('#choices-7 .choice-card.selected')]
+        .map(c => c.getAttribute('data-value'));
+      answers.step7 = sel;
+      document.getElementById('next-7').disabled = sel.length === 0;
+    });
+  });
+
+  // ── Budget & Zeitplan (step 8) – two independent groups ──
+  var budgetVal = null, zeitplanVal = null;
+
+  document.querySelectorAll('#choices-8a .choice-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      document.querySelectorAll('#choices-8a .choice-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      budgetVal = this.getAttribute('data-value');
+      answers.budget = budgetVal;
+      document.getElementById('next-8').disabled = !(budgetVal && zeitplanVal);
+    });
+  });
+
+  document.querySelectorAll('#choices-8b .choice-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      document.querySelectorAll('#choices-8b .choice-card').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+      zeitplanVal = this.getAttribute('data-value');
+      answers.zeitplan = zeitplanVal;
+      document.getElementById('next-8').disabled = !(budgetVal && zeitplanVal);
+    });
+  });
+
+  // ── Contact validation (step 9) ──
+  function checkContactForm() {
+    const v = document.getElementById('inp-vorname').value.trim();
+    const n = document.getElementById('inp-nachname').value.trim();
+    const e = document.getElementById('inp-email').value.trim();
+    document.getElementById('next-9').disabled =
+      !(v && n && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
+  }
+
+  function submitForm() {
+    const k = {
+      vorname:   document.getElementById('inp-vorname').value.trim(),
+      nachname:  document.getElementById('inp-nachname').value.trim(),
+      email:     document.getElementById('inp-email').value.trim(),
+      tel:       document.getElementById('inp-tel').value.trim(),
+      firma:     document.getElementById('inp-firma').value.trim(),
+      referenz:  document.getElementById('inp-referenz').value.trim(),
+      nachricht: document.getElementById('inp-nachricht').value.trim(),
+    };
+
+    const lines = [
+      '── PROJEKTANFRAGE EC GROUP ──',
+      '',
+      'Projekttyp:      ' + (answers.step1   || '–'),
+      'Branche:         ' + (answers.step2   || '–'),
+      'Zielgruppe:      ' + (answers.step3   || '–'),
+      'Design-Stil:     ' + (answers.step4   || '–'),
+      'Farbwelt:        ' + (Array.isArray(answers.step5) ? answers.step5.join(', ') : '–'),
+      'Seiten:          ' + (Array.isArray(answers.step6) ? answers.step6.join(', ') : '–'),
+      'Funktionen:      ' + (Array.isArray(answers.step7) ? answers.step7.join(', ') : '–'),
+      'Budget:          ' + (answers.budget  || '–'),
+      'Zeitplan:        ' + (answers.zeitplan|| '–'),
+      '',
+      '── KONTAKT ──',
+      'Name:     ' + k.vorname + ' ' + k.nachname,
+      'E-Mail:   ' + k.email,
+      'Telefon:  ' + (k.tel      || '–'),
+      'Firma:    ' + (k.firma    || '–'),
+      'Referenz: ' + (k.referenz || '–'),
+      '',
+      'Anmerkungen:',
+      k.nachricht || '–',
+    ];
+
+    const subject = encodeURIComponent('Projektanfrage von ' + k.vorname + ' ' + k.nachname);
+    window.location.href = 'mailto:info@ecgroup.de?subject=' + subject +
+      '&body=' + encodeURIComponent(lines.join('\n'));
+
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('stepsContainer').style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  }
+
+  updateProgress();
+</script>
+</body>
+</html>
