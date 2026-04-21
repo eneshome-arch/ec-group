@@ -156,7 +156,10 @@
       overflow: hidden;
       border-radius: 24px;
       border: 1px solid var(--border);
+      cursor: grab;
+      user-select: none;
     }
+    .steps-track-wrap:active { cursor: grabbing; }
     .steps-track {
       display: flex;
       transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1170,14 +1173,40 @@
       d.addEventListener('click', function() { goTo(parseInt(d.getAttribute('data-i'))); });
     });
 
-    // Touch/swipe support
-    var startX = 0;
+    // Touch + Mouse swipe support
     var wrap = document.querySelector('.steps-track-wrap');
-    wrap.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-    wrap.addEventListener('touchend', function(e) {
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-    }, { passive: true });
+    var startX = 0, startY = 0, dragging = false, horizontal = null;
+
+    function onStart(x, y) {
+      startX = x; startY = y; dragging = true; horizontal = null;
+    }
+    function onMove(x, y, e) {
+      if (!dragging) return;
+      var dx = x - startX, dy = y - startY;
+      if (horizontal === null && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+        horizontal = Math.abs(dx) > Math.abs(dy);
+      }
+      if (horizontal && e.cancelable) e.preventDefault();
+    }
+    function onEnd(x) {
+      if (!dragging) return;
+      dragging = false;
+      var diff = startX - x;
+      if (horizontal && Math.abs(diff) > 40) {
+        goTo(diff > 0 ? current + 1 : current - 1);
+      }
+      wrap.style.cursor = '';
+    }
+
+    // Touch events
+    wrap.addEventListener('touchstart', function(e) { onStart(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+    wrap.addEventListener('touchmove',  function(e) { onMove(e.touches[0].clientX, e.touches[0].clientY, e); }, { passive: false });
+    wrap.addEventListener('touchend',   function(e) { onEnd(e.changedTouches[0].clientX); });
+
+    // Mouse drag (desktop)
+    wrap.addEventListener('mousedown',  function(e) { onStart(e.clientX, e.clientY); wrap.style.cursor = 'grabbing'; });
+    window.addEventListener('mousemove',function(e) { onMove(e.clientX, e.clientY, e); });
+    window.addEventListener('mouseup',  function(e) { onEnd(e.clientX); });
 
     goTo(0);
   })();
