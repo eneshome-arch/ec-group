@@ -150,31 +150,77 @@
     }
     .section-sub { font-size: 17px; color: var(--text2); max-width: 560px; line-height: 1.75; }
 
-    /* ─── PROCESS STEPS ──────────────────────────────────── */
-    .steps-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 2px; background: var(--border);
-      border: 1px solid var(--border); border-radius: 28px; overflow: hidden;
-      margin-top: 48px;
+    /* ─── PROCESS STEPS CAROUSEL ─────────────────────────── */
+    .steps-carousel { margin-top: 48px; position: relative; }
+    .steps-track-wrap {
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+    }
+    .steps-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .step-card {
-      background: var(--surface); padding: 36px;
-      transition: background 0.25s;
+      flex: 0 0 100%;
+      background: var(--surface); padding: 52px 56px;
+      min-height: 320px;
+      display: flex; flex-direction: column; justify-content: center;
     }
-    .step-card:hover { background: var(--surface2); }
     .step-number {
       font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
       text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
     }
-    .step-card h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; }
-    .step-card p { font-size: 15px; color: var(--text2); line-height: 1.75; }
-    .step-tags {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;
-    }
+    .step-card h3 { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; }
+    .step-card p { font-size: 15px; color: var(--text2); line-height: 1.75; max-width: 680px; }
+    .step-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
     .step-tag {
       background: rgba(126,200,160,0.1); border: 1px solid rgba(126,200,160,0.2);
       color: var(--accent2); font-size: 12px; font-weight: 500;
       padding: 4px 12px; border-radius: 999px; letter-spacing: 0.02em;
+    }
+
+    /* Carousel controls */
+    .carousel-controls {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 24px; gap: 16px;
+    }
+    .carousel-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid var(--border2); background: var(--surface);
+      color: var(--text); cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
+    }
+    .carousel-btn:hover {
+      background: var(--surface2); border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(126,200,160,0.25);
+    }
+    .carousel-btn:disabled { opacity: 0.3; cursor: default; box-shadow: none; border-color: var(--border); }
+    .carousel-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .carousel-center { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
+    .carousel-progress {
+      width: 100%; max-width: 320px; height: 2px;
+      background: var(--border); border-radius: 99px; overflow: hidden;
+    }
+    .carousel-progress-bar {
+      height: 100%; border-radius: 99px;
+      background: var(--gradient);
+      transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .carousel-dots { display: flex; gap: 6px; align-items: center; }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--border2); cursor: pointer;
+      transition: background 0.3s, width 0.3s, border-radius 0.3s;
+    }
+    .carousel-dot.active {
+      width: 20px; border-radius: 3px;
+      background: linear-gradient(90deg, #7ec8a0, #b5e8cc);
+    }
+    .carousel-counter {
+      font-size: 12px; color: var(--text3); font-weight: 500; letter-spacing: 0.08em;
     }
 
     /* ─── ANATOMY SECTION ───────────────────────────────── */
@@ -486,7 +532,7 @@
       .nav-cta { display: none; }
       .section, .anatomy-section, .timeline-section, .cta-section { padding: 60px 24px; }
       .hero { padding: 80px 24px 48px; }
-      .steps-grid { grid-template-columns: 1fr; }
+      .step-card { padding: 36px 32px; min-height: 260px; }
       .anatomy-diagram { flex-direction: column; align-items: center; gap: 32px; }
       .ann-col { display: none; }
       footer { padding: 40px 24px; flex-direction: column; text-align: center; }
@@ -599,8 +645,9 @@
       .section-title { font-size: clamp(24px, 7vw, 34px); }
       .section-sub { font-size: 15px; }
       .wf-browser { width: 100%; max-width: 340px; }
-      .step-card { padding: 24px 20px; }
-      .step-card h3 { font-size: 18px; }
+      .step-card { padding: 28px 24px; min-height: 220px; }
+      .step-card h3 { font-size: 20px; }
+      .carousel-btn { width: 40px; height: 40px; }
       .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
       .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; padding: 14px 20px; justify-content: center; }
       footer { padding: 32px 20px 20px; flex-direction: column; text-align: center; }
@@ -708,60 +755,88 @@
       <p class="section-sub" data-i18n="steps-sub">Jedes Projekt folgt einem bewährten Prozess – damit nichts dem Zufall überlassen wird.</p>
     </div>
 
-    <div class="steps-grid">
-      <div class="step-card reveal">
-        <div class="step-number" data-i18n="step1-number">Schritt 01</div>
-        <h3 data-i18n="step1-title">Briefing & Analyse</h3>
-        <p data-i18n="step1-desc">Wir starten mit einem ausführlichen Gespräch. Ziele, Zielgruppe, Wettbewerb, Budget und Timeline werden gemeinsam definiert. Je klarer das Briefing, desto besser das Ergebnis.</p>
-        <div class="step-tags">
-          <span class="step-tag" data-i18n="step1-tag1">Erstgespräch</span>
-          <span class="step-tag" data-i18n="step1-tag2">Zieldefinition</span>
-          <span class="step-tag" data-i18n="step1-tag3">Marktanalyse</span>
+    <div class="steps-carousel reveal" id="stepsCarousel">
+      <div class="steps-track-wrap">
+        <div class="steps-track" id="stepsTrack">
+
+          <div class="step-card">
+            <div class="step-number" data-i18n="step1-number">Schritt 01</div>
+            <h3 data-i18n="step1-title">Briefing & Analyse</h3>
+            <p data-i18n="step1-desc">Wir starten mit einem ausführlichen Gespräch. Ziele, Zielgruppe, Wettbewerb, Budget und Timeline werden gemeinsam definiert. Je klarer das Briefing, desto besser das Ergebnis.</p>
+            <div class="step-tags">
+              <span class="step-tag" data-i18n="step1-tag1">Erstgespräch</span>
+              <span class="step-tag" data-i18n="step1-tag2">Zieldefinition</span>
+              <span class="step-tag" data-i18n="step1-tag3">Marktanalyse</span>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number" data-i18n="step2-number">Schritt 02</div>
+            <h3 data-i18n="step2-title">Konzept & Strategie</h3>
+            <p data-i18n="step2-desc">Auf Basis des Briefings entwickeln wir ein kreatives Konzept: Moodboard, Seitenstruktur, Farbwelt und Kommunikationsstrategie. Du gibst grünes Licht, bevor wir starten.</p>
+            <div class="step-tags">
+              <span class="step-tag">Moodboard</span>
+              <span class="step-tag">Sitemap</span>
+              <span class="step-tag">Styleguide</span>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number" data-i18n="step3-number">Schritt 03</div>
+            <h3 data-i18n="step3-title">Photoshooting</h3>
+            <p data-i18n="step3-desc">Professionelle Fotos machen den Unterschied. Wir organisieren und begleiten das Shooting – ob Produkte, Team oder Location. Authentisches Bildmaterial, das deine Marke perfekt repräsentiert.</p>
+            <div class="step-tags">
+              <span class="step-tag" data-i18n="step3-tag1">Konzeptfotos</span>
+              <span class="step-tag" data-i18n="step3-tag2">Teamfotos</span>
+              <span class="step-tag" data-i18n="step3-tag3">Produkt­fotografie</span>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number" data-i18n="step4-number">Schritt 04</div>
+            <h3 data-i18n="step4-title">Design & Umsetzung</h3>
+            <p data-i18n="step4-desc">Unsere Designer setzen das Konzept um – Pixel für Pixel. Wireframes, High-Fidelity Designs und Prototypen werden entwickelt und mit dir iteriert bis du begeistert bist.</p>
+            <div class="step-tags">
+              <span class="step-tag">Wireframes</span>
+              <span class="step-tag">Prototyping</span>
+              <span class="step-tag" data-i18n="step4-tag3">Entwicklung</span>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number" data-i18n="step5-number">Schritt 05</div>
+            <h3 data-i18n="step5-title">Launch & Support</h3>
+            <p data-i18n="step5-desc">Nach dem finalen Review und deiner Freigabe gehen wir live. Wir begleiten den Launch, prüfen alles auf Herz und Nieren und stehen dir langfristig als Partner zur Seite.</p>
+            <div class="step-tags">
+              <span class="step-tag">Go-Live</span>
+              <span class="step-tag" data-i18n="step5-tag2">Qualitätsprüfung</span>
+              <span class="step-tag" data-i18n="step5-tag3">Langzeit-Support</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div class="step-card reveal reveal-delay-1">
-        <div class="step-number" data-i18n="step2-number">Schritt 02</div>
-        <h3 data-i18n="step2-title">Konzept & Strategie</h3>
-        <p data-i18n="step2-desc">Auf Basis des Briefings entwickeln wir ein kreatives Konzept: Moodboard, Seitenstruktur, Farbwelt und Kommunikationsstrategie. Du gibst grünes Licht, bevor wir starten.</p>
-        <div class="step-tags">
-          <span class="step-tag">Moodboard</span>
-          <span class="step-tag">Sitemap</span>
-          <span class="step-tag">Styleguide</span>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="stepsPrev" aria-label="Zurück">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="carousel-center">
+          <div class="carousel-progress">
+            <div class="carousel-progress-bar" id="stepsProgressBar"></div>
+          </div>
+          <div class="carousel-dots" id="stepsDots">
+            <span class="carousel-dot active" data-i="0"></span>
+            <span class="carousel-dot" data-i="1"></span>
+            <span class="carousel-dot" data-i="2"></span>
+            <span class="carousel-dot" data-i="3"></span>
+            <span class="carousel-dot" data-i="4"></span>
+          </div>
+          <div class="carousel-counter" id="stepsCounter">01 / 05</div>
         </div>
-      </div>
-
-      <div class="step-card reveal reveal-delay-2">
-        <div class="step-number" data-i18n="step3-number">Schritt 03</div>
-        <h3 data-i18n="step3-title">Photoshooting</h3>
-        <p data-i18n="step3-desc">Professionelle Fotos machen den Unterschied. Wir organisieren und begleiten das Shooting – ob Produkte, Team oder Location. Authentisches Bildmaterial, das deine Marke perfekt repräsentiert.</p>
-        <div class="step-tags">
-          <span class="step-tag" data-i18n="step3-tag1">Konzeptfotos</span>
-          <span class="step-tag" data-i18n="step3-tag2">Teamfotos</span>
-          <span class="step-tag" data-i18n="step3-tag3">Produkt­fotografie</span>
-        </div>
-      </div>
-
-      <div class="step-card reveal reveal-delay-3">
-        <div class="step-number" data-i18n="step4-number">Schritt 04</div>
-        <h3 data-i18n="step4-title">Design & Umsetzung</h3>
-        <p data-i18n="step4-desc">Unsere Designer setzen das Konzept um – Pixel für Pixel. Wireframes, High-Fidelity Designs und Prototypen werden entwickelt und mit dir iteriert bis du begeistert bist.</p>
-        <div class="step-tags">
-          <span class="step-tag">Wireframes</span>
-          <span class="step-tag">Prototyping</span>
-          <span class="step-tag" data-i18n="step4-tag3">Entwicklung</span>
-        </div>
-      </div>
-
-      <div class="step-card reveal" style="grid-column: 1 / -1;">
-        <div class="step-number" data-i18n="step5-number">Schritt 05</div>
-        <h3 data-i18n="step5-title">Launch & Support</h3>
-        <p data-i18n="step5-desc">Nach dem finalen Review und deiner Freigabe gehen wir live. Wir begleiten den Launch, prüfen alles auf Herz und Nieren und stehen dir langfristig als Partner zur Seite.</p>
-        <div class="step-tags">
-          <span class="step-tag">Go-Live</span>
-          <span class="step-tag" data-i18n="step5-tag2">Qualitätsprüfung</span>
-          <span class="step-tag" data-i18n="step5-tag3">Langzeit-Support</span>
-        </div>
+        <button class="carousel-btn" id="stepsNext" aria-label="Weiter">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -1065,6 +1140,47 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // ── Steps Carousel ──────────────────────────────────────
+  (function() {
+    var track    = document.getElementById('stepsTrack');
+    var prevBtn  = document.getElementById('stepsPrev');
+    var nextBtn  = document.getElementById('stepsNext');
+    var dots     = document.querySelectorAll('#stepsDots .carousel-dot');
+    var bar      = document.getElementById('stepsProgressBar');
+    var counter  = document.getElementById('stepsCounter');
+    var total    = 5;
+    var current  = 0;
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function goTo(idx) {
+      current = Math.max(0, Math.min(total - 1, idx));
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+      bar.style.width = ((current + 1) / total * 100) + '%';
+      counter.textContent = pad(current + 1) + ' / ' + pad(total);
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    prevBtn.addEventListener('click', function() { goTo(current - 1); });
+    nextBtn.addEventListener('click', function() { goTo(current + 1); });
+    dots.forEach(function(d) {
+      d.addEventListener('click', function() { goTo(parseInt(d.getAttribute('data-i'))); });
+    });
+
+    // Touch/swipe support
+    var startX = 0;
+    var wrap = document.querySelector('.steps-track-wrap');
+    wrap.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    wrap.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+    }, { passive: true });
+
+    goTo(0);
+  })();
 
   // Mobile hamburger menu
   (function() {
