@@ -37,15 +37,18 @@ ec-group-website/
 - **DE / EN Sprachumschalter** – vollständige Übersetzung aller Seiten, gespeichert via `localStorage`
 - **Service Cycler** – Leistungsbezeichnungen wechseln mit 3D-Tiefenanimation (von hinten nach vorne)
 - **Internationaler Auftritt** – "Weltweit verfügbar" im Hero, internationale Stat-Box
-- **Scroll-Reveal** – Elemente blenden beim Scrollen ein
+- **Scroll-Reveal** – Elemente blenden beim Scrollen ein (IntersectionObserver, threshold 0)
 - **Canvas-Partikel** – vernetzte Partikel-Animation im Hero-Bereich
+- **Prozess-Karussell** – 5-Schritte-Karussell mit CSS scroll-snap, Magic Mouse & Touch
+- **Anatomie-Animation** – Wireframe-Diagramm mit staggered Einblend-Animation, zoom-skaliert für Mobile
 
 ## Mobile
 
 - **Hamburger-Menü** (≤900px): Button mit Slide-Down-Panel
 - **Services-Karussell**: Horizontal swipebar mit Dot-Indikatoren
-- **Stats-Row**: 4+ Werte kompakt in einer Zeile
-- **Breakpoints**: 900px (Tablet), 540px (Phone)
+- **Prozess-Karussell** (`prozess.html`): 5 Schritte als native CSS scroll-snap Karussell mit Apple Magic Mouse Support
+- **Anatomie-Diagramm**: Zoom-skaliert für alle Bildschirmgrößen (zoom: 0.82 → 0.42)
+- **Breakpoints**: 900px (Tablet), 540px, 430px, 390px (Phone)
 
 ## Technologie
 

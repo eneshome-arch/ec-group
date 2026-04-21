@@ -189,6 +189,43 @@ Ersetzt den alten Marquee-Ticker. Zeigt eine Leistung nach der anderen mit einer
 
 Wechselintervall: 2400ms
 
+### Prozess-Karussell (`prozess.html`)
+
+5 Schritte als natives CSS scroll-snap Karussell. Unterstützt Touch, Apple Magic Mouse (wheel deltaX) und Prev/Next-Buttons.
+
+```css
+.steps-track-wrap {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+.step-card { flex: 0 0 100%; scroll-snap-align: start; }
+```
+
+### Anatomie-Diagramm (`prozess.html`)
+
+840px breites Wireframe-Diagramm mit Annotationen. Auf Mobile via CSS `zoom` proportional skaliert:
+
+```css
+@media (max-width: 900px) { .anatomy-diagram { zoom: 0.82; } }
+@media (max-width: 720px) { .anatomy-diagram { zoom: 0.66; } }
+@media (max-width: 560px) { .anatomy-diagram { zoom: 0.52; } }
+@media (max-width: 430px) { .anatomy-diagram { zoom: 0.42; } }
+```
+
+Animation wird per IntersectionObserver auf `.anatomy-section` ausgelöst (nicht auf dem Diagramm selbst, da es auf schmalen Viewports überlaufen kann).
+
+### Bekannte CSS-Falle: `.cta-glow`
+
+```css
+/* FALSCH – wird durch .cta-section > * { position: relative } überschrieben */
+.cta-glow { position: absolute; … }
+
+/* RICHTIG */
+.cta-glow { position: absolute !important; … }
+```
+
+`.cta-section > * { position: relative; z-index: 1; }` hat dieselbe Spezifität wie `.cta-glow { position: absolute; }` und steht weiter unten im CSS → überschreibt es. Ohne `!important` wird `.cta-glow` (400px hoch) als Block-Element gerendert und erzeugt einen 400px Leerraum vor dem CTA-Inhalt.
+
 ---
 
 ## Komponenten
@@ -243,7 +280,12 @@ Auf ≤900px wird `.services-grid` zu einem horizontalen Swipe-Karussell:
 | Breakpoint | Änderungen |
 |---|---|
 | `≤900px` | Nav-Links ausgeblendet, Hamburger sichtbar, CTA versteckt |
-| `≤540px` | Section-Padding reduziert, Buttons full-width |
+| `≤720px` | Anatomie-Diagramm zoom: 0.66 |
+| `≤560px` | Anatomie-Diagramm zoom: 0.52 |
+| `≤540px` | Section-Padding reduziert, Buttons full-width, overflow-x hidden |
+| `≤430px` | Anatomie-Diagramm zoom: 0.42 |
+| `≤390px` | Minimales Padding, Timeline-Abstände reduziert |
+| `hover: none` | Hover-Transforms deaktiviert (Touch-Geräte) |
 
 ---
 
