@@ -425,14 +425,8 @@
     .anatomy-diagram.run .wf-cta-sec   { opacity: 1; transform: none; transition-delay: 0.44s; }
     .anatomy-diagram.run .wf-footer-sec{ opacity: 1; transform: none; transition-delay: 0.54s; }
 
-    /* ─── ANATOMY LEGEND (mobile) ───────────────────────── */
-    .anatomy-legend {
-      display: none;
-      flex-wrap: wrap;
-      gap: 10px 20px;
-      margin-top: 28px;
-      justify-content: center;
-    }
+    /* ─── ANATOMY LEGEND (hidden — replaced by zoom scaling) ── */
+    .anatomy-legend { display: none !important; }
     .legend-item {
       display: flex; align-items: center; gap: 8px;
       font-size: 13px; font-weight: 500; color: var(--text2);
@@ -563,12 +557,6 @@
     .t-sun  { width: 11px; height: 11px; stroke: rgba(0,0,0,0.45);      fill: none; stroke-width: 2; stroke-linecap: round; }
 
     /* ─── MOBILE ─────────────────────────────────────────── */
-    @media (max-width: 1050px) {
-      .ann-col { display: none; }
-      .anatomy-legend { display: flex; }
-      .anatomy-diagram { justify-content: center; }
-    }
-
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
@@ -577,9 +565,14 @@
       .section, .anatomy-section, .timeline-section, .cta-section { padding: 60px 24px; }
       .hero { padding: 80px 24px 48px; }
       .step-card { padding: 36px 32px; min-height: 260px; }
-      .anatomy-diagram { flex-direction: column; align-items: center; gap: 32px; }
+      /* Scale diagram proportionally — same layout as desktop, just smaller */
+      .anatomy-diagram { zoom: 0.82; }
       footer { padding: 40px 24px; flex-direction: column; text-align: center; }
     }
+
+    @media (max-width: 720px) { .anatomy-diagram { zoom: 0.66; } }
+    @media (max-width: 560px) { .anatomy-diagram { zoom: 0.52; } }
+    @media (max-width: 430px) { .anatomy-diagram { zoom: 0.42; } }
   
     /* ─── LANG TOGGLE ────────────────────────────────── */
     .lang-toggle {
