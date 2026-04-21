@@ -159,55 +159,27 @@
     }
     .istat-label { font-size: 13px; color: var(--text2); font-weight: 500; line-height: 1.4; }
 
-    /* ─── FOUNDERS ─────────────────────────────────────── */
-    .founders-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 24px; max-width: 1100px; margin: 56px auto 0;
+    /* ─── EXPERTISE CARDS ──────────────────────────────── */
+    .expertise-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; max-width: 1100px; margin: 56px auto 0;
     }
-    .founder-card {
+    .expertise-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 28px; overflow: hidden;
+      border-radius: 24px; padding: 40px 36px;
       transition: border-color 0.3s, transform 0.3s;
     }
-    .founder-card:hover { border-color: rgba(126,200,160,0.35); transform: translateY(-6px); }
-
-    .founder-avatar {
-      width: 100%; aspect-ratio: 4/3;
-      background: var(--surface2);
+    .expertise-card:hover { border-color: rgba(126,200,160,0.35); transform: translateY(-6px); }
+    .expertise-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--gradient); margin-bottom: 24px;
       display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
     }
-    .founder-avatar-bg {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 80%, rgba(126,200,160,0.2), transparent 70%);
-    }
-    .founder-initials {
-      position: relative; z-index: 1;
-      font-size: 72px; font-weight: 900; letter-spacing: -0.04em;
-      background: var(--gradient); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; background-clip: text;
-      opacity: 0.9;
-    }
-    .founder-grid-lines {
-      position: absolute; inset: 0; pointer-events: none; opacity: 0.4;
-      background-image: linear-gradient(rgba(126,200,160,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(126,200,160,0.08) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    .founder-body { padding: 32px 32px 36px; }
-    .founder-role {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(126,200,160,0.1); border: 1px solid rgba(126,200,160,0.2);
-      color: var(--accent2); font-size: 11px; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 4px 12px; border-radius: 999px; margin-bottom: 16px;
-    }
-    .founder-name { font-size: 28px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 4px; }
-    .founder-age { font-size: 13px; color: var(--text3); margin-bottom: 20px; font-weight: 500; }
-    .founder-bio { font-size: 14.5px; color: var(--text2); line-height: 1.75; margin-bottom: 28px; }
-
-    .founder-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .founder-tag {
+    .expertise-icon svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .expertise-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 12px; }
+    .expertise-card p { font-size: 14.5px; color: var(--text2); line-height: 1.75; margin-bottom: 24px; }
+    .expertise-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .expertise-tag {
       background: var(--surface2); border: 1px solid var(--border2);
       color: var(--text2); font-size: 12px; font-weight: 500;
       padding: 4px 12px; border-radius: 999px;
@@ -354,13 +326,13 @@
       .hero { padding: 80px 24px 48px; }
       .section { padding: 64px 24px; }
       .intro-wrap { grid-template-columns: 1fr; gap: 48px; }
-      .founders-grid { grid-template-columns: 1fr; }
+      .expertise-grid { grid-template-columns: 1fr; }
       .values-grid { grid-template-columns: 1fr; }
       .mission-banner { padding: 40px 28px; }
       .cta-section { padding: 64px 24px; }
       footer { padding: 40px 24px; flex-direction: column; text-align: center; }
     }
-  
+
     /* ─── LANG TOGGLE ────────────────────────────────── */
     .lang-toggle {
       background: transparent; border: 1px solid var(--border2);
@@ -459,7 +431,7 @@
     .mobile-menu-cta::after { display: none !important; }
     [data-theme="light"] .mobile-menu { background: rgba(240,250,245,0.97); }
     [data-theme="light"] .mobile-menu-cta { background: #0a0a0a !important; color: #fff !important; }
-    
+
     @media (max-width: 540px) {
       body { overflow-x: hidden; }
       nav { padding: 0 16px; }
@@ -473,7 +445,7 @@
       .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
       .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; padding: 14px 20px; justify-content: center; }
       footer { padding: 32px 20px 20px; flex-direction: column; text-align: center; }
-      .founder-card { padding: 24px 20px; }
+      .expertise-card { padding: 28px 24px; }
     }
 
     @media (max-width: 390px) {
@@ -483,7 +455,7 @@
     }
 
     @media (hover: none) {
-      .founder-card:hover { transform: none; border-color: var(--border); }
+      .expertise-card:hover { transform: none; border-color: var(--border); }
       .value-card:hover { transform: none; border-color: var(--border); }
       .btn-primary:hover, .btn-ghost:hover { transform: none; }
     }
@@ -545,19 +517,19 @@
   <canvas id="heroCanvas"></canvas>
   <div class="hero-glow"></div>
   <div class="hero-grid-lines"></div>
-  <div class="hero-badge"><span class="badge-dot"></span><span data-i18n="hero-badge">Das Team hinter VYO Media</span></div>
+  <div class="hero-badge"><span class="badge-dot"></span><span data-i18n="hero-badge">Kreative Medienagentur · Hannover</span></div>
   <h1>
-    <span data-i18n="hero-h1a">Zwei Köpfe.</span><br>
-    <span class="gradient-text" data-i18n="hero-h1b">Eine Vision.</span>
+    <span data-i18n="hero-h1a">Eine Agentur.</span><br>
+    <span class="gradient-text" data-i18n="hero-h1b">Ein Anspruch.</span>
   </h1>
   <p class="hero-sub" data-i18n="hero-sub">
-    Wir sind keine klassische Agentur. Wir sind Gründer, Gestalter und digitale Strategen –
-    mit dem Anspruch, jedes Projekt besser zu machen als das letzte.
+    VYO Media steht für digitale Kreativarbeit auf höchstem Niveau – Webdesign, Branding und
+    digitale Erlebnisse, die Marken unverwechselbar machen.
   </p>
   <div class="hero-actions">
-    <a href="#team" class="btn-primary">
-      <span data-i18n="hero-btn1">Team kennenlernen</span>
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <a href="leistungen.html" class="btn-primary">
+      <span data-i18n="hero-btn1">Unsere Leistungen</span>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <a href="index.html#contact" class="btn-ghost" data-i18n="hero-btn2">Kontakt aufnehmen</a>
   </div>
@@ -570,22 +542,19 @@
       <div class="section-label" data-i18n="intro-label">Wer wir sind</div>
       <h2 class="section-title" data-i18n="intro-title">Mehr als eine Agentur</h2>
       <p data-i18n="intro-p1">
-        VYO Media ist das Ergebnis von echter Leidenschaft für Design und Technologie.
-        Gegründet von Enes Cansever und Ali Haidar, stehen
-        wir für eine neue Art zu arbeiten: direkt, transparent und mit echtem Ownership für
-        jedes Projekt.
+        VYO Media ist eine <strong>Full-Service Kreativagentur</strong> für Webdesign, Branding
+        und digitale Erlebnisse. Wir arbeiten direkt, ohne Umwege – alles, was wir liefern,
+        entsteht vollständig in-house.
       </p>
       <p data-i18n="intro-p2">
         Hinter jedem Projekt steht ein klares Ziel: deine Marke sichtbar zu machen und
-        Ergebnisse zu liefern, die wirklich zählen. Kein Outsourcing, kein Template –
+        Ergebnisse zu liefern, die wirklich zählen. <strong>Kein Outsourcing, kein Template</strong> –
         jede Zeile Design und Code kommt direkt von uns.
       </p>
       <p data-i18n="intro-p3">
-        Enes leitet als Geschäftsführer mehrerer Unternehmen die strategische
-        Ausrichtung der Agentur. Ali ist ausgebildeter Ingenieur mit Studium der Informationstechnik
-        und bringt fundiertes technisches Know-how aus Studium und jahrelanger Praxis in der
-        App- und Webentwicklung mit. Zusammen decken wir das gesamte Spektrum digitaler
-        Kreativarbeit ab.
+        Ob junges Startup oder etabliertes Unternehmen – wir bringen dieselbe Leidenschaft
+        und denselben Anspruch in jedes Projekt. Wir sind dein langfristiger Partner,
+        nicht nur ein einmaliger Dienstleister.
       </p>
     </div>
 
@@ -599,8 +568,8 @@
         <div class="istat-label" data-i18n="istat2">Jahre Erfahrung im Digital-Bereich</div>
       </div>
       <div class="istat">
-        <div class="istat-num">3+</div>
-        <div class="istat-label" data-i18n="istat3">Aktive Unternehmen unter Leitung</div>
+        <div class="istat-num">100%</div>
+        <div class="istat-label" data-i18n="istat3">In-House – kein Outsourcing</div>
       </div>
       <div class="istat">
         <div class="istat-num">98%</div>
@@ -610,75 +579,56 @@
   </div>
 </section>
 
-<!-- ════════════ TEAM ════════════ -->
-<section class="section" id="team">
+<!-- ════════════ EXPERTISE ════════════ -->
+<section class="section">
   <div style="max-width:1100px;margin:0 auto">
     <div class="reveal" style="text-align:center">
-      <div class="section-label" data-i18n="team-label">Die Gründer</div>
-      <h2 class="section-title" data-i18n="team-title">Das Duo dahinter</h2>
-      <p class="section-sub" style="margin:0 auto" data-i18n="team-sub">Zwei Perspektiven, ein gemeinsames Ziel: Digitale Erlebnisse schaffen, die bleiben.</p>
+      <div class="section-label" data-i18n="exp-label">Was wir mitbringen</div>
+      <h2 class="section-title" data-i18n="exp-title">Unsere Expertise</h2>
+      <p class="section-sub" style="margin:0 auto" data-i18n="exp-sub">Drei Kernbereiche, ein gemeinsames Ziel: digitale Lösungen, die wirklich überzeugen.</p>
     </div>
 
-    <div class="founders-grid">
+    <div class="expertise-grid">
 
-      <!-- ENES -->
-      <div class="founder-card reveal">
-        <div class="founder-avatar">
-          <div class="founder-grid-lines"></div>
-          <div class="founder-avatar-bg"></div>
-          <div class="founder-initials">EC</div>
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         </div>
-        <div class="founder-body">
-          <div class="founder-role">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            <span data-i18n="enes-role">CEO & Gründer</span>
-          </div>
-          <div class="founder-name">Enes Cansever</div>
-          <div class="founder-age" data-i18n="enes-age">24 Jahre · Geschäftsführer</div>
-          <p class="founder-bio" data-i18n="enes-bio">
-            Enes ist Serienunternehmer und Gründer. Mit 24 Jahren führt er mehrere Unternehmen
-            gleichzeitig – und bringt diese unternehmerische Energie in jedes Kundenprojekt mit.
-            Sein Fokus: strategisches Denken, klare Kommunikation und Designs, die nicht nur
-            gut aussehen, sondern performen. Bei VYO Media setzt er die Vision um, die er selbst
-            als Unternehmer vermisst hat – eine Agentur, die wirklich mitdenkt.
-          </p>
-          <div class="founder-tags">
-            <span class="founder-tag" data-i18n="enes-tag1">Strategie</span>
-            <span class="founder-tag">Webdesign</span>
-            <span class="founder-tag" data-i18n="enes-tag3">Unternehmensführung</span>
-            <span class="founder-tag">Branding</span>
-          </div>
+        <h3 data-i18n="exp1-title">Design & Branding</h3>
+        <p data-i18n="exp1-desc">Von der Markenidentität bis zur fertigen Website – wir gestalten Erlebnisse, die haften bleiben. Jeder Pixel ist durchdacht, jede Farbe gezielt eingesetzt. Design ist für uns kein Selbstzweck, sondern ein Werkzeug.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Webdesign</span>
+          <span class="expertise-tag">Branding</span>
+          <span class="expertise-tag">UI/UX</span>
+          <span class="expertise-tag">Print</span>
         </div>
       </div>
 
-      <!-- ALI -->
-      <div class="founder-card reveal reveal-delay-2">
-        <div class="founder-avatar">
-          <div class="founder-grid-lines"></div>
-          <div class="founder-avatar-bg"></div>
-          <div class="founder-initials">AH</div>
+      <div class="expertise-card reveal reveal-delay-1">
+        <div class="expertise-icon">
+          <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
-        <div class="founder-body">
-          <div class="founder-role">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            <span data-i18n="ali-role">Co-Gründer & Tech-Lead</span>
-          </div>
-          <div class="founder-name">Ali Haidar</div>
-          <div class="founder-age" data-i18n="ali-age">26 Jahre · Ingenieur & Entwickler</div>
-          <p class="founder-bio" data-i18n="ali-bio">
-            Ali ist der technische Kopf hinter VYO Media. Als ausgebildeter Ingenieur mit
-            einem Studium der Informationstechnik bringt er ein tiefes Fundament aus
-            Theorie und Praxis mit. Seine Expertise in Web- und App-Entwicklung macht ihn
-            zum Architekten der digitalen Lösungen, die die Agentur liefert. Er versteht
-            Design nicht nur als Ästhetik, sondern als System – und sorgt dafür, dass
-            jede Website nicht nur schön ist, sondern technisch einwandfrei funktioniert.
-          </p>
-          <div class="founder-tags">
-            <span class="founder-tag" data-i18n="ali-tag1">App-Entwicklung</span>
-            <span class="founder-tag">UI/UX</span>
-            <span class="founder-tag" data-i18n="ali-tag3">Web-Technologien</span>
-            <span class="founder-tag">Performance</span>
-          </div>
+        <h3 data-i18n="exp2-title">Entwicklung & Technik</h3>
+        <p data-i18n="exp2-desc">Moderne Web- und App-Entwicklung, die nicht nur gut aussieht, sondern technisch einwandfrei funktioniert. Wir bauen keine Templates – wir bauen individuelle Lösungen, die skalieren.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Webentwicklung</span>
+          <span class="expertise-tag">App-Entwicklung</span>
+          <span class="expertise-tag">Performance</span>
+          <span class="expertise-tag">SEO</span>
+        </div>
+      </div>
+
+      <div class="expertise-card reveal reveal-delay-2">
+        <div class="expertise-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3 data-i18n="exp3-title">Strategie & Beratung</h3>
+        <p data-i18n="exp3-desc">Wir denken vor dem Projekt, während des Projekts und danach. Strategie ist kein Extra – sie ist die Grundlage jeder guten Arbeit. Wir begleiten dich auf deinem gesamten digitalen Weg.</p>
+        <div class="expertise-tags">
+          <span class="expertise-tag">Digitalstrategie</span>
+          <span class="expertise-tag">Photoshooting</span>
+          <span class="expertise-tag">Content</span>
+          <span class="expertise-tag">Consulting</span>
         </div>
       </div>
 
@@ -744,16 +694,16 @@
         <div class="story-dot">✦</div>
         <div class="story-content">
           <div class="story-year" data-i18n="story1-year">Der Anfang</div>
-          <h3 data-i18n="story1-title">Erste Projekte, echte Erfahrungen</h3>
-          <p data-i18n="story1-desc">Was als Freelance-Arbeit begann, entwickelte sich schnell zu etwas Größerem. Enes und Ali erkannten, dass der Markt eine Agentur brauchte, die Design und Technik auf Augenhöhe behandelt – und liefert, was sie verspricht.</p>
+          <h3 data-i18n="story1-title">Erste Projekte. Echte Erkenntnisse.</h3>
+          <p data-i18n="story1-desc">VYO Media entstand aus der Überzeugung, dass der Markt eine andere Art Agentur braucht – eine, die Design und Technologie gleichwertig behandelt, keine halben Sachen macht und liefert, was sie verspricht.</p>
         </div>
       </div>
       <div class="story-item reveal reveal-delay-1">
         <div class="story-dot">✦</div>
         <div class="story-content">
           <div class="story-year" data-i18n="story2-year">Der Aufbau</div>
-          <h3 data-i18n="story2-title">Prozesse, Qualität, Wachstum</h3>
-          <p data-i18n="story2-desc">Mit wachsendem Kundenstamm wurde klar: strukturiertes Arbeiten ist der Schlüssel. Prozesse wurden definiert, Standards gesetzt. Die Qualität stieg – und damit die Weiterempfehlungen.</p>
+          <h3 data-i18n="story2-title">Prozesse. Standards. Qualität.</h3>
+          <p data-i18n="story2-desc">Mit jedem Projekt wuchsen auch die Ansprüche. Interne Prozesse wurden definiert, Standards gesetzt. Das Ergebnis: eine Qualität, die sich direkt im Kundenfeedback und in der Weiterempfehlungsrate widerspiegelt.</p>
         </div>
       </div>
       <div class="story-item reveal reveal-delay-2">
@@ -769,7 +719,7 @@
         <div class="story-content">
           <div class="story-year" data-i18n="story4-year">Die Zukunft</div>
           <h3 data-i18n="story4-title">Weiterwachsen – mit unseren Kunden</h3>
-          <p data-i18n="story4-desc">Unsere Vision ist es, langfristige Partnerschaften aufzubauen. Nicht nur einmalige Projekte liefern, sondern Unternehmen auf ihrem digitalen Weg dauerhaft begleiten.</p>
+          <p data-i18n="story4-desc">Unsere Vision: langfristige Partnerschaften aufbauen. Nicht nur einmalige Projekte liefern, sondern Unternehmen dauerhaft auf ihrem digitalen Weg begleiten – vom ersten Gespräch bis zum nächsten Meilenstein.</p>
         </div>
       </div>
     </div>
@@ -783,7 +733,7 @@
       <div class="mission-glow"></div>
       <div class="section-label" data-i18n="mission-label">Unsere Mission</div>
       <h2 data-i18n="mission-h2">„Wir bauen keine Webseiten. Wir bauen digitale <span class="gradient-text">Identitäten, die überzeugen."</span></h2>
-      <p data-i18n="mission-desc">Für uns ist Design kein Selbstzweck – es ist ein Werkzeug. Eines, das Vertrauen aufbaut, Kunden gewinnt und Marken unvergesslich macht. Das ist der Anspruch, mit dem wir jeden Morgen an die Arbeit gehen.</p>
+      <p data-i18n="mission-desc">Für uns ist Design kein Selbstzweck – es ist ein Werkzeug. Eines, das Vertrauen aufbaut, Kunden gewinnt und Marken unvergesslich macht. Das ist der Anspruch, mit dem wir jeden Tag an die Arbeit gehen.</p>
     </div>
   </div>
 </section>
@@ -792,10 +742,10 @@
 <section class="cta-section">
   <div class="cta-glow"></div>
   <div class="section-label" data-i18n="cta-label">Gemeinsam starten</div>
-  <h2><span data-i18n="cta-h1">Werde Teil</span><br><span class="gradient-text" data-i18n="cta-h2">unserer Geschichte.</span></h2>
-  <p data-i18n="cta-desc">Erzähl uns von deinem Projekt. Wir melden uns innerhalb von 24 Stunden.</p>
+  <h2><span data-i18n="cta-h1">Bereit für dein</span><br><span class="gradient-text" data-i18n="cta-h2">nächstes Projekt?</span></h2>
+  <p data-i18n="cta-desc">Erzähl uns von deiner Idee. Wir melden uns innerhalb von 24 Stunden.</p>
   <div class="cta-btns">
-    <a href="index.html#contact" class="btn-primary">
+    <a href="anfragen.html" class="btn-primary">
       <span data-i18n="cta-btn1">Jetzt anfragen</span>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -907,29 +857,30 @@
       });
     });
   })();
+
   // Language toggle
   const translations = {
     de: {
       'nav-services': 'Leistungen', 'nav-about': 'Über uns', 'nav-process': 'Prozess',
-      'nav-pricing': 'Preise', 'nav-careers': 'Karriere', 'nav-contact': 'Kontakt', 'nav-cta': 'Projekt starten',
-      'hero-badge': 'Das Team hinter VYO Media',
-      'hero-h1a': 'Zwei Köpfe.', 'hero-h1b': 'Eine Vision.',
-      'hero-sub': 'Wir sind keine klassische Agentur. Wir sind Gründer, Gestalter und digitale Strategen – mit dem Anspruch, jedes Projekt besser zu machen als das letzte.',
-      'hero-btn1': 'Team kennenlernen', 'hero-btn2': 'Kontakt aufnehmen',
+      'nav-pricing': 'Preise', 'nav-careers': 'Karriere', 'nav-contact': 'Kontakt', 'nav-cta': 'kostenlos Anfragen',
+      'hero-badge': 'Kreative Medienagentur · Hannover',
+      'hero-h1a': 'Eine Agentur.', 'hero-h1b': 'Ein Anspruch.',
+      'hero-sub': 'VYO Media steht für digitale Kreativarbeit auf höchstem Niveau – Webdesign, Branding und digitale Erlebnisse, die Marken unverwechselbar machen.',
+      'hero-btn1': 'Unsere Leistungen', 'hero-btn2': 'Kontakt aufnehmen',
       'intro-label': 'Wer wir sind', 'intro-title': 'Mehr als eine Agentur',
-      'intro-p1': 'VYO Media ist das Ergebnis von echter Leidenschaft für Design und Technologie. Gegründet von Enes Cansever und Ali Haidar, stehen wir für eine neue Art zu arbeiten: direkt, transparent und mit echtem Ownership für jedes Projekt.',
+      'intro-p1': 'VYO Media ist eine Full-Service Kreativagentur für Webdesign, Branding und digitale Erlebnisse. Wir arbeiten direkt, ohne Umwege – alles, was wir liefern, entsteht vollständig in-house.',
       'intro-p2': 'Hinter jedem Projekt steht ein klares Ziel: deine Marke sichtbar zu machen und Ergebnisse zu liefern, die wirklich zählen. Kein Outsourcing, kein Template – jede Zeile Design und Code kommt direkt von uns.',
-      'intro-p3': 'Enes leitet als Geschäftsführer mehrerer Unternehmen die strategische Ausrichtung der Agentur. Ali ist ausgebildeter Ingenieur mit Studium der Informationstechnik und bringt fundiertes technisches Know-how aus Studium und jahrelanger Praxis in der App- und Webentwicklung mit. Zusammen decken wir das gesamte Spektrum digitaler Kreativarbeit ab.',
+      'intro-p3': 'Ob junges Startup oder etabliertes Unternehmen – wir bringen dieselbe Leidenschaft und denselben Anspruch in jedes Projekt. Wir sind dein langfristiger Partner, nicht nur ein einmaliger Dienstleister.',
       'istat1': 'Abgeschlossene Projekte', 'istat2': 'Jahre Erfahrung im Digital-Bereich',
-      'istat3': 'Aktive Unternehmen unter Leitung', 'istat4': 'Weiterempfehlungsrate unserer Kunden',
-      'team-label': 'Die Gründer', 'team-title': 'Das Duo dahinter',
-      'team-sub': 'Zwei Perspektiven, ein gemeinsames Ziel: Digitale Erlebnisse schaffen, die bleiben.',
-      'enes-role': 'CEO & Gründer', 'enes-age': '24 Jahre · Geschäftsführer',
-      'enes-bio': 'Enes ist Serienunternehmer und Gründer. Mit 24 Jahren führt er mehrere Unternehmen gleichzeitig – und bringt diese unternehmerische Energie in jedes Kundenprojekt mit. Sein Fokus: strategisches Denken, klare Kommunikation und Designs, die nicht nur gut aussehen, sondern performen. Bei VYO Media setzt er die Vision um, die er selbst als Unternehmer vermisst hat – eine Agentur, die wirklich mitdenkt.',
-      'enes-tag1': 'Strategie', 'enes-tag3': 'Unternehmensführung',
-      'ali-role': 'Co-Gründer & Tech-Lead', 'ali-age': '26 Jahre · Ingenieur & Entwickler',
-      'ali-bio': 'Ali ist der technische Kopf hinter VYO Media. Als ausgebildeter Ingenieur mit einem Studium der Informationstechnik bringt er ein tiefes Fundament aus Theorie und Praxis mit. Seine Expertise in Web- und App-Entwicklung macht ihn zum Architekten der digitalen Lösungen, die die Agentur liefert. Er versteht Design nicht nur als Ästhetik, sondern als System – und sorgt dafür, dass jede Website nicht nur schön ist, sondern technisch einwandfrei funktioniert.',
-      'ali-tag1': 'App-Entwicklung', 'ali-tag3': 'Web-Technologien',
+      'istat3': 'In-House – kein Outsourcing', 'istat4': 'Weiterempfehlungsrate unserer Kunden',
+      'exp-label': 'Was wir mitbringen', 'exp-title': 'Unsere Expertise',
+      'exp-sub': 'Drei Kernbereiche, ein gemeinsames Ziel: digitale Lösungen, die wirklich überzeugen.',
+      'exp1-title': 'Design & Branding',
+      'exp1-desc': 'Von der Markenidentität bis zur fertigen Website – wir gestalten Erlebnisse, die haften bleiben. Jeder Pixel ist durchdacht, jede Farbe gezielt eingesetzt. Design ist für uns kein Selbstzweck, sondern ein Werkzeug.',
+      'exp2-title': 'Entwicklung & Technik',
+      'exp2-desc': 'Moderne Web- und App-Entwicklung, die nicht nur gut aussieht, sondern technisch einwandfrei funktioniert. Wir bauen keine Templates – wir bauen individuelle Lösungen, die skalieren.',
+      'exp3-title': 'Strategie & Beratung',
+      'exp3-desc': 'Wir denken vor dem Projekt, während des Projekts und danach. Strategie ist kein Extra – sie ist die Grundlage jeder guten Arbeit. Wir begleiten dich auf deinem gesamten digitalen Weg.',
       'values-label': 'Unsere Werte', 'values-title': 'Was uns antreibt',
       'values-sub': 'Nicht nur was wir tun – sondern wie und warum wir es tun.',
       'val1-title': 'Qualität ohne Kompromisse', 'val1-desc': 'Jeder Pixel, jede Zeile Code wird mit demselben Anspruch behandelt. Wir liefern keine 80%-Lösungen – nur fertige, durchdachte Produkte.',
@@ -940,43 +891,43 @@
       'val6-title': 'Immer einen Schritt voraus', 'val6-desc': 'Design und Technologie entwickeln sich täglich weiter. Wir bleiben neugierig, bilden uns weiter und bringen das Beste für dein Projekt mit.',
       'story-label': 'Unsere Geschichte', 'story-title': 'Wie alles begann',
       'story-sub': 'Von den ersten Projekten bis zur vollständigen Digitalagentur.',
-      'story1-year': 'Der Anfang', 'story1-title': 'Erste Projekte, echte Erfahrungen',
-      'story1-desc': 'Was als Freelance-Arbeit begann, entwickelte sich schnell zu etwas Größerem. Enes und Ali erkannten, dass der Markt eine Agentur brauchte, die Design und Technik auf Augenhöhe behandelt – und liefert, was sie verspricht.',
-      'story2-year': 'Der Aufbau', 'story2-title': 'Prozesse, Qualität, Wachstum',
-      'story2-desc': 'Mit wachsendem Kundenstamm wurde klar: strukturiertes Arbeiten ist der Schlüssel. Prozesse wurden definiert, Standards gesetzt. Die Qualität stieg – und damit die Weiterempfehlungen.',
+      'story1-year': 'Der Anfang', 'story1-title': 'Erste Projekte. Echte Erkenntnisse.',
+      'story1-desc': 'VYO Media entstand aus der Überzeugung, dass der Markt eine andere Art Agentur braucht – eine, die Design und Technologie gleichwertig behandelt, keine halben Sachen macht und liefert, was sie verspricht.',
+      'story2-year': 'Der Aufbau', 'story2-title': 'Prozesse. Standards. Qualität.',
+      'story2-desc': 'Mit jedem Projekt wuchsen auch die Ansprüche. Interne Prozesse wurden definiert, Standards gesetzt. Das Ergebnis: eine Qualität, die sich direkt im Kundenfeedback und in der Weiterempfehlungsrate widerspiegelt.',
       'story3-year': 'Heute', 'story3-title': 'VYO Media – Full-Service Digitalagentur',
       'story3-desc': 'Heute bieten wir alles aus einer Hand: Webdesign, App-Entwicklung, Photoshooting, Print und strategische Beratung. Mit über 150 Projekten und einem klaren Anspruch – immer besser zu werden.',
       'story4-year': 'Die Zukunft', 'story4-title': 'Weiterwachsen – mit unseren Kunden',
-      'story4-desc': 'Unsere Vision ist es, langfristige Partnerschaften aufzubauen. Nicht nur einmalige Projekte liefern, sondern Unternehmen auf ihrem digitalen Weg dauerhaft begleiten.',
+      'story4-desc': 'Unsere Vision: langfristige Partnerschaften aufbauen. Nicht nur einmalige Projekte liefern, sondern Unternehmen dauerhaft auf ihrem digitalen Weg begleiten – vom ersten Gespräch bis zum nächsten Meilenstein.',
       'mission-label': 'Unsere Mission',
       'mission-h2': '„Wir bauen keine Webseiten. Wir bauen digitale Identitäten, die überzeugen."',
-      'mission-desc': 'Für uns ist Design kein Selbstzweck – es ist ein Werkzeug. Eines, das Vertrauen aufbaut, Kunden gewinnt und Marken unvergesslich macht. Das ist der Anspruch, mit dem wir jeden Morgen an die Arbeit gehen.',
-      'cta-label': 'Gemeinsam starten', 'cta-h1': 'Werde Teil', 'cta-h2': 'unserer Geschichte.',
-      'cta-desc': 'Erzähl uns von deinem Projekt. Wir melden uns innerhalb von 24 Stunden.',
+      'mission-desc': 'Für uns ist Design kein Selbstzweck – es ist ein Werkzeug. Eines, das Vertrauen aufbaut, Kunden gewinnt und Marken unvergesslich macht. Das ist der Anspruch, mit dem wir jeden Tag an die Arbeit gehen.',
+      'cta-label': 'Gemeinsam starten', 'cta-h1': 'Bereit für dein', 'cta-h2': 'nächstes Projekt?',
+      'cta-desc': 'Erzähl uns von deiner Idee. Wir melden uns innerhalb von 24 Stunden.',
       'cta-btn1': 'Jetzt anfragen', 'cta-btn2': 'Preise ansehen',
       'footer-copy': '© 2026 VYO Media. Alle Rechte vorbehalten.',
     },
     en: {
       'nav-services': 'Services', 'nav-about': 'About', 'nav-process': 'Process',
-      'nav-pricing': 'Pricing', 'nav-careers': 'Careers', 'nav-contact': 'Contact', 'nav-cta': 'Start Project',
-      'hero-badge': 'The Team Behind VYO Media',
-      'hero-h1a': 'Two minds.', 'hero-h1b': 'One vision.',
-      'hero-sub': 'We are not a conventional agency. We are founders, creators and digital strategists – with the ambition to make every project better than the last.',
-      'hero-btn1': 'Meet the team', 'hero-btn2': 'Get in touch',
+      'nav-pricing': 'Pricing', 'nav-careers': 'Careers', 'nav-contact': 'Contact', 'nav-cta': 'Get a free quote',
+      'hero-badge': 'Creative Media Agency · Hanover',
+      'hero-h1a': 'One Agency.', 'hero-h1b': 'One Standard.',
+      'hero-sub': 'VYO Media stands for digital creative work at the highest level – web design, branding and digital experiences that make brands unmistakable.',
+      'hero-btn1': 'Our Services', 'hero-btn2': 'Get in touch',
       'intro-label': 'Who we are', 'intro-title': 'More than an agency',
-      'intro-p1': 'VYO Media is the result of a genuine passion for design and technology. Founded by Enes Cansever and Ali Haidar, we stand for a new way of working: direct, transparent and with real ownership for every project.',
+      'intro-p1': 'VYO Media is a full-service creative agency for web design, branding and digital experiences. We work directly, without detours – everything we deliver is created entirely in-house.',
       'intro-p2': 'Behind every project is a clear goal: to make your brand visible and deliver results that really matter. No outsourcing, no templates – every line of design and code comes directly from us.',
-      'intro-p3': 'Enes leads the agency\'s strategic direction as managing director of multiple companies. Ali is a trained engineer with a degree in information technology, bringing deep technical expertise from his studies and years of practice in app and web development. Together we cover the full spectrum of digital creative work.',
+      'intro-p3': 'Whether a young startup or an established company – we bring the same passion and the same standard to every project. We are your long-term partner, not just a one-off service provider.',
       'istat1': 'Completed Projects', 'istat2': 'Years of Digital Experience',
-      'istat3': 'Active Companies Under Management', 'istat4': 'Referral Rate from Clients',
-      'team-label': 'The Founders', 'team-title': 'The duo behind it',
-      'team-sub': 'Two perspectives, one shared goal: creating digital experiences that last.',
-      'enes-role': 'CEO & Founder', 'enes-age': '24 years · Managing Director',
-      'enes-bio': 'Enes is a serial entrepreneur and founder. At 24 he runs multiple companies simultaneously – and brings that entrepreneurial energy to every client project. His focus: strategic thinking, clear communication and designs that not only look good but perform. At VYO Media he realises the vision he himself missed as an entrepreneur – an agency that truly thinks along.',
-      'enes-tag1': 'Strategy', 'enes-tag3': 'Business Management',
-      'ali-role': 'Co-Founder & Tech Lead', 'ali-age': '26 years · Engineer & Developer',
-      'ali-bio': 'Ali is the technical mind behind VYO Media. As a trained engineer with a degree in information technology he brings a deep foundation of theory and practice. His expertise in web and app development makes him the architect of the digital solutions the agency delivers. He understands design not just as aesthetics but as a system – and ensures every website is not only beautiful but technically flawless.',
-      'ali-tag1': 'App Development', 'ali-tag3': 'Web Technologies',
+      'istat3': '100% In-House – no outsourcing', 'istat4': 'Referral Rate from Clients',
+      'exp-label': 'What we bring', 'exp-title': 'Our Expertise',
+      'exp-sub': 'Three core areas, one shared goal: digital solutions that truly convince.',
+      'exp1-title': 'Design & Branding',
+      'exp1-desc': 'From brand identity to the finished website – we create experiences that stick. Every pixel is deliberate, every colour purposeful. Design is not an end in itself for us, it is a tool.',
+      'exp2-title': 'Development & Technology',
+      'exp2-desc': 'Modern web and app development that not only looks great but works flawlessly. We don\'t build templates – we build individual solutions that scale.',
+      'exp3-title': 'Strategy & Consulting',
+      'exp3-desc': 'We think before the project, during the project and after. Strategy is not an extra – it is the foundation of all good work. We accompany you on your entire digital journey.',
       'values-label': 'Our Values', 'values-title': 'What drives us',
       'values-sub': 'Not just what we do – but how and why we do it.',
       'val1-title': 'Quality without compromise', 'val1-desc': 'Every pixel, every line of code is treated with the same standard. We don\'t deliver 80% solutions – only finished, well-thought-out products.',
@@ -987,19 +938,19 @@
       'val6-title': 'Always one step ahead', 'val6-desc': 'Design and technology evolve every day. We stay curious, keep learning and bring the best to your project.',
       'story-label': 'Our Story', 'story-title': 'How it all began',
       'story-sub': 'From the first projects to a full-service digital agency.',
-      'story1-year': 'The Beginning', 'story1-title': 'First projects, real experience',
-      'story1-desc': 'What started as freelance work quickly grew into something bigger. Enes and Ali recognised that the market needed an agency that treats design and technology as equals – and delivers on its promises.',
-      'story2-year': 'The Build-up', 'story2-title': 'Processes, quality, growth',
-      'story2-desc': 'With a growing client base it became clear: structured work is the key. Processes were defined, standards set. Quality improved – and so did referrals.',
+      'story1-year': 'The Beginning', 'story1-title': 'First projects. Real insights.',
+      'story1-desc': 'VYO Media was born from the conviction that the market needs a different kind of agency – one that treats design and technology as equals, does not cut corners, and delivers on its promises.',
+      'story2-year': 'The Build-up', 'story2-title': 'Processes. Standards. Quality.',
+      'story2-desc': 'With every project the standards grew. Internal processes were defined, benchmarks set. The result: a quality that is reflected directly in client feedback and referral rates.',
       'story3-year': 'Today', 'story3-title': 'VYO Media – Full-Service Digital Agency',
       'story3-desc': 'Today we offer everything in one place: web design, app development, photoshooting, print and strategic consulting. With over 150 projects and a clear ambition – to always do better.',
       'story4-year': 'The Future', 'story4-title': 'Growing – with our clients',
-      'story4-desc': 'Our vision is to build long-term partnerships. Not just delivering one-off projects, but accompanying companies on their digital journey permanently.',
+      'story4-desc': 'Our vision: building long-term partnerships. Not just delivering one-off projects, but accompanying companies permanently on their digital journey – from the first conversation to the next milestone.',
       'mission-label': 'Our Mission',
       'mission-h2': '"We don\'t build websites. We build digital identities that convince."',
-      'mission-desc': 'For us, design is not an end in itself – it is a tool. One that builds trust, wins clients and makes brands unforgettable. That is the standard we bring to work every morning.',
-      'cta-label': 'Start together', 'cta-h1': 'Become part of', 'cta-h2': 'our story.',
-      'cta-desc': 'Tell us about your project. We\'ll get back to you within 24 hours.',
+      'mission-desc': 'For us, design is not an end in itself – it is a tool. One that builds trust, wins clients and makes brands unforgettable. That is the standard we bring to work every day.',
+      'cta-label': 'Start together', 'cta-h1': 'Ready for your', 'cta-h2': 'next project?',
+      'cta-desc': 'Tell us about your idea. We\'ll get back to you within 24 hours.',
       'cta-btn1': 'Get in touch', 'cta-btn2': 'View Pricing',
       'footer-copy': '© 2026 VYO Media. All rights reserved.',
     }
