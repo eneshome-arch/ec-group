@@ -153,17 +153,22 @@
     /* ─── PROCESS STEPS CAROUSEL ─────────────────────────── */
     .steps-carousel { margin-top: 48px; position: relative; }
     .steps-track-wrap {
-      overflow: hidden;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
       border-radius: 24px;
       border: 1px solid var(--border);
       user-select: none;
     }
+    .steps-track-wrap::-webkit-scrollbar { display: none; }
     .steps-track {
       display: flex;
-      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .step-card {
       flex: 0 0 100%;
+      scroll-snap-align: start;
       background: var(--surface); padding: 52px 56px;
       min-height: 320px;
       display: flex; flex-direction: column; justify-content: center;
@@ -1142,22 +1147,21 @@
     });
   });
 
-  // ── Steps Carousel ──────────────────────────────────────
+  // ── Steps Carousel (native scroll-snap) ─────────────────
   (function() {
-    var track    = document.getElementById('stepsTrack');
-    var prevBtn  = document.getElementById('stepsPrev');
-    var nextBtn  = document.getElementById('stepsNext');
-    var dots     = document.querySelectorAll('#stepsDots .carousel-dot');
-    var bar      = document.getElementById('stepsProgressBar');
-    var counter  = document.getElementById('stepsCounter');
-    var total    = 5;
-    var current  = 0;
+    var wrap    = document.querySelector('.steps-track-wrap');
+    var prevBtn = document.getElementById('stepsPrev');
+    var nextBtn = document.getElementById('stepsNext');
+    var dots    = document.querySelectorAll('#stepsDots .carousel-dot');
+    var bar     = document.getElementById('stepsProgressBar');
+    var counter = document.getElementById('stepsCounter');
+    var total   = 5;
+    var current = 0;
 
     function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
-    function goTo(idx) {
-      current = Math.max(0, Math.min(total - 1, idx));
-      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    function updateUI(idx) {
+      current = idx;
       dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
       bar.style.width = ((current + 1) / total * 100) + '%';
       counter.textContent = pad(current + 1) + ' / ' + pad(total);
@@ -1165,67 +1169,29 @@
       nextBtn.disabled = current === total - 1;
     }
 
+    function goTo(idx) {
+      idx = Math.max(0, Math.min(total - 1, idx));
+      wrap.scrollTo({ left: idx * wrap.offsetWidth, behavior: 'smooth' });
+      updateUI(idx);
+    }
+
+    // Sync UI when user swipes natively (Magic Mouse, touch, etc.)
+    var scrollTimer = null;
+    wrap.addEventListener('scroll', function() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        var idx = Math.round(wrap.scrollLeft / wrap.offsetWidth);
+        if (idx !== current) updateUI(idx);
+      }, 50);
+    }, { passive: true });
+
     prevBtn.addEventListener('click', function() { goTo(current - 1); });
     nextBtn.addEventListener('click', function() { goTo(current + 1); });
     dots.forEach(function(d) {
       d.addEventListener('click', function() { goTo(parseInt(d.getAttribute('data-i'))); });
     });
 
-    // Touch + Mouse swipe support
-    var wrap = document.querySelector('.steps-track-wrap');
-    var startX = 0, startY = 0, dragging = false, horizontal = null;
-
-    function onStart(x, y) {
-      startX = x; startY = y; dragging = true; horizontal = null;
-    }
-    function onMove(x, y, e) {
-      if (!dragging) return;
-      var dx = x - startX, dy = y - startY;
-      if (horizontal === null && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
-        horizontal = Math.abs(dx) > Math.abs(dy);
-      }
-      if (horizontal && e.cancelable) e.preventDefault();
-    }
-    function onEnd(x) {
-      if (!dragging) return;
-      dragging = false;
-      var diff = startX - x;
-      if (horizontal && Math.abs(diff) > 40) {
-        goTo(diff > 0 ? current + 1 : current - 1);
-      }
-      wrap.style.cursor = '';
-    }
-
-    // Touch events
-    wrap.addEventListener('touchstart', function(e) { onStart(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-    wrap.addEventListener('touchmove',  function(e) { onMove(e.touches[0].clientX, e.touches[0].clientY, e); }, { passive: false });
-    wrap.addEventListener('touchend',   function(e) { onEnd(e.changedTouches[0].clientX); });
-
-    // Apple Magic Mouse / Trackpad — real-time follow + snap on release
-    var wheelDelta = 0, snapTimer = null;
-    wrap.addEventListener('wheel', function(e) {
-      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-      e.preventDefault();
-      wheelDelta += e.deltaX;
-
-      // Move track instantly without CSS transition
-      var pct = -(current * 100) - (wheelDelta / wrap.offsetWidth * 100);
-      pct = Math.max(-(total - 1) * 100, Math.min(0, pct));
-      track.style.transition = 'none';
-      track.style.transform = 'translateX(' + pct + '%)';
-
-      // Snap to nearest slide after gesture ends
-      clearTimeout(snapTimer);
-      snapTimer = setTimeout(function() {
-        var nearest = Math.round(-pct / 100);
-        nearest = Math.max(0, Math.min(total - 1, nearest));
-        track.style.transition = '';
-        wheelDelta = 0;
-        goTo(nearest);
-      }, 120);
-    }, { passive: false });
-
-    goTo(0);
+    updateUI(0);
   })();
 
   // Mobile hamburger menu
