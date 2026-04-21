@@ -1,6 +1,6 @@
 # VYO Media – Website
 
-Offizielle Website der VYO Media, einer kreativen Medienagentur mit Fokus auf Webdesign, Branding, Photoshooting und digitale Lösungen.
+Offizielle Website der VYO Media (**Visualize Your Online**), einer kreativen Medienagentur mit Fokus auf Webdesign, Branding, Photoshooting und digitale Lösungen.
 
 ## Live
 
