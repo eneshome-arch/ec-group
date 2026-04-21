@@ -233,7 +233,6 @@
     .anatomy-section {
       padding: 80px 48px;
       background: var(--bg);
-      overflow: hidden;
     }
     .anatomy-intro { text-align: center; margin-bottom: 56px; }
     .anatomy-intro .section-sub { margin: 0 auto; }
@@ -426,6 +425,28 @@
     .anatomy-diagram.run .wf-cta-sec   { opacity: 1; transform: none; transition-delay: 0.44s; }
     .anatomy-diagram.run .wf-footer-sec{ opacity: 1; transform: none; transition-delay: 0.54s; }
 
+    /* ─── ANATOMY LEGEND (mobile) ───────────────────────── */
+    .anatomy-legend {
+      display: none;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin-top: 28px;
+      justify-content: center;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: var(--text2);
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.4s ease calc(var(--i) * 0.07s + 0.2s),
+                  transform 0.4s ease calc(var(--i) * 0.07s + 0.2s);
+    }
+    .legend-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent); box-shadow: 0 0 6px var(--accent);
+      flex-shrink: 0;
+    }
+    .anatomy-diagram.run .legend-item { opacity: 1; transform: none; }
+
     /* ─── TIMELINE ───────────────────────────────────────── */
     .timeline-section { padding: 80px 48px; background: var(--bg2); }
     .timeline { max-width: 700px; margin: 64px auto 0; position: relative; }
@@ -542,6 +563,12 @@
     .t-sun  { width: 11px; height: 11px; stroke: rgba(0,0,0,0.45);      fill: none; stroke-width: 2; stroke-linecap: round; }
 
     /* ─── MOBILE ─────────────────────────────────────────── */
+    @media (max-width: 1050px) {
+      .ann-col { display: none; }
+      .anatomy-legend { display: flex; }
+      .anatomy-diagram { justify-content: center; }
+    }
+
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
@@ -551,7 +578,6 @@
       .hero { padding: 80px 24px 48px; }
       .step-card { padding: 36px 32px; min-height: 260px; }
       .anatomy-diagram { flex-direction: column; align-items: center; gap: 32px; }
-      .ann-col { display: none; }
       footer { padding: 40px 24px; flex-direction: column; text-align: center; }
     }
   
@@ -972,6 +998,17 @@
         <div class="ann-line"></div>
         <span class="ann-label" data-i18n="ann-footer">Fußzeile</span>
       </div>
+    </div>
+
+    <!-- Mobile legend (visible when ann-cols are hidden) -->
+    <div class="anatomy-legend" id="anatomyLegend">
+      <div class="legend-item" style="--i:0"><span class="legend-dot"></span><span data-i18n="ann-header">Kopfzeile</span></div>
+      <div class="legend-item" style="--i:1"><span class="legend-dot"></span><span data-i18n="ann-nav">Navigation</span></div>
+      <div class="legend-item" style="--i:2"><span class="legend-dot"></span><span data-i18n="ann-hero">Hero-Bereich</span></div>
+      <div class="legend-item" style="--i:3"><span class="legend-dot"></span><span data-i18n="ann-cta">Call-to-Action</span></div>
+      <div class="legend-item" style="--i:4"><span class="legend-dot"></span><span data-i18n="ann-content">Inhaltsbereich</span></div>
+      <div class="legend-item" style="--i:5"><span class="legend-dot"></span><span data-i18n="ann-action">Aktionsbereich</span></div>
+      <div class="legend-item" style="--i:6"><span class="legend-dot"></span><span data-i18n="ann-footer">Fußzeile</span></div>
     </div>
 
   </div>
