@@ -1208,6 +1208,21 @@
     window.addEventListener('mousemove',function(e) { onMove(e.clientX, e.clientY, e); });
     window.addEventListener('mouseup',  function(e) { onEnd(e.clientX); });
 
+    // Apple Magic Mouse / Trackpad horizontal scroll (wheel deltaX)
+    var wheelAccum = 0, wheelTimer = null;
+    wrap.addEventListener('wheel', function(e) {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; // ignore vertical scroll
+      e.preventDefault();
+      wheelAccum += e.deltaX;
+      clearTimeout(wheelTimer);
+      wheelTimer = setTimeout(function() {
+        if (Math.abs(wheelAccum) > 30) {
+          goTo(wheelAccum > 0 ? current + 1 : current - 1);
+        }
+        wheelAccum = 0;
+      }, 80);
+    }, { passive: false });
+
     goTo(0);
   })();
 
