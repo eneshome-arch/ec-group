@@ -1,10 +1,11 @@
-# EC GROUP – Website
+# VYO Media – Website
 
-Offizielle Website der EC GROUP, einer kreativen Medienagentur mit Fokus auf Webdesign, Branding, Photoshooting und digitale Lösungen. Weltweit tätig.
+Offizielle Website der VYO Media, einer kreativen Medienagentur mit Fokus auf Webdesign, Branding, Photoshooting und digitale Lösungen.
 
 ## Live
 
-[eneshome-arch.github.io/ec-group](https://eneshome-arch.github.io/ec-group/)
+- **GitHub Pages:** [eneshome-arch.github.io/ec-group](https://eneshome-arch.github.io/ec-group/)
+- **Custom Domain:** [vyomedia.de](https://vyomedia.de)
 
 ## Projektstruktur
 
@@ -14,10 +15,15 @@ ec-group-website/
 ├── leistungen.html     # Leistungen & Services
 ├── preise.html         # Preisübersicht
 ├── prozess.html        # Unser Arbeitsprozess
-├── ueber-uns.html      # Über das Team
+├── ueber-uns.html      # Über die Agentur
 ├── karriere.html       # Jobs & Karriere
-├── EC_GROUP_Logo.pdf   # Logo (hell & dunkel)
-└── EC_GROUP_Symbol.pdf # Logo-Symbol (weiß, A4)
+├── anfragen.html       # Kostenlos-Anfrage Formular
+├── logo.svg            # Logo (Volltext)
+├── logo-mark.svg       # Logo-Symbol
+├── logo-bloom.svg      # Bloom-Variante
+├── logo-mark-black.svg # Logo-Symbol schwarz
+├── EC_GROUP_Logo.pdf   # Logo PDF
+└── EC_GROUP_Symbol.pdf # Symbol PDF
 ```
 
 ## Seiten
@@ -27,20 +33,21 @@ ec-group-website/
 | Startseite | `index.html` | Hero, Leistungen, Stats, Prozess, Kontakt |
 | Leistungen | `leistungen.html` | Alle Services mit Filteransicht |
 | Preise | `preise.html` | Pakete, Pflegepläne, FAQ |
-| Prozess | `prozess.html` | Workflow-Erklärung mit Animation |
-| Über uns | `ueber-uns.html` | Team, Werte, Geschichte |
-| Karriere | `karriere.html` | Offene Stellen, Benefits |
+| Prozess | `prozess.html` | Workflow-Karussell, Anatomie-Diagramm, Timeline |
+| Über uns | `ueber-uns.html` | Agentur-Profil, Expertise, Werte, Geschichte |
+| Karriere | `karriere.html` | Offene Stellen, Benefits, Kultur |
+| Anfragen | `anfragen.html` | Mehrstufiges Anfrageformular |
 
 ## Features
 
 - **Dark / Light Mode** – Toggle-Schalter, gespeichert via `localStorage`
 - **DE / EN Sprachumschalter** – vollständige Übersetzung aller Seiten, gespeichert via `localStorage`
-- **Service Cycler** – Leistungsbezeichnungen wechseln mit 3D-Tiefenanimation (von hinten nach vorne)
-- **Internationaler Auftritt** – "Weltweit verfügbar" im Hero, internationale Stat-Box
-- **Scroll-Reveal** – Elemente blenden beim Scrollen ein (IntersectionObserver, threshold 0)
+- **Service Cycler** – Leistungsbezeichnungen wechseln mit 3D-Tiefenanimation
+- **Scroll-Reveal** – Elemente blenden beim Scrollen ein (IntersectionObserver)
 - **Canvas-Partikel** – vernetzte Partikel-Animation im Hero-Bereich
 - **Prozess-Karussell** – 5-Schritte-Karussell mit CSS scroll-snap, Magic Mouse & Touch
 - **Anatomie-Animation** – Wireframe-Diagramm mit staggered Einblend-Animation, zoom-skaliert für Mobile
+- **Kostenlos-Anfragen Button** – mehrstufiges Anfrageformular mit mailto-Übergabe
 
 ## Mobile
 
@@ -67,15 +74,13 @@ ec-group-website/
 
 ## Hosting
 
-Gehostet via **GitHub Pages** – automatisches Deployment bei jedem `git push` auf `main`.
+Gehostet via **GitHub Pages** – automatisches Deployment bei jedem `git push` auf `main`.  
+Custom Domain: **vyomedia.de** (DNS via Ionos, 4× A-Record + CNAME www)
 
 ## Kontakt
 
-- **E-Mail:** info@ecgroup.de
-- **Telefon:** 0511 866 47763
-- **Mobil:** 0151 546 28224
-- **Support:** 0176 608 08641
+- **E-Mail:** info@vyomedia.de
 
 ---
 
-© 2026 EC GROUP. Alle Rechte vorbehalten.
+© 2026 VYO Media. Alle Rechte vorbehalten.

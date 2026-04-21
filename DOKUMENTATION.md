@@ -1,4 +1,4 @@
-# EC GROUP – Technische Dokumentation
+# VYO Media – Technische Dokumentation
 
 ## Inhaltsverzeichnis
 
@@ -85,7 +85,6 @@ Jede Seite enthält direkt im `<head>` folgenden Inline-Script:
 Alle Seiten unterstützen eine vollständige Übersetzung zwischen Deutsch und Englisch. Die gewählte Sprache wird in `localStorage` gespeichert.
 
 ```js
-// Sprache setzen
 localStorage.setItem('ace-lang', 'en' | 'de');
 ```
 
@@ -95,7 +94,7 @@ Jedes übersetzbare Element erhält ein `data-i18n`-Attribut:
 
 ```html
 <h2 data-i18n="hero-title">Design, das bewegt.</h2>
-<p data-i18n="hero-sub">EC GROUP ist deine Medienagentur…</p>
+<p data-i18n="hero-sub">VYO Media ist deine Medienagentur…</p>
 ```
 
 Die `applyLang()`-Funktion wechselt alle Texte:
@@ -139,7 +138,7 @@ function applyLang(lang) {
     <label class="theme-toggle">…</label>
     <button class="lang-toggle" id="langToggle">EN</button>
     <button class="nav-hamburger" id="navHamburger">…</button>
-    <a href="#contact" class="nav-cta">Projekt starten</a>
+    <a href="anfragen.html" class="nav-cta">kostenlos Anfragen</a>
   </div>
 </nav>
 ```
@@ -166,7 +165,7 @@ function updateNavBg() {
 .reveal.in { opacity: 1; transform: none; }
 ```
 
-Verzögerungsklassen: `.reveal-delay-1` bis `.reveal-delay-5` (je +0.1s)
+Verzögerungsklassen: `.reveal-delay-1` bis `.reveal-delay-4` (je +0.1s)
 
 ### Hero-Partikel (Canvas)
 
@@ -176,7 +175,7 @@ Verzögerungsklassen: `.reveal-delay-1` bis `.reveal-delay-5` (je +0.1s)
 
 ### Service Cycler
 
-Ersetzt den alten Marquee-Ticker. Zeigt eine Leistung nach der anderen mit einer 3D-Tiefenanimation: Das Wort kommt von hinten (klein, transparent) nach vorne (normale Größe, sichtbar) und verschwindet wieder nach hinten.
+Zeigt eine Leistung nach der anderen mit einer 3D-Tiefenanimation: Das Wort kommt von hinten (klein, transparent) nach vorne (normale Größe, sichtbar) und verschwindet wieder nach hinten.
 
 ```css
 .cycler-word {
@@ -243,14 +242,22 @@ Animation wird per IntersectionObserver auf `.anatomy-section` ausgelöst (nicht
 <button class="lang-toggle" id="langToggle">EN</button>
 ```
 
-### Karten
+### Karten (Service / Value / Expertise)
 
 ```html
-<div class="service-card reveal">
-  <div class="svc-icon"><svg>…</svg></div>
+<div class="value-card reveal">
+  <div class="value-icon"><svg>…</svg></div>
   <h3>Titel</h3>
   <p>Beschreibung</p>
 </div>
+```
+
+### Anfrageformular (`anfragen.html`)
+
+Mehrstufiges Formular (Projekttyp → Details → Kontakt). Übermittlung via `mailto:`-Link mit vorausgefülltem Betreff und Body.
+
+```js
+window.location.href = 'mailto:info@vyomedia.de?subject=' + subject + '&body=' + body;
 ```
 
 ---
@@ -259,7 +266,7 @@ Animation wird per IntersectionObserver auf `.anatomy-section` ausgelöst (nicht
 
 ### Hamburger-Menü (≤900px)
 
-Der "Projekt starten" Button wird auf Mobile ausgeblendet und durch einen Hamburger ersetzt.
+Der CTA-Button wird auf Mobile ausgeblendet und durch einen Hamburger ersetzt.
 
 ```css
 .nav-hamburger span:nth-child(1) { width: 14px; }
@@ -267,7 +274,7 @@ Der "Projekt starten" Button wird auf Mobile ausgeblendet und durch einen Hambur
 .nav-hamburger span:nth-child(3) { width: 18px; }
 ```
 
-Das Mobile-Menü (`#mobileMenu`) enthält alle Nav-Links + "Projekt starten" CTA.
+Das Mobile-Menü (`#mobileMenu`) enthält alle Nav-Links + CTA.
 
 ### Services-Karussell (Mobile)
 
@@ -315,7 +322,18 @@ Auf ≤900px wird `.services-grid` zu einem horizontalen Swipe-Karussell:
 - **Plattform:** GitHub Pages
 - **Repo:** [github.com/eneshome-arch/ec-group](https://github.com/eneshome-arch/ec-group)
 - **Live URL:** [eneshome-arch.github.io/ec-group](https://eneshome-arch.github.io/ec-group/)
+- **Custom Domain:** [vyomedia.de](https://vyomedia.de) (DNS via Ionos)
 - **Deployment:** automatisch bei jedem `git push origin main`
+
+### DNS-Konfiguration (Ionos)
+
+| Typ | Host | Wert |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `eneshome-arch.github.io` |
 
 ---
 
@@ -323,11 +341,8 @@ Auf ≤900px wird `.services-grid` zu einem horizontalen Swipe-Karussell:
 
 | Art | Wert |
 |---|---|
-| E-Mail | info@ecgroup.de |
-| Festnetz | 0511 866 47763 |
-| Mobil (Enes) | 0151 546 28224 |
-| Support (Ali) | 0176 608 08641 |
+| E-Mail | info@vyomedia.de |
 
 ---
 
-*EC GROUP – Kreative Medienagentur · © 2026*
+*VYO Media – Kreative Medienagentur · © 2026*
