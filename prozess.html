@@ -156,10 +156,8 @@
       overflow: hidden;
       border-radius: 24px;
       border: 1px solid var(--border);
-      cursor: grab;
       user-select: none;
     }
-    .steps-track-wrap:active { cursor: grabbing; }
     .steps-track {
       display: flex;
       transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1202,11 +1200,6 @@
     wrap.addEventListener('touchstart', function(e) { onStart(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
     wrap.addEventListener('touchmove',  function(e) { onMove(e.touches[0].clientX, e.touches[0].clientY, e); }, { passive: false });
     wrap.addEventListener('touchend',   function(e) { onEnd(e.changedTouches[0].clientX); });
-
-    // Mouse drag (desktop)
-    wrap.addEventListener('mousedown',  function(e) { onStart(e.clientX, e.clientY); wrap.style.cursor = 'grabbing'; });
-    window.addEventListener('mousemove',function(e) { onMove(e.clientX, e.clientY, e); });
-    window.addEventListener('mouseup',  function(e) { onEnd(e.clientX); });
 
     // Apple Magic Mouse / Trackpad horizontal scroll (wheel deltaX)
     var wheelAccum = 0, wheelTimer = null;
