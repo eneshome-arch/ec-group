@@ -1138,17 +1138,19 @@
     requestAnimationFrame(draw);
   })();
 
-  // Anatomy diagram trigger
+  // Anatomy diagram trigger — observe the section (always full-width),
+  // not the diagram itself (which can overflow on narrow viewports)
   const diagram = document.getElementById('anatomyDiagram');
+  const anatomySection = document.querySelector('.anatomy-section');
   const anatomyObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.classList.add('run');
+        diagram.classList.add('run');
         anatomyObs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
-  anatomyObs.observe(diagram);
+  }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
+  anatomyObs.observe(anatomySection);
 
   // Smooth anchor scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
