@@ -32,6 +32,7 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      min-width: 320px;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -527,18 +528,30 @@
     @media (max-width: 540px) {
       body { overflow-x: hidden; }
       nav { padding: 0 16px; }
-      .hero, .section, .pricing-section, .cta-section { padding-left: 20px; padding-right: 20px; padding-top: 48px; }
+      .hero { padding-left: 20px; padding-right: 20px; padding-top: 96px; padding-bottom: 48px; }
+      .section, .pricing-section, .cta-section { padding-left: 20px; padding-right: 20px; }
       .section-title { font-size: clamp(24px, 7vw, 34px); }
       .section-sub { font-size: 15px; }
       .price-number { font-size: 40px; }
-      .pricing-card { padding: 28px 20px; }
-      .pricing-card.featured { padding: 32px 20px; }
+      .price-card { padding: 28px 20px; }
+      .price-card.featured { padding: 32px 20px; }
       .maint-card { padding: 24px 16px; }
       .maint-title { font-size: 16px; }
-      .faq-q { padding: 18px 0; font-size: 14px; }
+      .faq-q span { font-size: 14px; }
       .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
-      .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; padding: 14px 20px; justify-content: center; }
+      .cta-btn-primary, .cta-btn-ghost { width: 100%; max-width: 280px; text-align: center; padding: 14px 20px; justify-content: center; }
       footer { padding: 32px 20px 20px; flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 390px) {
+      .price-number { font-size: 34px; }
+      .price-name { font-size: 20px; }
+      .maint-price { font-size: 28px; }
+    }
+
+    @media (hover: none) {
+      .price-card:hover, .maint-card:hover { transform: none; }
+      .cta-btn-primary:hover, .cta-btn-ghost:hover { transform: none; }
     }
     </style>
 </head>

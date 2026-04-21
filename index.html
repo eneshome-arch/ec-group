@@ -32,6 +32,7 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      min-width: 320px;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -575,23 +576,29 @@
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
       footer { padding: 40px 24px 24px; }
       .cta-banner { padding: 64px 24px; }
+      .service-cycler { padding: 20px 24px; gap: 16px; }
+      .cycler-label { font-size: 10px; letter-spacing: 0.14em; }
+      .cycler-stage { min-width: 180px; }
     }
-@media (max-width: 540px) {
+    @media (max-width: 540px) {
       body { overflow-x: hidden; }
       .portfolio-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: repeat(4, 1fr); }
+      /* Stats: 2×2 grid on mobile */
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
       .stat-box { border-right: 1px solid var(--border) !important; border-bottom: none !important; }
-      .stat-box:last-child { border-right: none !important; }
-      /* ── NEW MOBILE FIXES ── */
+      .stat-box:nth-child(2) { border-right: none !important; }
+      .stat-box:nth-child(1),
+      .stat-box:nth-child(2) { border-bottom: 1px solid var(--border) !important; }
+      .stat-box:last-child { border-right: 1px solid var(--border) !important; }
       nav { padding: 0 16px; }
       .section { padding: 48px 20px; }
       .hero { padding: 80px 20px 40px; }
       .section-title { font-size: clamp(24px, 7vw, 34px); }
       .section-sub { font-size: 15px; }
-      .stat-num { font-size: 22px; }
-      .stat-box { padding: 16px 6px; }
-      .stat-lbl { font-size: 10px; }
+      .stat-num { font-size: 36px; }
+      .stat-box { padding: 20px 12px; }
+      .stat-lbl { font-size: 12px; }
       .process-row { grid-template-columns: 1fr; gap: 28px; }
       .process-step { padding: 0 8px; }
       .service-card { padding: 22px 18px; }
@@ -608,6 +615,26 @@
       .ticker-item { padding: 0 20px; }
       .ticker::before, .ticker::after { width: 40px; }
       .portfolio-card { aspect-ratio: 3/2; }
+      /* Service cycler: hide label on very small screens */
+      .service-cycler { padding: 14px 20px; gap: 10px; }
+      .cycler-label, .cycler-divider { display: none; }
+      .cycler-stage { min-width: 0; width: 100%; text-align: center; }
+    }
+
+    @media (max-width: 390px) {
+      .hero h1 { letter-spacing: -0.035em; }
+      .stat-num { font-size: 30px; }
+      .stat-lbl { font-size: 11px; }
+      .stat-box { padding: 16px 8px; }
+      .footer-top { gap: 20px; }
+    }
+
+    @media (hover: none) {
+      .btn-primary:hover, .btn-ghost:hover { transform: none; }
+      .portfolio-card:hover { transform: none; }
+      .service-card:hover { background: var(--surface); }
+      .process-step:hover .step-num { background: var(--bg2); border-color: var(--border2); }
+      .process-step:hover .step-num.lit { background: var(--gradient); border-color: transparent; }
     }
 
     /* ─── HERO CANVAS ─────────────────────────────────── */
