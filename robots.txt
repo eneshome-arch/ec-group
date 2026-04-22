@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /anfragen.html
+
+Sitemap: https://vyomedia.de/sitemap.xml

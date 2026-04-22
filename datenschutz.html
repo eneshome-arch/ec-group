@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutzerklärung – VYO Media Hannover</title>
+  <meta name="description" content="Datenschutzerklärung von VYO Media Hannover gemäß DSGVO. Informationen zur Verarbeitung personenbezogener Daten auf vyomedia.de.">
+  <link rel="canonical" href="https://vyomedia.de/datenschutz.html">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="fonts/inter.css">
+  <script>if(localStorage.getItem('ace-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+  <style>
+    :root {
+      --bg:        #000000;
+      --bg2:       #080808;
+      --surface:   #0f0f0f;
+      --surface2:  #161616;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --text:      #ffffff;
+      --text2:     #888888;
+      --text3:     #444444;
+      --accent:    #7ec8a0;
+      --accent2:   #b5e8cc;
+      --gradient:  linear-gradient(135deg, #7ec8a0 0%, #b5e8cc 100%);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-width: 320px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    [data-theme="light"] {
+      --bg: #f0faf5; --bg2: #e3f5eb; --surface: #ffffff; --surface2: #edf7f2;
+      --border: rgba(0,80,40,0.1); --border2: rgba(0,80,40,0.18);
+      --text: #0a2118; --text2: #3a6b52; --text3: #7aab90;
+    }
+    [data-theme="light"] nav { background: rgba(240,250,245,0.95) !important; }
+    [data-theme="light"] .nav-logo-icon path { fill: #0a0a0a; }
+    [data-theme="light"] .nav-logo-text { color: #0a0a0a; }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .nav-logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 15px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 7px;
+      color: var(--text2); text-decoration: none; font-size: 13.5px; font-weight: 500;
+      border: 1px solid var(--border2); padding: 7px 16px; border-radius: 999px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ─── PAGE ────────────────────────────────────────── */
+    .page-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 112px 32px 100px;
+    }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .page-header {
+      margin-bottom: 64px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .page-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800; letter-spacing: -0.035em; line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .page-meta { font-size: 14px; color: var(--text3); }
+
+    /* ─── CONTENT ─────────────────────────────────────── */
+    .section-block {
+      margin-bottom: 48px;
+    }
+    .section-block h2 {
+      font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 14px; color: var(--text);
+      padding-top: 8px;
+    }
+    .section-block h3 {
+      font-size: 15px; font-weight: 600;
+      margin-top: 20px; margin-bottom: 10px; color: var(--text);
+    }
+    .section-block p {
+      font-size: 15px; line-height: 1.8; color: var(--text2);
+      margin-bottom: 14px;
+    }
+    .section-block p:last-child { margin-bottom: 0; }
+    .section-block ul {
+      list-style: none; padding: 0;
+    }
+    .section-block ul li {
+      font-size: 15px; line-height: 1.8; color: var(--text2);
+      padding-left: 20px; position: relative; margin-bottom: 6px;
+    }
+    .section-block ul li::before {
+      content: '–';
+      position: absolute; left: 0; color: var(--accent);
+    }
+    .section-block a {
+      color: var(--accent); text-decoration: none;
+    }
+    .section-block a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 24px 0;
+    }
+    .highlight-box p { margin-bottom: 0; }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    .page-footer {
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .page-footer p { font-size: 13px; color: var(--text3); }
+    .page-footer a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
+    .page-footer a:hover { color: var(--text); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .page-wrap { padding: 96px 20px 80px; }
+      .page-footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════ NAV ════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">VYO Media</span>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Zurück zur Startseite
+  </a>
+</nav>
+
+<!-- ════════════════════ CONTENT ════════════════════ -->
+<div class="page-wrap">
+
+  <div class="page-header">
+    <span class="page-label">Rechtliches</span>
+    <h1 class="page-title">Datenschutzerklärung</h1>
+    <p class="page-meta">Stand: April 2026 &nbsp;·&nbsp; VYO Media, Hannover</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="section-block">
+    <h2>1. Verantwortlicher</h2>
+    <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) für diese Website ist:</p>
+    <div class="highlight-box">
+      <p><strong>VYO Media</strong><br>
+      Hannover, Deutschland<br>
+      E-Mail: <a href="mailto:info@vyomedia.de">info@vyomedia.de</a><br>
+      Telefon: <a href="tel:+4951186647763">0511 866 47763</a></p>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section-block">
+    <h2>2. Welche Daten wir erheben und warum</h2>
+
+    <h3>2.1 Hosting & Server-Logs</h3>
+    <p>Diese Website wird über einen Hosting-Anbieter bereitgestellt. Bei jedem Aufruf werden vom Webserver automatisch folgende Daten temporär in Server-Logs gespeichert:</p>
+    <ul>
+      <li>IP-Adresse des anfragenden Geräts (anonymisiert)</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>Aufgerufene Seite / URL</li>
+      <li>HTTP-Statuscode</li>
+      <li>Übertragene Datenmenge</li>
+      <li>Browsertyp und Betriebssystem (User-Agent)</li>
+    </ul>
+    <p>Diese Daten werden ausschließlich für den technischen Betrieb und zur Sicherheit der Website verwendet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse). Die Logs werden nach spätestens 30 Tagen gelöscht.</p>
+
+    <h3>2.2 Kontakt per E-Mail</h3>
+    <p>Wenn Sie uns per E-Mail kontaktieren (z. B. über unsere Anfrage-Formulare, die eine E-Mail an uns vorbereiten), werden die von Ihnen angegebenen Daten (Name, E-Mail-Adresse, Projektbeschreibung) ausschließlich zur Bearbeitung Ihrer Anfrage gespeichert und verwendet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse). Die Daten werden gelöscht, sobald die Anfrage abschließend bearbeitet wurde und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+
+    <h3>2.3 Bewerbungen</h3>
+    <p>Wenn Sie sich per E-Mail bewerben, verarbeiten wir Ihre Bewerbungsdaten (Name, Kontaktdaten, Lebenslauf, Anschreiben) ausschließlich zur Durchführung des Bewerbungsverfahrens. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO sowie § 26 BDSG. Nicht berücksichtigte Bewerbungen werden nach 6 Monaten gelöscht, sofern keine Einwilligung zur längeren Speicherung vorliegt.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="section-block">
+    <h2>3. Cookies und lokale Speicherung</h2>
+    <p>Diese Website verwendet <strong>keine Cookies</strong>.</p>
+    <p>Wir nutzen ausschließlich den <strong>localStorage</strong> Ihres Browsers für rein technische Funktionen:</p>
+    <ul>
+      <li><strong>ace-theme</strong> – speichert Ihre Farbschema-Präferenz (Dark/Light Mode)</li>
+      <li><strong>ace-lang</strong> – speichert Ihre Sprachauswahl (Deutsch/Englisch)</li>
+    </ul>
+    <p>Diese Daten verlassen Ihr Gerät nicht, werden nicht an uns übermittelt und enthalten keine personenbezogenen Informationen. Sie können den localStorage jederzeit über die Entwicklertools Ihres Browsers löschen.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="section-block">
+    <h2>4. Schriftarten (Fonts)</h2>
+    <p>Diese Website verwendet die Schriftart <strong>Inter</strong>, die vollständig <strong>lokal auf unserem Server</strong> gespeichert ist. Es wird keine Verbindung zu Google Fonts, Adobe Fonts oder anderen externen Schriftdiensten hergestellt. Beim Laden der Schriftarten werden keine Daten an Dritte übermittelt.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="section-block">
+    <h2>5. Analyse- und Tracking-Tools</h2>
+    <p>Diese Website verwendet <strong>keine</strong> Analyse-, Tracking- oder Remarketing-Tools. Es werden keine Daten an Google Analytics, Meta Pixel, Hotjar oder ähnliche Dienste übermittelt.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="section-block">
+    <h2>6. Externe Links und Social Media</h2>
+    <p>Unsere Website enthält Links zu externen Websites (z. B. Instagram, LinkedIn, Behance). Sobald Sie auf einen solchen Link klicken, verlassen Sie unsere Website. Für den Datenschutz auf externen Seiten sind die jeweiligen Betreiber verantwortlich. Auf die Inhalte und Datenschutzpraktiken dieser Seiten haben wir keinen Einfluss.</p>
+    <p>Auf unserer Website sind keine Social-Media-Plugins (Share-Buttons, Like-Buttons) eingebunden, die automatisch Daten an Social-Media-Netzwerke übertragen.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="section-block">
+    <h2>7. Übertragungssicherheit (SSL/TLS)</h2>
+    <p>Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass in der Adresszeile Ihres Browsers „https://" steht und das Schloss-Symbol angezeigt wird.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="section-block">
+    <h2>8. Ihre Rechte als betroffene Person</h2>
+    <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
+    <ul>
+      <li><strong>Auskunftsrecht</strong> (Art. 15 DSGVO) – Sie können Auskunft über die von uns verarbeiteten Daten verlangen.</li>
+      <li><strong>Recht auf Berichtigung</strong> (Art. 16 DSGVO) – Sie können die Korrektur unrichtiger Daten fordern.</li>
+      <li><strong>Recht auf Löschung</strong> (Art. 17 DSGVO) – Sie können die Löschung Ihrer Daten verlangen.</li>
+      <li><strong>Recht auf Einschränkung</strong> (Art. 18 DSGVO) – Sie können die Einschränkung der Verarbeitung verlangen.</li>
+      <li><strong>Recht auf Datenübertragbarkeit</strong> (Art. 20 DSGVO) – Sie können Ihre Daten in einem strukturierten Format erhalten.</li>
+      <li><strong>Widerspruchsrecht</strong> (Art. 21 DSGVO) – Sie können der Verarbeitung auf Basis berechtigter Interessen widersprechen.</li>
+    </ul>
+    <p>Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: <a href="mailto:info@vyomedia.de">info@vyomedia.de</a></p>
+    <p>Sie haben außerdem das Recht, sich bei der zuständigen Datenschutz-Aufsichtsbehörde zu beschweren. Die zuständige Behörde für Niedersachsen ist:</p>
+    <div class="highlight-box">
+      <p><strong>Die Landesbeauftragte für den Datenschutz Niedersachsen (LfD)</strong><br>
+      Prinzenstraße 5, 30159 Hannover<br>
+      <a href="https://www.lfd.niedersachsen.de" target="_blank" rel="noopener noreferrer">www.lfd.niedersachsen.de</a></p>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="section-block">
+    <h2>9. Aktualität und Änderungen</h2>
+    <p>Diese Datenschutzerklärung hat den Stand April 2026. Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung anzupassen. Die jeweils aktuelle Version finden Sie stets unter dieser URL.</p>
+  </div>
+
+  <div class="page-footer">
+    <p>© 2026 VYO Media. Alle Rechte vorbehalten.</p>
+    <p>
+      <a href="#">Impressum</a> &nbsp;·&nbsp;
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+  </div>
+
+</div>
+
+<script>
+  const t = document.getElementById('themeToggle');
+  if(t) {
+    t.checked = localStorage.getItem('ace-theme') === 'light';
+    t.addEventListener('change', () => {
+      const l = t.checked ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', l === 'light' ? 'light' : '');
+      if(l === 'dark') document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('ace-theme', l);
+    });
+  }
+</script>
+</body>
+</html>

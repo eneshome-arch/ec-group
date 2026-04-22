@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum – VYO Media Hannover</title>
+  <meta name="description" content="Impressum von VYO Media Hannover gemäß § 5 TMG.">
+  <link rel="canonical" href="https://vyomedia.de/impressum.html">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="fonts/inter.css">
+  <script>if(localStorage.getItem('ace-theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+  <style>
+    :root {
+      --bg:        #000000;
+      --bg2:       #080808;
+      --surface:   #0f0f0f;
+      --surface2:  #161616;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --text:      #ffffff;
+      --text2:     #888888;
+      --text3:     #444444;
+      --accent:    #7ec8a0;
+      --accent2:   #b5e8cc;
+      --gradient:  linear-gradient(135deg, #7ec8a0 0%, #b5e8cc 100%);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-width: 320px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    [data-theme="light"] {
+      --bg: #f0faf5; --bg2: #e3f5eb; --surface: #ffffff; --surface2: #edf7f2;
+      --border: rgba(0,80,40,0.1); --border2: rgba(0,80,40,0.18);
+      --text: #0a2118; --text2: #3a6b52; --text3: #7aab90;
+    }
+    [data-theme="light"] nav { background: rgba(240,250,245,0.95) !important; }
+    [data-theme="light"] .nav-logo-icon path { fill: #0a0a0a; }
+    [data-theme="light"] .nav-logo-text { color: #0a0a0a; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .nav-logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
+    .nav-logo-text { font-size: 15px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 7px;
+      color: var(--text2); text-decoration: none; font-size: 13.5px; font-weight: 500;
+      border: 1px solid var(--border2); padding: 7px 16px; border-radius: 999px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .page-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 112px 32px 100px;
+    }
+
+    .page-header {
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .page-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800; letter-spacing: -0.035em; line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .page-meta { font-size: 14px; color: var(--text3); }
+
+    .section-block { margin-bottom: 44px; }
+    .section-block h2 {
+      font-size: 17px; font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 14px; color: var(--text);
+    }
+    .section-block p {
+      font-size: 15px; line-height: 1.85; color: var(--text2);
+      margin-bottom: 10px;
+    }
+    .section-block p:last-child { margin-bottom: 0; }
+    .section-block a { color: var(--accent); text-decoration: none; }
+    .section-block a:hover { text-decoration: underline; }
+
+    .info-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .info-block p { font-size: 15px; line-height: 1.9; color: var(--text2); margin: 0; }
+    .info-block strong { color: var(--text); }
+
+    /* TODO-Hinweis für fehlende Felder */
+    .todo-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255, 200, 0, 0.08);
+      border: 1px solid rgba(255, 200, 0, 0.25);
+      color: #f5c842;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em;
+      padding: 3px 10px; border-radius: 999px;
+      margin-top: 16px; display: inline-block;
+    }
+
+    .todo-box {
+      background: rgba(255, 200, 0, 0.04);
+      border: 1px solid rgba(255, 200, 0, 0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 12px;
+    }
+    .todo-box p {
+      font-size: 13.5px; color: #c9a830; margin: 0; line-height: 1.7;
+    }
+
+    .page-footer {
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .page-footer p { font-size: 13px; color: var(--text3); }
+    .page-footer a { color: var(--text3); text-decoration: none; transition: color 0.2s; }
+    .page-footer a:hover { color: var(--text); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .page-wrap { padding: 96px 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="white">
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(0,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(60,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(120,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(180,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(240,50,50)"/>
+        <path d="M50,50 C46,43 44,34 47.5,20 C48.5,13 51.5,13 52.5,20 C56,34 54,43 50,50Z" transform="rotate(300,50,50)"/>
+      </g>
+    </svg>
+    <span class="nav-logo-text">VYO Media</span>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Zurück zur Startseite
+  </a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <span class="page-label">Rechtliches</span>
+    <h1 class="page-title">Impressum</h1>
+    <p class="page-meta">Angaben gemäß § 5 TMG</p>
+  </div>
+
+  <!-- Angaben zum Unternehmen -->
+  <div class="section-block">
+    <h2>Anbieter</h2>
+    <div class="info-block">
+      <p>
+        <strong>VYO Media</strong><br>
+        Hannover, Deutschland
+      </p>
+    </div>
+    <div class="todo-box">
+      <p>Nach Gewerbeanmeldung ergänzen: vollständige Adresse (Straße, PLZ, Ort)</p>
+    </div>
+  </div>
+
+  <!-- Kontakt -->
+  <div class="section-block">
+    <h2>Kontakt</h2>
+    <div class="info-block">
+      <p>
+        E-Mail: <a href="mailto:info@vyomedia.de">info@vyomedia.de</a><br>
+        Telefon: <a href="tel:+4951186647763">0511 866 47763</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Steuernummer / USt-IdNr. -->
+  <div class="section-block">
+    <h2>Steuerliche Angaben</h2>
+    <div class="todo-box">
+      <p>Nach Gewerbeanmeldung ergänzen: Steuernummer (vom Finanzamt) und ggf. Umsatzsteuer-Identifikationsnummer (USt-IdNr.) gemäß § 27a UStG — wird nach Anmeldung beim Finanzamt zugeteilt.</p>
+    </div>
+  </div>
+
+  <!-- Berufsbezeichnung -->
+  <div class="section-block">
+    <h2>Berufsbezeichnung & Kammer</h2>
+    <div class="info-block">
+      <p>
+        Berufsbezeichnung: Mediengestalter / Webdesigner<br>
+        Tätigkeitsbereich: Webdesign, Grafikdesign, digitale Medien<br>
+        Verliehen in: Deutschland
+      </p>
+    </div>
+  </div>
+
+  <!-- Verantwortlich für Inhalte -->
+  <div class="section-block">
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <div class="info-block">
+      <p>
+        VYO Media<br>
+        Hannover, Deutschland<br>
+        <a href="mailto:info@vyomedia.de">info@vyomedia.de</a>
+      </p>
+    </div>
+    <div class="todo-box">
+      <p>Nach Gewerbeanmeldung: vollständigen Namen und Adresse der verantwortlichen Person eintragen.</p>
+    </div>
+  </div>
+
+  <!-- Haftungsausschluss -->
+  <div class="section-block">
+    <h2>Haftung für Inhalte</h2>
+    <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+    <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+  </div>
+
+  <!-- Haftung für Links -->
+  <div class="section-block">
+    <h2>Haftung für Links</h2>
+    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+    <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+  </div>
+
+  <!-- Urheberrecht -->
+  <div class="section-block">
+    <h2>Urheberrecht</h2>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+    <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis an <a href="mailto:info@vyomedia.de">info@vyomedia.de</a>.</p>
+  </div>
+
+  <div class="page-footer">
+    <p>© 2026 VYO Media. Alle Rechte vorbehalten.</p>
+    <p>
+      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
