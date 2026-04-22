@@ -263,8 +263,18 @@
     /* ─── SECTIONS COMMON ─────────────────────────────────── */
     .section { padding: 80px 48px; }
     .section-dark { background: var(--bg2); }
+    /* ─── SECTION TRANSITIONS ──────────────────────────── */
+    section { position: relative; }
+    section::before, section::after {
+      content: ''; position: absolute;
+      left: 0; right: 0; height: 80px;
+      pointer-events: none; z-index: 2;
+    }
+    section::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
+    section::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
+
     #process {
-      background-image: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)), url('images/code-screen.jpg');
+      background-image: linear-gradient(rgba(0,0,0,1) 0%, transparent 18%, transparent 82%, rgba(0,0,0,1) 100%), linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)), url('images/code-screen.jpg');
       background-size: cover; background-position: center;
     }
     [data-theme="light"] #process { background-image: none; }
@@ -466,7 +476,7 @@
     .cta-banner {
       text-align: center; position: relative; overflow: hidden;
       padding: 0px 48px 88px;
-      background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('images/teal-waves.jpg');
+      background-image: linear-gradient(rgba(0,0,0,1) 0%, transparent 18%, transparent 82%, rgba(0,0,0,1) 100%), linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('images/teal-waves.jpg');
       background-size: cover;
       background-position: center;
     }

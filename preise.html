@@ -80,7 +80,7 @@
       align-items: center; justify-content: center;
       text-align: center; padding: 88px 48px 80px;
       position: relative; overflow: hidden;
-      background-image: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('images/wireframe.jpg');
+      background-image: linear-gradient(rgba(0,0,0,1) 0%, transparent 18%, transparent 82%, rgba(0,0,0,1) 100%), linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('images/wireframe.jpg');
       background-size: cover; background-position: center;
     }
     [data-theme="light"] .hero { background-image: none; }
@@ -128,6 +128,16 @@
     /* ─── SECTION COMMON ─────────────────────────────────────── */
     .section { padding: 72px 48px; }
     .section-dark { background: var(--bg2); }
+    /* ─── SECTION TRANSITIONS ──────────────────────────── */
+    section { position: relative; }
+    section::before, section::after {
+      content: ''; position: absolute;
+      left: 0; right: 0; height: 80px;
+      pointer-events: none; z-index: 2;
+    }
+    section::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
+    section::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
+
     .section-label {
       display: inline-block; font-size: 11.5px; font-weight: 600;
       letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
@@ -321,7 +331,7 @@
 
     /* ─── SECTION BACKGROUNDS ──────────────────────────────── */
     #maintenance {
-      background-image: linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)), url('images/workspace.jpg');
+      background-image: linear-gradient(rgba(0,0,0,1) 0%, transparent 18%, transparent 82%, rgba(0,0,0,1) 100%), linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)), url('images/workspace.jpg');
       background-size: cover; background-position: center;
     }
     [data-theme="light"] #maintenance { background-image: none; }
@@ -330,7 +340,7 @@
     .cta-section {
       text-align: center; padding: 80px 48px;
       position: relative; overflow: hidden;
-      background-image: linear-gradient(rgba(0,0,0,0.86), rgba(0,0,0,0.86)), url('images/abstract-green.jpg');
+      background-image: linear-gradient(rgba(0,0,0,1) 0%, transparent 18%, transparent 82%, rgba(0,0,0,1) 100%), linear-gradient(rgba(0,0,0,0.86), rgba(0,0,0,0.86)), url('images/abstract-green.jpg');
       background-size: cover; background-position: center;
     }
     [data-theme="light"] .cta-section { background-image: none; }
