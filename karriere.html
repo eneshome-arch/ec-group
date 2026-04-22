@@ -234,10 +234,29 @@
     .culture-stat-label { font-size: 13px; color: var(--text2); font-weight: 500; line-height: 1.4; }
 
     /* ─── CTA ──────────────────────────────────────────── */
+    #benefits {
+      background-image: linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)), url('images/conference-room.jpg');
+      background-size: cover; background-position: center;
+    }
+    #culture {
+      background-image: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('images/workspace.jpg');
+      background-size: cover; background-position: center;
+    }
+    #jobs {
+      background-image: linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)), url('images/neon-rocket.jpg');
+      background-size: cover; background-position: center;
+    }
+    [data-theme="light"] #benefits,
+    [data-theme="light"] #culture,
+    [data-theme="light"] #jobs { background-image: none; }
+
     .cta-section {
       text-align: center; padding: 80px 48px;
       position: relative; overflow: hidden;
+      background-image: linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.88)), url('images/teal-waves.jpg');
+      background-size: cover; background-position: center;
     }
+    [data-theme="light"] .cta-section { background-image: none; }
     .cta-glow { position: absolute !important; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 400px; pointer-events: none; background: radial-gradient(ellipse at center, rgba(126,200,160,0.1), transparent 70%); }
     .cta-section > * { position: relative; z-index: 1; }
     .cta-section h2 { font-size: clamp(36px, 6vw, 76px); font-weight: 900; letter-spacing: -0.045em; line-height: 0.95; margin-bottom: 20px; }
@@ -528,7 +547,7 @@
 </section>
 
 <!-- ════════════ BENEFITS ════════════ -->
-<section class="section section-dark">
+<section class="section section-dark" id="benefits">
   <div style="max-width:1100px;margin:0 auto">
     <div class="reveal" style="text-align:center">
       <div class="section-label" data-i18n="benefits-label">Warum VYO Media</div>
@@ -584,7 +603,7 @@
 </section>
 
 <!-- ════════════ CULTURE ════════════ -->
-<section class="section">
+<section class="section" id="culture">
   <div class="culture-wrap">
     <div class="culture-text reveal">
       <div class="section-label" data-i18n="culture-label">Unsere Kultur</div>
@@ -736,7 +755,7 @@
 </section>
 
 <!-- ════════════ CTA ════════════ -->
-<section class="cta-section">
+<section class="cta-section" id="karriere-cta">
   <div class="cta-glow"></div>
   <div class="section-label" data-i18n="cta-label">Nächster Schritt</div>
   <h2><span data-i18n="cta-title-line1">Bereit für</span><br><span class="gradient-text" data-i18n="cta-title-line2">etwas Neues?</span></h2>
