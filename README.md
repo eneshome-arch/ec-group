@@ -17,13 +17,20 @@ ec-group-website/
 ├── prozess.html        # Unser Arbeitsprozess
 ├── ueber-uns.html      # Über die Agentur
 ├── karriere.html       # Jobs & Karriere
-├── anfragen.html       # Kostenlos-Anfrage Formular
-├── logo.svg            # Logo (Volltext)
-├── logo-mark.svg       # Logo-Symbol
-├── logo-bloom.svg      # Bloom-Variante
-├── logo-mark-black.svg # Logo-Symbol schwarz
-├── EC_GROUP_Logo.pdf   # Logo PDF
-└── EC_GROUP_Symbol.pdf # Symbol PDF
+├── anfragen.html       # Kostenlos-Anfrage Formular (9-stufig)
+├── datenschutz.html    # Datenschutzerklärung (DSGVO)
+├── impressum.html      # Impressum (§ 5 TMG)
+├── sitemap.xml         # XML-Sitemap für Suchmaschinen
+├── robots.txt          # Crawler-Anweisungen
+├── fonts/              # Self-hosted Inter Schriftart (woff2)
+│   ├── inter.css       # @font-face Deklarationen
+│   └── *.woff2         # 14 Schriftdateien (normal + italic)
+├── logo.svg
+├── logo-mark.svg
+├── logo-bloom.svg
+├── logo-mark-black.svg
+├── EC_GROUP_Logo.pdf
+└── EC_GROUP_Symbol.pdf
 ```
 
 ## Seiten
@@ -36,7 +43,9 @@ ec-group-website/
 | Prozess | `prozess.html` | Workflow-Karussell, Anatomie-Diagramm, Timeline |
 | Über uns | `ueber-uns.html` | Agentur-Profil, Expertise, Werte, Geschichte |
 | Karriere | `karriere.html` | Offene Stellen, Benefits, Kultur |
-| Anfragen | `anfragen.html` | Mehrstufiges Anfrageformular |
+| Anfragen | `anfragen.html` | 9-stufiges Anfrageformular mit mailto-Übergabe |
+| Datenschutz | `datenschutz.html` | DSGVO-konforme Datenschutzerklärung |
+| Impressum | `impressum.html` | Impressum gemäß § 5 TMG |
 
 ## Features
 
@@ -47,7 +56,25 @@ ec-group-website/
 - **Canvas-Partikel** – vernetzte Partikel-Animation im Hero-Bereich
 - **Prozess-Karussell** – 5-Schritte-Karussell mit CSS scroll-snap, Magic Mouse & Touch
 - **Anatomie-Animation** – Wireframe-Diagramm mit staggered Einblend-Animation, zoom-skaliert für Mobile
-- **Kostenlos-Anfragen Button** – mehrstufiges Anfrageformular mit mailto-Übergabe
+- **Anfragen-Formular** – 9-stufiges Fragebogen-Formular, alle Buttons sitewide verlinken hierauf
+
+## SEO
+
+- **Title-Tags** – keywordoptimiert mit „Webdesign Hannover" auf allen Seiten
+- **Meta Descriptions** – individuelle Beschreibungen pro Seite
+- **Open Graph Tags** – für Social-Media-Previews
+- **Schema.org LocalBusiness** – strukturierte Daten auf `index.html`
+- **sitemap.xml** – alle 6 öffentlichen Seiten, eingereicht in Google Search Console
+- **robots.txt** – Formulare und rechtliche Seiten von Indexierung ausgeschlossen
+- **Canonical URLs** – auf jeder Seite gesetzt
+
+## DSGVO / Datenschutz
+
+- **Keine Cookies** – nur `localStorage` für funktionale Einstellungen (Theme, Sprache)
+- **Kein Tracking** – kein Google Analytics, kein Meta Pixel, keine externen Tracker
+- **Self-hosted Fonts** – Inter lokal gehostet, kein Google Fonts CDN-Aufruf
+- **Datenschutzerklärung** – inkl. GitHub Pages (Hosting), localStorage, E-Mail-Kontakt, Betroffenenrechte, Aufsichtsbehörde Niedersachsen
+- **Impressum** – angelegt, vollständige Angaben nach Gewerbeanmeldung zu ergänzen
 
 ## Mobile
 
@@ -60,7 +87,7 @@ ec-group-website/
 ## Technologie
 
 - **Reines HTML/CSS/JavaScript** – kein Framework, keine Dependencies
-- **Google Fonts** – Inter (300–900)
+- **Self-hosted Fonts** – Inter (300–900), lokal gespeichert in `/fonts/`
 - **CSS Custom Properties** – vollständiges Theme-System
 - **Intersection Observer** – Scroll-Reveal-Animationen
 - **Canvas API** – Partikel-Animation im Hero-Bereich
@@ -77,9 +104,18 @@ ec-group-website/
 Gehostet via **GitHub Pages** – automatisches Deployment bei jedem `git push` auf `main`.  
 Custom Domain: **vyomedia.de** (DNS via Ionos, 4× A-Record + CNAME www)
 
+## Offene TODOs
+
+- [ ] Impressum: vollständige Adresse nach Gewerbeanmeldung eintragen
+- [ ] Impressum: Steuernummer / USt-IdNr. nach Finanzamt-Zuteilung ergänzen
+- [ ] Google Search Console: Domain verifizieren + sitemap.xml einreichen
+- [ ] Google Business Profil erstellen (Hannover)
+- [ ] Social-Media-Links im Footer ergänzen (Instagram, LinkedIn, Behance)
+
 ## Kontakt
 
 - **E-Mail:** info@vyomedia.de
+- **Telefon:** 0511 866 47763
 
 ---
 

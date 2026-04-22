@@ -8,10 +8,12 @@
 4. [Animationen](#animationen)
 5. [Komponenten](#komponenten)
 6. [Mobile](#mobile)
-7. [Farbpalette](#farbpalette)
+7. [SEO](#seo)
 8. [Schriften](#schriften)
-9. [Hosting](#hosting)
-10. [Kontaktdaten](#kontaktdaten)
+9. [DSGVO](#dsgvo)
+10. [Farbpalette](#farbpalette)
+11. [Hosting](#hosting)
+12. [Kontaktdaten](#kontaktdaten)
 
 ---
 
@@ -65,14 +67,13 @@ Jede Seite enthält direkt im `<head>` folgenden Inline-Script:
 [data-theme="light"] {
   --bg:      #f0faf5;
   --bg2:     #e3f5eb;
-  --surface: #d4eddf;
-  --surface2:#c5e6d3;
+  --surface: #ffffff;
+  --surface2:#edf7f2;
   --border:  rgba(0,80,40,0.1);
   --border2: rgba(0,80,40,0.18);
   --text:    #0a2118;
   --text2:   #3a6b52;
   --text3:   #7aab90;
-  --glow:    rgba(126,200,160,0.12);
 }
 ```
 
@@ -142,6 +143,10 @@ function applyLang(lang) {
   </div>
 </nav>
 ```
+
+### Anfragen-Buttons
+
+**Wichtig:** Alle CTA- und Anfragen-Buttons auf sämtlichen Seiten verlinken auf `anfragen.html` – nicht auf `mailto:` oder `#contact`. Der einzige Ausnahme sind Job-Bewerbungslinks in `karriere.html` (dort bleibt `mailto:`).
 
 ### Scroll-Verhalten
 
@@ -232,8 +237,8 @@ Animation wird per IntersectionObserver auf `.anatomy-section` ausgelöst (nicht
 ### Buttons
 
 ```html
-<a href="#" class="btn-primary">Text</a>
-<a href="#" class="btn-ghost">Text</a>
+<a href="anfragen.html" class="btn-primary">Text</a>
+<a href="anfragen.html" class="btn-ghost">Text</a>
 ```
 
 ### Lang-Toggle
@@ -254,7 +259,18 @@ Animation wird per IntersectionObserver auf `.anatomy-section` ausgelöst (nicht
 
 ### Anfrageformular (`anfragen.html`)
 
-Mehrstufiges Formular (Projekttyp → Details → Kontakt). Übermittlung via `mailto:`-Link mit vorausgefülltem Betreff und Body.
+9-stufiges Formular:
+1. Projekttyp
+2. Branche
+3. Zielgruppe
+4. Design-Stil
+5. Farbwelt
+6. Seitenstruktur
+7. Funktionen
+8. Budget & Zeitplan
+9. Kontaktdaten
+
+Übermittlung via `mailto:`-Link mit vorausgefülltem Betreff und Body:
 
 ```js
 window.location.href = 'mailto:info@vyomedia.de?subject=' + subject + '&body=' + body;
@@ -296,6 +312,92 @@ Auf ≤900px wird `.services-grid` zu einem horizontalen Swipe-Karussell:
 
 ---
 
+## SEO
+
+### Implementierung
+
+Jede Seite enthält:
+
+```html
+<title>Keyword-optimierter Titel – VYO Media Hannover</title>
+<meta name="description" content="…max. 160 Zeichen…">
+<meta name="keywords" content="Webdesign Hannover, Medienagentur Hannover, …">
+<link rel="canonical" href="https://vyomedia.de/seite.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="…">
+<meta property="og:description" content="…">
+<meta property="og:url" content="…">
+<meta property="og:site_name" content="VYO Media">
+<meta property="og:locale" content="de_DE">
+```
+
+### Schema.org (`index.html`)
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "VYO Media",
+  "address": { "addressLocality": "Hannover", "addressCountry": "DE" },
+  "areaServed": { "@type": "City", "name": "Hannover" }
+}
+```
+
+### sitemap.xml
+
+Enthält alle 6 öffentlichen Seiten (anfragen, datenschutz, impressum ausgeschlossen). Bei Domain-Wechsel URLs anpassen.
+
+### robots.txt
+
+```
+User-agent: *
+Allow: /
+Disallow: /anfragen.html
+Sitemap: https://vyomedia.de/sitemap.xml
+```
+
+---
+
+## Schriften
+
+- **Familie:** Inter – **self-hosted** in `/fonts/` (DSGVO-konform, kein Google CDN)
+- **Gewichte:** 300–900 (variable font, normal + italic 400)
+- **Dateien:** 14 woff2-Dateien + `fonts/inter.css`
+- **Einbindung:** `<link rel="stylesheet" href="fonts/inter.css">` auf allen Seiten
+- **Headlines:** 900 weight, `letter-spacing: -0.045em`
+- **Body:** 400–500 weight, `line-height: 1.75–1.85`
+
+> **Hinweis:** Kein `<link rel="preconnect" href="https://fonts.googleapis.com">` mehr nötig – alle Fonts sind lokal.
+
+---
+
+## DSGVO
+
+### Cookies
+
+Diese Website setzt **keine Cookies**. Es wird ausschließlich `localStorage` für funktionale Einstellungen verwendet:
+
+| Key | Inhalt |
+|---|---|
+| `ace-theme` | `'light'` oder `'dark'` |
+| `ace-lang` | `'de'` oder `'en'` |
+
+Kein Cookie-Banner nötig.
+
+### Tracking
+
+Kein Google Analytics, kein Meta Pixel, keine externen Tracker.
+
+### Hosting (GitHub Pages)
+
+GitHub Inc. (USA) verarbeitet Server-Logs. Rechtsgrundlage für Drittlandübermittlung: EU-Standardvertragsklauseln + EU-US Data Privacy Framework. Details in `datenschutz.html`.
+
+### Impressum
+
+`impressum.html` ist angelegt. Fehlende Pflichtangaben (Adresse, Steuernummer) sind gelb markiert und nach Gewerbeanmeldung einzutragen.
+
+---
+
 ## Farbpalette
 
 | Name | Hex | Verwendung |
@@ -305,15 +407,6 @@ Auf ≤900px wird `.services-grid` zu einem horizontalen Swipe-Karussell:
 | Cyan | `#22d3ee` | Badge-Dot (animiert) |
 | Dark BG | `#000000` | Hintergrund Dark Mode |
 | Light BG | `#f0faf5` | Hintergrund Light Mode (Pastellgrün) |
-
----
-
-## Schriften
-
-- **Familie:** Inter (Google Fonts)
-- **Gewichte:** 300, 400, 500, 600, 700, 800, 900
-- **Headlines:** 900 weight, `letter-spacing: -0.045em`
-- **Body:** 400–500 weight, `line-height: 1.75–1.85`
 
 ---
 
@@ -342,6 +435,9 @@ Auf ≤900px wird `.services-grid` zu einem horizontalen Swipe-Karussell:
 | Art | Wert |
 |---|---|
 | E-Mail | info@vyomedia.de |
+| Telefon | 0511 866 47763 |
+| Mobil | 0151 546 28224 |
+| Support | 0176 608 08641 |
 
 ---
 
