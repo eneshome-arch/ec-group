@@ -6,14 +6,16 @@
 2. [Sprachsystem](#sprachsystem)
 3. [Navigation](#navigation)
 4. [Animationen](#animationen)
-5. [Komponenten](#komponenten)
-6. [Mobile](#mobile)
-7. [SEO](#seo)
-8. [Schriften](#schriften)
-9. [DSGVO](#dsgvo)
-10. [Farbpalette](#farbpalette)
-11. [Hosting](#hosting)
-12. [Kontaktdaten](#kontaktdaten)
+5. [Hintergrundbilder](#hintergrundbilder)
+6. [Sektions-Übergänge](#sektions-übergänge)
+7. [Komponenten](#komponenten)
+8. [Mobile](#mobile)
+9. [SEO](#seo)
+10. [Schriften](#schriften)
+11. [DSGVO](#dsgvo)
+12. [Farbpalette](#farbpalette)
+13. [Hosting](#hosting)
+14. [Kontaktdaten](#kontaktdaten)
 
 ---
 
@@ -146,7 +148,7 @@ function applyLang(lang) {
 
 ### Anfragen-Buttons
 
-**Wichtig:** Alle CTA- und Anfragen-Buttons auf sämtlichen Seiten verlinken auf `anfragen.html` – nicht auf `mailto:` oder `#contact`. Der einzige Ausnahme sind Job-Bewerbungslinks in `karriere.html` (dort bleibt `mailto:`).
+**Wichtig:** Alle CTA- und Anfragen-Buttons auf sämtlichen Seiten verlinken auf `anfragen.html` – nicht auf `mailto:` oder `#contact`. Die einzige Ausnahme sind Job-Bewerbungslinks in `karriere.html` (dort bleibt `mailto:`).
 
 ### Scroll-Verhalten
 
@@ -229,6 +231,93 @@ Animation wird per IntersectionObserver auf `.anatomy-section` ausgelöst (nicht
 ```
 
 `.cta-section > * { position: relative; z-index: 1; }` hat dieselbe Spezifität wie `.cta-glow { position: absolute; }` und steht weiter unten im CSS → überschreibt es. Ohne `!important` wird `.cta-glow` (400px hoch) als Block-Element gerendert und erzeugt einen 400px Leerraum vor dem CTA-Inhalt.
+
+---
+
+## Hintergrundbilder
+
+### Übersicht
+
+Alle 18 Bilder stammen von [Unsplash](https://unsplash.com) (freie kommerzielle Lizenz, keine Namensnennung nötig). Jedes Bild wird sitewide **genau einmal** verwendet.
+
+| Datei | Seite / Section |
+|---|---|
+| `teal-waves.jpg` | index.html CTA |
+| `code-screen.jpg` | index.html Prozess-Section |
+| `hannover.jpg` | ueber-uns.html CTA |
+| `workspace.jpg` | leistungen.html CTA |
+| `conference-room.jpg` | prozess.html Karussell Schritt 1 |
+| `wireframe.jpg` | prozess.html Karussell Schritt 2 |
+| `ux-tablet.jpg` | prozess.html Karussell Schritt 3 |
+| `code-monitor.jpg` | prozess.html Karussell Schritt 4 |
+| `neon-rocket.jpg` | prozess.html Karussell Schritt 5 |
+| `abstract-green.jpg` | prozess.html Timeline |
+| `neon-code.jpg` | preise.html Hero |
+| `laptop-abstract.jpg` | preise.html Wartungs-Section |
+| `neon-green.jpg` | preise.html CTA |
+| `keyboard.jpg` | karriere.html Hero |
+| `team-brainstorm.jpg` | karriere.html Benefits |
+| `modern-office.jpg` | karriere.html Culture |
+| `city-neon.jpg` | karriere.html Jobs |
+| `neon-streaks.jpg` | karriere.html CTA |
+
+### CSS-Muster (Standard)
+
+```css
+.section {
+  background-image:
+    linear-gradient(rgba(0,0,0,1) 0%, transparent 18%, transparent 82%, rgba(0,0,0,1) 100%),
+    linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)),
+    url('images/example.jpg');
+  background-size: cover;
+  background-position: center;
+}
+[data-theme="light"] .section { background-image: none; }
+```
+
+Der erste Layer erzeugt Kanten-Fades (Schwarz oben/unten), der zweite dunkelt das Bild ab. Im Light Mode werden alle Bilder deaktiviert.
+
+**Ausnahme:** `ueber-uns.html` CTA (hannover.jpg) hat keinen Kanten-Fade-Layer und keine `::before`/`::after` Pseudo-Elemente, damit das Bild vollständig wirkt.
+
+---
+
+## Sektions-Übergänge
+
+Weiche Übergänge zwischen Sektionen über zwei Ebenen:
+
+### 1. Kanten-Fade in background-image
+
+Für alle Sektionen mit Hintergrundbild wird ein zusätzlicher Gradient-Layer als erster Layer eingebunden:
+
+```css
+linear-gradient(rgba(0,0,0,1) 0%, transparent 18%, transparent 82%, rgba(0,0,0,1) 100%)
+```
+
+Das Bild löst sich oben und unten in Schwarz auf, statt abrupt zu enden.
+
+### 2. Universelle section::before / ::after
+
+Für alle Sektionen (auch ohne Hintergrundbild):
+
+```css
+section { position: relative; }
+section::before, section::after {
+  content: ''; position: absolute;
+  left: 0; right: 0; height: 80px;
+  pointer-events: none; z-index: 2;
+}
+section::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
+section::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
+```
+
+Diese Regel ist in jeder HTML-Datei im `<style>`-Block nach `.section-dark` eingefügt.
+
+### Ausnahme deaktivieren
+
+```css
+/* Fades für eine spezifische Section deaktivieren */
+.cta-section::before, .cta-section::after { content: none; }
+```
 
 ---
 

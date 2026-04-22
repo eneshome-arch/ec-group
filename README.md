@@ -25,6 +25,25 @@ ec-group-website/
 ├── fonts/              # Self-hosted Inter Schriftart (woff2)
 │   ├── inter.css       # @font-face Deklarationen
 │   └── *.woff2         # 14 Schriftdateien (normal + italic)
+├── images/             # Hintergrundbilder (Unsplash, freie Lizenz)
+│   ├── teal-waves.jpg        # index.html CTA
+│   ├── code-screen.jpg       # index.html Prozess-Section
+│   ├── hannover.jpg          # ueber-uns.html CTA
+│   ├── workspace.jpg         # leistungen.html CTA
+│   ├── conference-room.jpg   # prozess.html Karussell Schritt 1
+│   ├── wireframe.jpg         # prozess.html Karussell Schritt 2
+│   ├── ux-tablet.jpg         # prozess.html Karussell Schritt 3
+│   ├── code-monitor.jpg      # prozess.html Karussell Schritt 4
+│   ├── neon-rocket.jpg       # prozess.html Karussell Schritt 5
+│   ├── abstract-green.jpg    # prozess.html Timeline-Section
+│   ├── neon-code.jpg         # preise.html Hero
+│   ├── laptop-abstract.jpg   # preise.html Wartungs-Section
+│   ├── neon-green.jpg        # preise.html CTA
+│   ├── keyboard.jpg          # karriere.html Hero
+│   ├── team-brainstorm.jpg   # karriere.html Benefits-Section
+│   ├── modern-office.jpg     # karriere.html Culture-Section
+│   ├── city-neon.jpg         # karriere.html Jobs-Section
+│   └── neon-streaks.jpg      # karriere.html CTA
 ├── logo.svg
 ├── logo-mark.svg
 ├── logo-bloom.svg
@@ -57,6 +76,41 @@ ec-group-website/
 - **Prozess-Karussell** – 5-Schritte-Karussell mit CSS scroll-snap, Magic Mouse & Touch
 - **Anatomie-Animation** – Wireframe-Diagramm mit staggered Einblend-Animation, zoom-skaliert für Mobile
 - **Anfragen-Formular** – 9-stufiges Fragebogen-Formular, alle Buttons sitewide verlinken hierauf
+- **Hintergrundbilder** – 18 einzigartige Unsplash-Fotos als subtile Sektions-Hintergründe (dunkler Overlay)
+- **Weiche Sektions-Übergänge** – Gradient-Fades an allen Section-Rändern für fließende Übergänge
+
+## Hintergrundbilder
+
+Alle Bilder stammen von [Unsplash](https://unsplash.com) und sind zur freien kommerziellen Nutzung ohne Namensnennung lizenziert. Jedes Bild wird sitewide **genau einmal** verwendet.
+
+### Technische Umsetzung
+
+Bilder werden als CSS `background-image` mit einem dunklen Overlay eingebunden:
+
+```css
+background-image:
+  linear-gradient(rgba(0,0,0,1) 0%, transparent 18%, transparent 82%, rgba(0,0,0,1) 100%),
+  linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)),
+  url('images/example.jpg');
+background-size: cover;
+background-position: center;
+```
+
+Der erste Gradient-Layer erzeugt weiche Kanten (Schwarz → transparent → Schwarz), der zweite dunkelt das Bild einheitlich ab. Im Light Mode werden alle Bilder deaktiviert (`background-image: none`).
+
+**Ausnahme:** Die CTA-Section auf `ueber-uns.html` (Hannover-Foto) hat keine Kanten-Fades, um das Bild vollständig sichtbar zu lassen.
+
+## Sektions-Übergänge
+
+Weiche Übergänge zwischen Sektionen via zwei Methoden:
+
+1. **Sections mit Hintergrundbild** – Edge-Fade-Gradient direkt im `background-image` (Schwarz an Top/Bottom)
+2. **Alle Sections** – Universelle `section::before`/`::after` Pseudo-Elemente (80px, `var(--bg)` Gradient)
+
+```css
+section::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
+section::after  { bottom: 0; background: linear-gradient(to top, var(--bg), transparent); }
+```
 
 ## SEO
 
