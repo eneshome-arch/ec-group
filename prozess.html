@@ -452,7 +452,12 @@
     .anatomy-diagram.run .legend-item { opacity: 1; transform: none; }
 
     /* ─── TIMELINE ───────────────────────────────────────── */
-    .timeline-section { padding: 80px 48px; background: var(--bg2); }
+    .timeline-section {
+      padding: 80px 48px;
+      background-image: linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)), url('images/abstract-green.jpg');
+      background-size: cover;
+      background-position: center;
+    }
     .timeline { max-width: 700px; margin: 64px auto 0; position: relative; }
     .timeline::before {
       content: ''; position: absolute;
