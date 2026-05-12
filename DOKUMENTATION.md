@@ -5,17 +5,18 @@
 1. [Theme-System](#theme-system)
 2. [Sprachsystem](#sprachsystem)
 3. [Navigation](#navigation)
-4. [Animationen](#animationen)
-5. [Hintergrundbilder](#hintergrundbilder)
-6. [Sektions-Übergänge](#sektions-übergänge)
-7. [Komponenten](#komponenten)
-8. [Mobile](#mobile)
-9. [SEO](#seo)
-10. [Schriften](#schriften)
-11. [DSGVO](#dsgvo)
-12. [Farbpalette](#farbpalette)
-13. [Hosting](#hosting)
-14. [Kontaktdaten](#kontaktdaten)
+4. [Layout & Spacing](#layout--spacing)
+5. [Animationen](#animationen)
+6. [Hintergrundbilder](#hintergrundbilder)
+7. [Sektions-Übergänge](#sektions-übergänge)
+8. [Komponenten](#komponenten)
+9. [Mobile](#mobile)
+10. [SEO](#seo)
+11. [Schriften](#schriften)
+12. [DSGVO](#dsgvo)
+13. [Farbpalette](#farbpalette)
+14. [Hosting](#hosting)
+15. [Kontaktdaten](#kontaktdaten)
 
 ---
 
@@ -159,6 +160,83 @@ function updateNavBg() {
     ? (light ? 'rgba(240,250,245,0.97)' : 'rgba(0,0,0,0.97)')
     : (light ? 'rgba(240,250,245,0.88)' : 'rgba(0,0,0,0.75)');
 }
+```
+
+---
+
+## Layout & Spacing
+
+### Section-Padding
+
+Alle Sections verwenden einheitliche Padding-Werte für ein großzügiges, premium wirkendes Layout:
+
+```css
+/* Desktop */
+.section { padding: 120px 80px; }
+
+/* Tablet (≤900px) */
+@media (max-width: 900px) {
+  .section { padding: 80px 32px; }
+}
+
+/* Mobile (≤540px) */
+@media (max-width: 540px) {
+  .section { padding: 60px 20px; }
+}
+```
+
+### Content-Container
+
+Alle Haupt-Grids und Inhalts-Container sind auf `max-width: 1280px` begrenzt und zentriert:
+
+```css
+.services-grid,
+.stats-row,
+.about-wrap,
+.portfolio-grid,
+.process-row,
+.pricing-grid,
+.maint-grid,
+.expertise-grid,
+.values-grid,
+.benefits-grid,
+.culture-wrap,
+.pt-inner,
+.intro-wrap,
+.mission-banner {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+### Abstände (Referenzwerte)
+
+| Element | Wert |
+|---|---|
+| Section-Padding Desktop | `120px 80px` |
+| Section-Padding Tablet | `80px 32px` |
+| Section-Padding Mobile | `60px 20px` |
+| Footer-Padding Desktop | `64px 80px` |
+| Card-Grid Gap | `24px` |
+| Expertise/Values Grid Gap | `24–28px` |
+| 2-Spalten-Layout Gap | `96–100px` |
+| Card-Padding | `40px 36px` |
+| Stat-Box Padding | `44px 32px` |
+| Section-Header Margin-Bottom | `64px` |
+
+### Footer
+
+```css
+footer { padding: 64px 80px; }
+
+/* index.html Footer (mit Grid-Layout) */
+.footer-top {
+  grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  gap: 64px;
+  margin-bottom: 56px;
+}
+.footer-bottom { padding-top: 40px; }
 ```
 
 ---

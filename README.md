@@ -153,6 +153,19 @@ section::after  { bottom: 0; background: linear-gradient(to top, var(--bg), tran
 - **Light Mode:** Hintergrund `#f0faf5` (helles Pastellgrün), Text `#0a2118`
 - **Schrift:** Inter, 900 weight für Headlines
 
+### Layout & Spacing
+
+| Element | Wert |
+|---|---|
+| Section-Padding (Desktop) | `120px 80px` |
+| Section-Padding (Tablet ≤900px) | `80px 32px` |
+| Section-Padding (Mobile ≤540px) | `60px 20px` |
+| Max-Width (Content-Container) | `1280px` |
+| Grid-Gap (Cards) | `24–28px` |
+| Gap (2-Spalten-Layouts) | `96–100px` |
+| Card-Padding | `40px 36px` |
+| Footer-Padding (Desktop) | `64px 80px` |
+
 ## Hosting
 
 Gehostet via **GitHub Pages** – automatisches Deployment bei jedem `git push` auf `main`.  
