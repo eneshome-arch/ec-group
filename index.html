@@ -261,7 +261,7 @@
     }
 
     /* ─── SECTIONS COMMON ─────────────────────────────────── */
-    .section { padding: 80px 48px; }
+    .section { padding: 120px 80px; }
     .section-dark { background: var(--bg2); }
     /* ─── SECTION TRANSITIONS ──────────────────────────── */
     section { position: relative; }
@@ -293,7 +293,7 @@
       font-size: 17px; color: var(--text2);
       max-width: 560px; line-height: 1.75;
     }
-    .section-header { margin-bottom: 48px; }
+    .section-header { margin-bottom: 64px; }
     .section-header.center { text-align: center; }
     .section-header.center .section-sub { margin: 0 auto; }
 
@@ -306,10 +306,13 @@
       border: 1px solid var(--border);
       border-radius: 28px;
       overflow: hidden;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .service-card {
-      background: var(--surface); padding: 32px;
+      background: var(--surface); padding: 44px 40px;
       transition: background 0.25s;
       text-align: center;
     }
@@ -340,10 +343,11 @@
     .stats-row {
       display: grid; grid-template-columns: repeat(4, 1fr);
       border: 1px solid var(--border); border-radius: 24px;
-      overflow: hidden; margin-top: 48px;
+      overflow: hidden; margin-top: 64px;
+      max-width: 1280px; margin-left: auto; margin-right: auto;
     }
     .stat-box {
-      padding: 32px; text-align: center;
+      padding: 44px 32px; text-align: center;
       border-right: 1px solid var(--border);
     }
     .stat-box:last-child { border-right: none; }
@@ -359,7 +363,8 @@
     /* ─── ABOUT ───────────────────────────────────────────── */
     .about-wrap {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
+      gap: 96px; align-items: center;
+      max-width: 1280px; margin: 0 auto;
     }
 
     .about-visual {
@@ -396,13 +401,14 @@
     .process-row {
       display: grid; grid-template-columns: repeat(4, 1fr);
       position: relative; gap: 0;
+      max-width: 1280px; margin: 0 auto;
     }
     .process-line {
       position: absolute; top: 24px;
       left: calc(12.5%); right: calc(12.5%);
       height: 1px; background: var(--border); z-index: 0;
     }
-    .process-step { text-align: center; padding: 0 20px; }
+    .process-step { text-align: center; padding: 0 36px; }
     .step-num {
       width: 48px; height: 48px; border-radius: 50%;
       border: 1px solid var(--border2); background: var(--bg2);
@@ -418,7 +424,8 @@
     /* ─── PORTFOLIO TEASER ────────────────────────────────── */
     .portfolio-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 24px;
+      max-width: 1280px; margin: 0 auto;
     }
     .portfolio-card {
       border-radius: 20px; overflow: hidden; position: relative;
@@ -505,11 +512,11 @@
     /* ─── FOOTER ──────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border); background: var(--bg2);
-      padding: 48px;
+      padding: 64px 80px;
     }
     .footer-top {
       display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr;
-      gap: 48px; margin-bottom: 40px;
+      gap: 64px; margin-bottom: 56px;
     }
     .footer-brand-desc {
       font-size: 14px; color: var(--text2); line-height: 1.7;
@@ -539,7 +546,7 @@
     .footer-col a:hover { color: var(--text); }
 
     .footer-bottom {
-      border-top: 1px solid var(--border); padding-top: 32px;
+      border-top: 1px solid var(--border); padding-top: 40px;
       display: flex; justify-content: space-between; align-items: center;
     }
     .footer-bottom p { font-size: 13px; color: var(--text3); }
@@ -565,7 +572,7 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex !important; }
       .nav-cta { display: none; }
-      .section { padding: 60px 24px; }
+      .section { padding: 80px 32px; }
       .hero { padding: 80px 24px 48px; }
       .services-grid {
         display: flex;
@@ -631,7 +638,7 @@
       .portfolio-grid { grid-template-columns: 1fr 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-      footer { padding: 40px 24px 24px; }
+      footer { padding: 48px 32px 32px; }
       .cta-banner { padding: 64px 24px; }
       .service-cycler { padding: 20px 24px; gap: 16px; }
       .cycler-label { font-size: 10px; letter-spacing: 0.14em; }
@@ -667,7 +674,7 @@
       .hero-actions { flex-direction: column; align-items: center; gap: 10px; width: 100%; }
       .hero-actions .btn-primary,
       .hero-actions .btn-ghost { width: 100%; max-width: 300px; justify-content: center; text-align: center; }
-      footer { padding: 32px 20px 20px; }
+      footer { padding: 40px 24px 24px; }
       .footer-top { gap: 28px; }
       .ticker-item { padding: 0 20px; }
       .ticker::before, .ticker::after { width: 40px; }

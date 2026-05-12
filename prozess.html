@@ -147,7 +147,7 @@
     .btn-ghost:hover { border-color: rgba(255,255,255,0.35); transform: translateY(-2px); }
 
     /* ─── SECTIONS ───────────────────────────────────────── */
-    .section { padding: 80px 48px; }
+    .section { padding: 120px 80px; }
     .section-dark { background: var(--bg2); }
     /* ─── SECTION TRANSITIONS ──────────────────────────── */
     section { position: relative; }
@@ -188,8 +188,8 @@
     .step-card {
       flex: 0 0 100%;
       scroll-snap-align: start;
-      background: var(--surface); padding: 52px 56px;
-      min-height: 320px;
+      background: var(--surface); padding: 72px 80px;
+      min-height: 360px;
       display: flex; flex-direction: column; justify-content: center;
     }
     .step-card:nth-child(1) {
@@ -271,7 +271,7 @@
 
     /* ─── ANATOMY SECTION ───────────────────────────────── */
     .anatomy-section {
-      padding: 80px 48px;
+      padding: 120px 80px;
       background: var(--bg);
       overflow: hidden;
     }
@@ -484,7 +484,7 @@
 
     /* ─── TIMELINE ───────────────────────────────────────── */
     .timeline-section {
-      padding: 80px 48px;
+      padding: 120px 80px;
       background-image: linear-gradient(rgba(0,0,0,1) 0%, transparent 18%, transparent 82%, rgba(0,0,0,1) 100%), linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)), url('images/abstract-green.jpg');
       background-size: cover;
       background-position: center;
@@ -534,7 +534,7 @@
     /* ─── FOOTER ─────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border); background: var(--bg2);
-      padding: 48px; display: flex; justify-content: space-between; align-items: center;
+      padding: 64px 80px; display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 16px;
     }
     footer p { font-size: 13px; color: var(--text3); }
@@ -608,12 +608,12 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex !important; }
       .nav-cta { display: none; }
-      .section, .anatomy-section, .timeline-section, .cta-section { padding: 60px 24px; }
+      .section, .anatomy-section, .timeline-section, .cta-section { padding: 80px 32px; }
       .hero { padding: 80px 24px 48px; }
-      .step-card { padding: 36px 32px; min-height: 260px; }
+      .step-card { padding: 40px 36px; min-height: 260px; }
       /* Scale diagram proportionally — same layout as desktop, just smaller */
       .anatomy-diagram { zoom: 0.82; }
-      footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+      footer { padding: 48px 32px; flex-direction: column; text-align: center; }
     }
 
     @media (max-width: 720px) { .anatomy-diagram { zoom: 0.66; } }
@@ -732,7 +732,7 @@
       .carousel-btn { width: 40px; height: 40px; }
       .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
       .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; padding: 14px 20px; justify-content: center; }
-      footer { padding: 32px 20px 20px; flex-direction: column; text-align: center; }
+      footer { padding: 40px 24px 24px; flex-direction: column; text-align: center; }
       .tl-item { gap: 20px; margin-bottom: 40px; }
       .timeline { margin-top: 40px; }
       .anatomy-intro { margin-bottom: 28px; }

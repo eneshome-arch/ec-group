@@ -126,7 +126,7 @@
     }
 
     /* ─── SECTION COMMON ─────────────────────────────────────── */
-    .section { padding: 72px 48px; }
+    .section { padding: 120px 80px; }
     .section-dark { background: var(--bg2); }
     /* ─── SECTION TRANSITIONS ──────────────────────────── */
     section { position: relative; }
@@ -149,20 +149,20 @@
     .section-sub { font-size: 16px; color: var(--text2); max-width: 540px; line-height: 1.75; }
 
     /* ─── PRICING CARDS ──────────────────────────────────────── */
-    .pricing-section { padding: 56px 48px 72px; }
+    .pricing-section { padding: 56px 80px 120px; }
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 1100px;
-      margin: 64px auto 0;
+      gap: 24px;
+      max-width: 1280px;
+      margin: 80px auto 0;
     }
 
     .price-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 28px 28px;
+      padding: 40px 36px;
       display: flex; flex-direction: column;
       transition: border-color 0.25s, transform 0.25s;
       position: relative;
@@ -259,8 +259,8 @@
     .maint-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 1100px;
+      gap: 24px;
+      max-width: 1280px;
       margin: 64px auto 0;
     }
 
@@ -268,7 +268,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 24px 22px;
+      padding: 36px 32px;
       transition: border-color 0.25s, transform 0.25s;
     }
     .maint-card:hover { border-color: var(--border2); transform: translateY(-3px); }
@@ -299,7 +299,7 @@
 
     /* ─── FAQ ────────────────────────────────────────────────── */
     .faq-wrap {
-      max-width: 760px; margin: 64px auto 0;
+      max-width: 840px; margin: 72px auto 0;
     }
     .faq-item {
       border-bottom: 1px solid var(--border);
@@ -380,7 +380,7 @@
     /* ─── FOOTER ─────────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border); background: var(--bg2);
-      padding: 48px; display: flex; justify-content: space-between; align-items: center;
+      padding: 64px 80px; display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 16px;
     }
     footer p { font-size: 13px; color: var(--text3); }
@@ -454,8 +454,8 @@
       .nav-hamburger { display: flex !important; }
       .nav-cta { display: none; }
       .hero, .section, .pricing-section, .cta-section { padding-left: 24px; padding-right: 24px; }
-      .pricing-grid, .maint-grid { grid-template-columns: 1fr; }
-      footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+      .pricing-grid, .maint-grid { grid-template-columns: 1fr; gap: 16px; }
+      footer { padding: 48px 32px; flex-direction: column; text-align: center; }
     }
   
     /* ─── LANG TOGGLE ────────────────────────────────── */
@@ -572,7 +572,7 @@
       .faq-q span { font-size: 14px; }
       .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
       .cta-btn-primary, .cta-btn-ghost { width: 100%; max-width: 280px; text-align: center; padding: 14px 20px; justify-content: center; }
-      footer { padding: 32px 20px 20px; flex-direction: column; text-align: center; }
+      footer { padding: 40px 24px 24px; flex-direction: column; text-align: center; }
     }
 
     @media (max-width: 390px) {
@@ -658,7 +658,7 @@
 
 <!-- ════════════════════ WEBSITE PAKETE ════════════════════ -->
 <section class="pricing-section">
-  <div style="max-width:1100px;margin:0 auto">
+  <div style="max-width:1280px;margin:0 auto">
     <div class="reveal" style="text-align:center">
       <div class="section-label" data-i18n="pricing-label">Website-Pakete</div>
       <h2 class="section-title" data-i18n="pricing-title">Einmalig. Fertig. Dein.</h2>
@@ -806,7 +806,7 @@
 
 <!-- ════════════════════ WARTUNG & PFLEGE ════════════════════ -->
 <section class="section section-dark" id="maintenance">
-  <div style="max-width:1100px;margin:0 auto">
+  <div style="max-width:1280px;margin:0 auto">
     <div class="reveal" style="text-align:center">
       <div class="section-label" data-i18n="maint-label">Wartung & Pflege</div>
       <h2 class="section-title" data-i18n="maint-title">Deine Website in besten Händen</h2>
@@ -860,7 +860,7 @@
 
 <!-- ════════════════════ FAQ ════════════════════ -->
 <section class="section">
-  <div style="max-width:1100px;margin:0 auto">
+  <div style="max-width:1280px;margin:0 auto">
     <div class="reveal" style="text-align:center">
       <div class="section-label" data-i18n="faq-label">FAQ</div>
       <h2 class="section-title" data-i18n="faq-title">Häufige Fragen</h2>

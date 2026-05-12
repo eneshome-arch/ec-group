@@ -144,12 +144,12 @@
     }
 
     /* ─── SERVICE GRID ───────────────────────────────────────── */
-    .services-section { padding: 0 48px 72px; }
+    .services-section { padding: 0 80px 120px; }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 1100px;
+      gap: 24px;
+      max-width: 1280px;
       margin: 0 auto;
     }
 
@@ -157,7 +157,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 28px 24px;
+      padding: 40px 36px;
       display: flex; flex-direction: column;
       transition: border-color 0.25s, transform 0.25s, opacity 0.3s;
       cursor: default;
@@ -201,15 +201,15 @@
     }
 
     /* ─── STATS ──────────────────────────────────────────────── */
-    .stats-section { padding: 0 48px 64px; }
+    .stats-section { padding: 0 80px 120px; }
     .stats-row {
       display: grid; grid-template-columns: repeat(4, 1fr);
       border: 1px solid var(--border); border-radius: 24px;
-      overflow: hidden; max-width: 1100px; margin: 0 auto;
+      overflow: hidden; max-width: 1280px; margin: 0 auto;
       background: var(--surface);
     }
     .stat-box {
-      padding: 32px; text-align: center;
+      padding: 44px 32px; text-align: center;
       border-right: 1px solid var(--border);
     }
     .stat-box:last-child { border-right: none; }
@@ -224,13 +224,13 @@
 
     /* ─── PROCESS TEASER ─────────────────────────────────────── */
     .process-teaser {
-      padding: 72px 48px;
+      padding: 120px 80px;
       background: var(--bg2);
     }
     .pt-inner {
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1280px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
+      gap: 100px; align-items: center;
     }
     .pt-steps { display: flex; flex-direction: column; gap: 0; }
     .pt-step {
@@ -312,7 +312,7 @@
     /* ─── FOOTER ─────────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border); background: var(--bg2);
-      padding: 48px; display: flex; justify-content: space-between; align-items: center;
+      padding: 64px 80px; display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 16px;
     }
     footer p { font-size: 13px; color: var(--text3); }
@@ -393,7 +393,7 @@
       .hero { padding: 120px 24px 60px; }
       .filter-bar { padding: 16px 24px 40px; top: 64px; }
       .services-section { padding: 0 24px 80px; }
-      .services-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; gap: 16px; }
       .stats-section { padding: 0 24px 80px; }
       .stats-row { grid-template-columns: repeat(2,1fr); }
       .stat-box:nth-child(2) { border-right: none; }
@@ -401,7 +401,7 @@
       .process-teaser { padding: 80px 24px; }
       .pt-inner { grid-template-columns: 1fr; gap: 48px; }
       .cta-section { padding: 80px 24px; }
-      footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+      footer { padding: 48px 32px; flex-direction: column; text-align: center; }
     }
   
     /* ─── LANG TOGGLE ────────────────────────────────── */

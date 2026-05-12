@@ -131,7 +131,7 @@
     .btn-ghost:hover { border-color: rgba(255,255,255,0.35); transform: translateY(-2px); }
 
     /* ─── SECTION COMMON ───────────────────────────────── */
-    .section { padding: 80px 48px; }
+    .section { padding: 120px 80px; }
     .section-dark { background: var(--bg2); }
     /* ─── SECTION TRANSITIONS ──────────────────────────── */
     section { position: relative; }
@@ -149,9 +149,9 @@
 
     /* ─── INTRO SPLIT ──────────────────────────────────── */
     .intro-wrap {
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1280px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
+      gap: 100px; align-items: center;
     }
     .intro-text p {
       font-size: 16px; color: var(--text2); line-height: 1.85;
@@ -166,7 +166,7 @@
       border: 1px solid var(--border); border-radius: 24px; overflow: hidden;
     }
     .istat {
-      background: var(--surface); padding: 32px 28px;
+      background: var(--surface); padding: 40px 32px;
       transition: background 0.2s;
     }
     .istat:hover { background: var(--surface2); }
@@ -181,7 +181,7 @@
     /* ─── EXPERTISE CARDS ──────────────────────────────── */
     .expertise-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 20px; max-width: 1100px; margin: 56px auto 0;
+      gap: 28px; max-width: 1280px; margin: 72px auto 0;
     }
     .expertise-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -207,11 +207,11 @@
     /* ─── VALUES ───────────────────────────────────────── */
     .values-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px; max-width: 1100px; margin: 56px auto 0;
+      gap: 24px; max-width: 1280px; margin: 72px auto 0;
     }
     .value-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 32px 28px;
+      border-radius: 20px; padding: 40px 36px;
       transition: border-color 0.25s, transform 0.25s;
     }
     .value-card:hover { border-color: var(--border2); transform: translateY(-3px); }
@@ -244,9 +244,9 @@
 
     /* ─── MISSION BANNER ───────────────────────────────── */
     .mission-banner {
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1280px; margin: 0 auto;
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 28px; padding: 56px 64px;
+      border-radius: 28px; padding: 72px 80px;
       position: relative; overflow: hidden;
     }
     .mission-glow {
@@ -282,7 +282,7 @@
     /* ─── FOOTER ───────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border); background: var(--bg2);
-      padding: 48px; display: flex; justify-content: space-between; align-items: center;
+      padding: 64px 80px; display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 16px;
     }
     footer p { font-size: 13px; color: var(--text3); }
@@ -347,13 +347,13 @@
       .nav-hamburger { display: flex !important; }
       .nav-cta { display: none; }
       .hero { padding: 80px 24px 48px; }
-      .section { padding: 64px 24px; }
+      .section { padding: 80px 32px; }
       .intro-wrap { grid-template-columns: 1fr; gap: 48px; }
-      .expertise-grid { grid-template-columns: 1fr; }
-      .values-grid { grid-template-columns: 1fr; }
-      .mission-banner { padding: 40px 28px; }
-      .cta-section { padding: 64px 24px; }
-      footer { padding: 40px 24px; flex-direction: column; text-align: center; }
+      .expertise-grid { grid-template-columns: 1fr; gap: 16px; }
+      .values-grid { grid-template-columns: 1fr; gap: 16px; }
+      .mission-banner { padding: 48px 36px; }
+      .cta-section { padding: 80px 24px; }
+      footer { padding: 48px 32px; flex-direction: column; text-align: center; }
     }
 
     /* ─── LANG TOGGLE ────────────────────────────────── */
@@ -459,15 +459,15 @@
       body { overflow-x: hidden; }
       nav { padding: 0 16px; }
       .hero { padding: 80px 20px 40px; }
-      .section { padding: 48px 20px; }
+      .section { padding: 60px 20px; }
       .section-title { font-size: clamp(24px, 7vw, 34px); }
       .section-sub { font-size: 15px; }
-      .mission-banner { padding: 32px 20px; border-radius: 16px; }
+      .mission-banner { padding: 40px 24px; border-radius: 16px; }
       .mission-banner h2 { font-size: clamp(26px, 7vw, 40px); }
-      .cta-section { padding: 56px 20px; }
+      .cta-section { padding: 60px 20px; }
       .cta-btns { flex-direction: column; align-items: center; gap: 10px; }
       .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; padding: 14px 20px; justify-content: center; }
-      footer { padding: 32px 20px 20px; flex-direction: column; text-align: center; }
+      footer { padding: 40px 24px 24px; flex-direction: column; text-align: center; }
       .expertise-card { padding: 28px 24px; }
     }
 
